@@ -10,7 +10,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout> sfsdfdssdfdsf</Layout>
+      <Layout>
+        <div className=" ">
+          <div className="container mx-auto px-4 min-h-[200px]">
+            fsdfdfsdffs
+          </div>
+        </div>
+      </Layout>
     </>
   );
 }
