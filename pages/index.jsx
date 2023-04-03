@@ -31,6 +31,9 @@ export default function Home() {
                   is. That&apos;s how it is. as easy as that. That&apos;s how
                   safe it is.
                 </p>
+                <button className="bg-teal-300  text-teal-700 font-bold py-2 px-4 rounded border-teal-600 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 mt-8">
+                  Share Your Trouble
+                </button>
               </div>
             </section>
 
