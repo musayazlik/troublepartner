@@ -1,5 +1,8 @@
 import Head from "next/head";
 import Layout from "./layout";
+import Image from "next/image";
+import Card from "@/components/card";
+import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 
 export default function Home() {
   return (
@@ -11,9 +14,100 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className=" ">
+        <div className=" py-20">
           <div className="container mx-auto px-4 min-h-[200px]">
-            fsdfdfsdffs
+            <section className="flex justify-center">
+              <div className="flex flex-col items-center max-w-2xl">
+                <h2 className="text-slate-700 font-maxbold text-center lg:text-6xl">
+                  Trouble Partner
+                </h2>
+                <p className="text-slate-600 text-center font-semibold text-2xl relative inline-flex justify-center">
+                  Your problem is our problem.
+                </p>
+                <p className="text-center leading-6 text-slate-800/60 mt-4 font-medium">
+                  Share your problem, either as yourself or anonymously. People
+                  will connect with you and find solutions. they&apos;ll find
+                  it. That&apos;s how simple it is. That&apos;s how beautiful it
+                  is. That&apos;s how it is. as easy as that. That&apos;s how
+                  safe it is.
+                </p>
+              </div>
+            </section>
+
+            <section className="mt-20 grid grid-cols-12 gap-4">
+              <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
+                <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
+                  <Image
+                    src="https://i.pravatar.cc/300"
+                    width={300}
+                    height={250}
+                    alt="Avatar"
+                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
+                  />
+                </div>
+              </div>
+              <div className="cardArea flex flex-col items-center col-span-8 gap-6 ">
+                <Card
+                  image="https://i.pravatar.cc/300"
+                  name="John Doe"
+                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                  time="2 hours ago"
+                  comment="2"
+                />
+                <Card
+                  image="https://i.pravatar.cc/300"
+                  name="John Doe"
+                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                  time="2 hours ago"
+                  comment="2"
+                />
+                <Card
+                  image="https://i.pravatar.cc/300"
+                  name="John Doe"
+                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                  time="2 hours ago"
+                  comment="2"
+                />
+                <Card
+                  image="https://i.pravatar.cc/300"
+                  name="John Doe"
+                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                  time="2 hours ago"
+                  comment="2"
+                />
+                <div className="pagination flex gap-2 mt-6">
+                  <button className="bg-white  text-teal-700/70 font-bold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                    <BiChevronLeft fontSize={32} />
+                  </button>
+                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                    1
+                  </button>
+                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                    2
+                  </button>
+                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                    3
+                  </button>
+                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                    4
+                  </button>
+                  <button className="bg-white  text-teal-700/70 font-bold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                    <BiChevronRight fontSize={32} />
+                  </button>
+                </div>
+              </div>
+              <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
+                <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
+                  <Image
+                    src="https://i.pravatar.cc/300"
+                    width={300}
+                    height={250}
+                    alt="Avatar"
+                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
+                  />
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </Layout>
