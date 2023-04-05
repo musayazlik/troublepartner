@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import Post from "@/models/posts";
 import dbConnect from "@/utils/dbConnect";
 import Users from "@/models/users";
+import Comment from "@/models/comments";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -10,7 +11,6 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        console.log(req.query.id);
         const posts = await Post.find({
           _id: ObjectId(req.query.id),
         })

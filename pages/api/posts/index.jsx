@@ -1,6 +1,7 @@
 import Post from "@/models/posts";
 import dbConnect from "@/utils/dbConnect";
 import Users from "@/models/users";
+import Comment from "@/models/comments";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -16,10 +17,22 @@ export default async function handler(req, res) {
           select: ["name", "image"],
         });
 
+        for (let i = 0; i < posts.length; i++) {
+          const numComments = await Comment.countDocuments({
+            post: posts[i]._id,
+          });
+
+          posts[i] = {
+            ...posts[i]._doc,
+            numComments,
+          };
+        }
+
         res.status(200).json({ data: posts });
       } catch (error) {
         res.status(400).json({ message: error.message });
       }
+
       break;
     case "POST":
       try {

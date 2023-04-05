@@ -110,7 +110,7 @@ export default function Home() {
                     text={post.text}
                     slug={post.slug}
                     time={formatDate(post.createdAt)}
-                    comment="2"
+                    comment={post.numComments}
                   />
                 ))}
 

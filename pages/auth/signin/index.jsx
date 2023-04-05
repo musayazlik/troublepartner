@@ -81,13 +81,7 @@ const SignIn = () => {
         </Formik>
 
         <div className="flex justify-center items-center space-x-2">
-          <button
-            onClick={() =>
-              signIn("google", { callbackUrl: "http://localhost:3000" })
-            }
-          >
-            Google
-          </button>
+          <button onClick={() => signIn("google")}>Google</button>
         </div>
       </div>
     </div>
