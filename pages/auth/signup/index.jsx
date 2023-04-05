@@ -1,6 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useRouter } from "next/router";
-import { Register } from "@utils/firebase";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
