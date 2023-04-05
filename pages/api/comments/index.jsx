@@ -1,4 +1,4 @@
-import dbConnect from "@/utils/dbConnect";
+import dbConnect from "@/utils/dbconnect";
 import Comment from "@/models/comments";
 import Users from "@/models/users";
 

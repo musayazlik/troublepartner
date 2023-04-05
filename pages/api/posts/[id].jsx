@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import Post from "@/models/posts";
-import dbConnect from "@/utils/dbConnect";
+import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
 import Comment from "@/models/comments";
 
