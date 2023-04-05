@@ -4,7 +4,7 @@ import { BsFillBalloonHeartFill } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <>
+    <div>
       <footer className="bg-slate-800 py-4 text-teal-400 border-t-4 border-teal-500">
         <div className="container mx-auto px-4">
           <div className="copyright text-center flex justify-center gap-2">
@@ -38,7 +38,7 @@ const Footer = () => {
           </a>
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

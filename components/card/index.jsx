@@ -1,13 +1,16 @@
 import React from "react";
 import { BiTimeFive, BiComment, BiRightArrow } from "react-icons/bi";
 import Image from "next/image";
+import Link from "next/link";
 
 const Card = ({
+  id,
   image = "",
   name = "",
-  description = "",
+  text = "",
   time = "",
   comment = "",
+  slug,
 }) => {
   return (
     <>
@@ -25,7 +28,7 @@ const Card = ({
         <div className="flex flex-col justify-between w-full">
           <div className="flex flex-col">
             <h3 className="text-slate-700 font-extrabold text-2xl">{name}</h3>
-            <p className="text-slate-600 text-lg">{description}</p>
+            <p className="text-slate-600 text-lg">{text}</p>
           </div>
           <div className="flex justify-between items-center">
             <div className="flex gap-5 ">
@@ -38,10 +41,15 @@ const Card = ({
                 <span className="mt-0.5">{comment}</span>
               </div>
             </div>
-            <button className="bg-teal-300  text-teal-700 font-bold py-2 px-4 rounded border-teal-600 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 flex items-center">
+            <Link
+              href={{
+                pathname: `post/${slug + "-" + id}`,
+              }}
+              className="bg-teal-300  text-teal-700 font-bold py-2 px-4 rounded border-teal-600 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 flex items-center"
+            >
               Read More
               <BiRightArrow className="ml-2" fontSize={20} />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

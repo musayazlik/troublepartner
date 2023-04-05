@@ -3,8 +3,55 @@ import Layout from "./layout";
 import Image from "next/image";
 import Card from "@/components/card";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
+import { useSession } from "next-auth/react";
+import { useAppContext } from "@/context";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 export default function Home() {
+  const { user, setUser, loading, setLoading } = useAppContext();
+  const [posts, setPosts] = useState([]);
+  const { push } = useRouter();
+
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "/api/posts",
+    })
+      .then((res) => {
+        setPosts(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [session]);
+
+  const createPostPageHandle = () => {
+    if (status === "authenticated") {
+      return () => {
+        push("/create-post");
+      };
+    } else {
+      return () => {
+        signIn("google");
+      };
+    }
+  };
+
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+
+    return `${month}/${day}/${year}`;
+  };
+
   return (
     <>
       <Head>
@@ -13,6 +60,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Layout>
         <div className=" py-20">
           <div className="container mx-auto px-4 min-h-[200px]">
@@ -31,7 +79,10 @@ export default function Home() {
                   is. That&apos;s how it is. as easy as that. That&apos;s how
                   safe it is.
                 </p>
-                <button className="bg-teal-300  text-teal-700 font-bold py-2 px-4 rounded border-teal-600 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 mt-8">
+                <button
+                  onClick={createPostPageHandle()}
+                  className="bg-teal-300  text-teal-700 font-bold py-2 px-4 rounded border-teal-600 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 mt-8"
+                >
                   Share Your Trouble
                 </button>
               </div>
@@ -50,34 +101,19 @@ export default function Home() {
                 </div>
               </div>
               <div className="cardArea flex flex-col items-center col-span-8 gap-6 ">
-                <Card
-                  image="https://i.pravatar.cc/300"
-                  name="John Doe"
-                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
-                  time="2 hours ago"
-                  comment="2"
-                />
-                <Card
-                  image="https://i.pravatar.cc/300"
-                  name="John Doe"
-                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
-                  time="2 hours ago"
-                  comment="2"
-                />
-                <Card
-                  image="https://i.pravatar.cc/300"
-                  name="John Doe"
-                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
-                  time="2 hours ago"
-                  comment="2"
-                />
-                <Card
-                  image="https://i.pravatar.cc/300"
-                  name="John Doe"
-                  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
-                  time="2 hours ago"
-                  comment="2"
-                />
+                {posts.map((post) => (
+                  <Card
+                    key={post._id}
+                    id={post._id}
+                    image={post.user.image}
+                    name={post.user.name}
+                    text={post.text}
+                    slug={post.slug}
+                    time={formatDate(post.createdAt)}
+                    comment="2"
+                  />
+                ))}
+
                 <div className="pagination flex gap-2 mt-6">
                   <button className="bg-white  text-teal-700/70 font-bold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
                     <BiChevronLeft fontSize={32} />
@@ -114,6 +150,18 @@ export default function Home() {
           </div>
         </div>
       </Layout>
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-full bg-white z-50 flex justify-center items-center">
+          <div
+            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-teal-600  border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            role="status"
+          >
+            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+              Loading...
+            </span>
+          </div>
+        </div>
+      )}
     </>
   );
 }
