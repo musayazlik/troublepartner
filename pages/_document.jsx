@@ -4,6 +4,11 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
+
+      <meta name="theme-color" content="#14b8a6" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="#14b8a6" />
+      <meta name="msapplication-navbutton-color" content="#14b8a6" />
+
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
