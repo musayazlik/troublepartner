@@ -7,7 +7,7 @@ const Footer = () => {
     <div>
       <footer className="bg-slate-800 py-4 text-teal-400 border-t-4 border-teal-500">
         <div className="container mx-auto px-4">
-          <div className="copyright text-center flex justify-center gap-2">
+          <div className="copyright text-center text-xs sm:text-base flex justify-center gap-2">
             © {new Date().getFullYear()} -
             <a
               href="https://troublepartner/com"
@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="bg-teal-600 py-1.5">
-        <p className="text-center text-slate-100 text-sm gap-2 flex justify-center">
+        <p className="text-center text-slate-100 text-xs sm:text-sm gap-2 flex justify-center">
           <span className=" font-bold text-slate-800">
             Designed and coded by
           </span>

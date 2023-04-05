@@ -63,16 +63,16 @@ export default function Home() {
 
       <Layout>
         <div className=" py-20">
-          <div className="container mx-auto px-4 min-h-[200px]">
+          <div className="md:container mx-auto px-4 min-h-[200px]">
             <section className="flex justify-center">
               <div className="flex flex-col items-center max-w-2xl">
-                <h2 className="text-slate-700 font-maxbold text-center lg:text-6xl">
+                <h2 className="text-slate-700 font-maxbold text-center text-4xl sm:text-5xl md:text-6xl">
                   Trouble Partner
                 </h2>
-                <p className="text-slate-600 text-center font-semibold text-2xl relative inline-flex justify-center">
+                <p className="text-slate-600 text-center font-semibold text-lg lg:text-2xl relative inline-flex justify-center">
                   Your problem is our problem.
                 </p>
-                <p className="text-center leading-6 text-slate-800/60 mt-4 font-medium">
+                <p className="text-center leading-5 px-4 text-slate-800/60 mt-4 font-medium text-sm md:text-base max-w-lg">
                   Share your problem, either as yourself or anonymously. People
                   will connect with you and find solutions. they&apos;ll find
                   it. That&apos;s how simple it is. That&apos;s how beautiful it
@@ -88,7 +88,7 @@ export default function Home() {
               </div>
             </section>
 
-            <section className="mt-20 grid grid-cols-12 gap-4">
+            <section className="mt-20 flex flex-col sm:grid sm:grid-cols-12 gap-4">
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Image
@@ -100,7 +100,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="cardArea flex flex-col items-center col-span-8 gap-6 ">
+              <div className="cardArea flex flex-col items-center col-span-12 lg:col-span-8 gap-6 ">
                 {posts.map((post) => (
                   <Card
                     key={post._id}
