@@ -36,6 +36,19 @@ export default async function handler(req, res) {
       }
       break;
 
+    case "PATCH":
+      try {
+        const updatedComment = await Comment.findByIdAndUpdate(
+          req.body.id,
+          { $set: { text: req.body.text } },
+          { new: true, runValidators: true }
+        );
+        res.status(200).json({ data: updatedComment });
+      } catch (error) {
+        res.status(400).json({ message: error.message });
+      }
+      break;
+
     case "DELETE":
       try {
         const deleteComment = await Comment.deleteOne({

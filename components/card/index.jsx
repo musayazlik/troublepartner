@@ -20,7 +20,7 @@ const Card = ({
         }}
         className="w-full"
       >
-        <div className="card border-2 border-b-slate-400/30 border-slate-100 shadow-lg shadow-slate-200 hover:shadow-slate-500/30 duration-300 w-full rounded-lg  flex flex-col sm:flex-row px-8 py-8 gap-4 min-h-[240px]">
+        <div className="card border-2 border-b-slate-400/30  border-slate-100 shadow-lg shadow-slate-200 hover:shadow-slate-500/30 duration-300 w-full rounded-lg  flex flex-col sm:flex-row px-8 py-8 gap-4 min-h-[240px]">
           <div className="image flex sm:flex-col items-center gap-4 ">
             <Image
               src={image}

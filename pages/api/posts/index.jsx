@@ -43,6 +43,18 @@ export default async function handler(req, res) {
         res.status(400).json({ message: error.message });
       }
       break;
+    case "PATCH":
+      try {
+        const updatedPost = await Post.findByIdAndUpdate(
+          req.body.id,
+          { $set: { text: req.body.text } },
+          { new: true, runValidators: true }
+        );
+        res.status(200).json({ data: updatedPost });
+      } catch (error) {
+        res.status(400).json({ message: error.message });
+      }
+      break;
     default:
       res.status(400).json({ message: "Invalid request" });
       break;
