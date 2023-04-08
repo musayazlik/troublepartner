@@ -13,6 +13,18 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  premiumTimeStatus: {
+    type: Boolean,
+    default: false,
+  },
+  privacyStatus: {
+    type: Boolean,
+    default: false,
+  },
+  deleteStatus: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

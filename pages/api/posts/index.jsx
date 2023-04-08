@@ -11,11 +11,17 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const posts = await Post.find({}).populate({
-          path: "user",
-          model: Users,
-          select: ["name", "image"],
-        });
+        const posts = await Post.find({})
+          .populate({
+            path: "user",
+            model: Users,
+            select: ["name", "image"],
+          })
+          .where("deleteStatus")
+          .equals(false)
+          .sort({ createdAt: -1 });
+
+        console.log(posts);
 
         for (let i = 0; i < posts.length; i++) {
           const numComments = await Comment.countDocuments({
@@ -51,6 +57,27 @@ export default async function handler(req, res) {
           { new: true, runValidators: true }
         );
         res.status(200).json({ data: updatedPost });
+      } catch (error) {
+        res.status(400).json({ message: error.message });
+      }
+      break;
+
+    case "DELETE":
+      try {
+        const PostData = await Post.findByIdAndUpdate(
+          req.query.id,
+          { $set: { deleteStatus: true } },
+          { new: true, runValidators: true }
+        );
+
+        console.log(PostData);
+
+        const CommentData = await Comment.updateMany(
+          { post: req.query.id },
+          { $set: { deleteStatus: true } },
+          { new: true, runValidators: true }
+        );
+        res.status(200).json({});
       } catch (error) {
         res.status(400).json({ message: error.message });
       }

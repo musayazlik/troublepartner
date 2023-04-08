@@ -14,6 +14,7 @@ const CreatePost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const text = e.target.text.value;
+    const privacyStatus = e.target.privacy.checked;
 
     Swal.fire({
       title: "Do you confirm?",
@@ -30,6 +31,8 @@ const CreatePost = () => {
             text,
             user: session.user.id,
             slug: text.slice(0, 50).split(" ").join("-"),
+            privacyStatus: privacyStatus,
+            premiumTimeStatus: false,
           })
           .then((res) => {
             Swal.fire({
@@ -65,10 +68,26 @@ const CreatePost = () => {
               </div>
             </div>
             <div className="cardArea flex flex-col items-center col-span-8 gap-6 ">
-              <form onSubmit={handleSubmit} className="w-full px-14">
+              <div className="mb-8 px-6 sm:px-14 ">
+                <h1 className="text-3xl md:text-5xl font-extrabold text-center">
+                  Create a Post
+                </h1>
+
+                <p className="text-center text-xl mt-2 text-gray-500">
+                  Share your troubles and problems with us. Let our members
+                  produce solutions for you. Take advantage of our members who
+                  produce solutions.
+                </p>
+                <p className="text-center text-sm font-medium mt-4 bg-yellow-400 rounded-md px-4 py-2 text-yellow-700">
+                  <span className="font-extrabold">Warning:</span> It is a
+                  community of people who want to help each other. We are here
+                  to help you. We are here to help each other.
+                </p>
+              </div>
+              <form onSubmit={handleSubmit} className="w-full px-6 sm:px-14">
                 <div className="flex flex-col gap-4">
                   <label htmlFor="text" className="font-extrabold text-xl">
-                    Share your problem with us
+                    Tell your problem...
                   </label>
 
                   <textarea
@@ -78,6 +97,24 @@ const CreatePost = () => {
                     rows="10"
                     className="border-2 outline-double shadow-lg shadow-teal-700/40 outline-teal-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-teal-600/50 outline-4 font-bold"
                   ></textarea>
+                </div>
+
+                <div className="flex flex-col items-start gap-4 my-4">
+                  <label
+                    htmlFor="privacy"
+                    className="font-extrabold text-xl"
+                  ></label>
+                  <div className="flex gap-3">
+                    <input
+                      type="checkbox"
+                      name="privacy"
+                      id="privacy"
+                      className="w-6 h-6 checked:bg-teal-500 accent-teal-500 "
+                    />
+                    <p className="font-bold text-lg">
+                      I want to hide my identity.
+                    </p>
+                  </div>
                 </div>
                 <div className="flex justify-center">
                   <button className="bg-teal-500 text-white px-4 py-2 rounded-md mt-8 border-2 border-slate-800/50 border-b-4 font-extrabold text-lg lg:text-xl">

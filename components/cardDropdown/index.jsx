@@ -5,11 +5,22 @@ import {
   AiOutlineEdit,
   AiOutlineWarning,
 } from "react-icons/ai";
-import Link from "next/link";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const CardDropdown = (props) => {
   const [dropdownShow, setDropdownShow] = React.useState(false);
-  const { comment, session, post, edit, setEdit, element, commentId } = props;
+  const {
+    comment,
+    session,
+    post,
+    edit,
+    setEdit,
+    element,
+    commentId,
+    deleteHandle,
+  } = props;
+
   return (
     <>
       <BsThreeDotsVertical
@@ -43,17 +54,20 @@ const CardDropdown = (props) => {
             </button>
           ) : null}
 
-          {comment === session && (
-            <li className="px-3 py-2 font-medium text-slate-700 hover:bg-slate-300 duration-200 border-b-2 border-dashed flex gap-2 items-center">
-              <button
-                onClick={() => deletePost(post._id)}
-                className="focus:outline-none flex gap-2 items-center"
-              >
+          {(session === post.user._id && element === "post") ||
+          (session === comment && element === "comment") ? (
+            <button
+              onClick={() =>
+                deleteHandle(element === "post" ? post._id : commentId, element)
+              }
+              className="w-full"
+            >
+              <li className="px-3 py-2 font-medium text-slate-700 hover:bg-slate-300 duration-200 border-b-2 border-dashed flex gap-2 items-center">
                 <AiOutlineDelete className="text-lg" />
                 Delete
-              </button>
-            </li>
-          )}
+              </li>
+            </button>
+          ) : null}
 
           <li className="px-3 py-2 font-medium text-slate-700 hover:bg-slate-300 rounded-b-md flex gap-2 items-center">
             <button className="focus:outline-none flex gap-2 items-center">

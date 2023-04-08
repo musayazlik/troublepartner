@@ -12,27 +12,36 @@ export default async function handler(req, res) {
     case "GET":
       try {
         const posts = await Post.find({
+          user: ObjectId(req.query.id),
+        });
+        const user = await Users.find({
           _id: ObjectId(req.query.id),
-        })
-          .populate({
-            path: "user",
-            model: Users,
-            select: ["name", "image"],
-          })
-          .select("-__v");
+        });
 
-        if (posts.length === 0) {
-          return res.status(404).json({ message: "Post not found" });
+        const postsWithComments = await Comment.find({
+          user: ObjectId(req.query.id),
+        });
+
+        for (let i = 0; i < posts.length; i++) {
+          const numComments = await Comment.countDocuments({
+            post: posts[i]._id,
+          });
+
+          posts[i] = {
+            ...posts[i]._doc,
+            numComments,
+          };
         }
 
-        res.status(200).json({ data: posts });
+        res
+          .status(200)
+          .json({ posts: posts, user: user, comments: postsWithComments });
       } catch (error) {
         res.status(400).json({ message: error.message });
       }
       break;
-
+    case "POST":
       try {
-        console.log(req.body);
         const post = await Post.create(req.body);
         res.status(201).json({ data: post });
       } catch (error) {

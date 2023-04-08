@@ -12,11 +12,16 @@ export default async function handler(req, res) {
       try {
         const comments = await Comment.find({
           post: req.query.postId,
-        }).populate({
-          path: "user",
-          model: Users,
-          select: ["name", "image"],
-        });
+        })
+          .populate({
+            path: "user",
+            model: Users,
+            select: ["name", "image"],
+          })
+          .where("deleteStatus")
+          .equals(false);
+
+        console.log(comments);
         res.status(200).json({ data: comments, message: "Comments added." });
       } catch (error) {
         res.status(400).json({ message: error.message });
@@ -43,6 +48,7 @@ export default async function handler(req, res) {
           { $set: { text: req.body.text } },
           { new: true, runValidators: true }
         );
+
         res.status(200).json({ data: updatedComment });
       } catch (error) {
         res.status(400).json({ message: error.message });
@@ -51,9 +57,11 @@ export default async function handler(req, res) {
 
     case "DELETE":
       try {
-        const deleteComment = await Comment.deleteOne({
-          _id: req.query.id,
-        });
+        await Comment.findByIdAndUpdate(
+          req.query.id,
+          { $set: { deleteStatus: true } },
+          { new: true, runValidators: true }
+        );
         res.status(200).json({ message: "Comment deleted" });
       } catch (error) {
         res.status(400).json({ message: error.message });

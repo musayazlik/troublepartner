@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import formatDate from "@/helpers/formatDate";
 
 export default function Home() {
   const { user, setUser, loading, setLoading } = useAppContext();
@@ -41,15 +42,6 @@ export default function Home() {
         signIn("google");
       };
     }
-  };
-
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const day = d.getDate();
-
-    return `${month}/${day}/${year}`;
   };
 
   return (
@@ -109,6 +101,7 @@ export default function Home() {
                     name={post.user.name}
                     text={post.text}
                     slug={post.slug}
+                    privacyStatus={post.privacyStatus}
                     time={formatDate(post.createdAt)}
                     comment={post.numComments}
                   />

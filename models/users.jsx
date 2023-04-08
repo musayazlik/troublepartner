@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  jobTitle: {
+    type: String,
+    default: "user",
+  },
   securityStatus: {
     type: Boolean,
     default: "false",

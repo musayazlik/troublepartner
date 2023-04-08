@@ -15,7 +15,11 @@ const commentSchema = new mongoose.Schema({
     ref: "Post",
     required: true,
   },
-  createAt: {
+  deleteStatus: {
+    type: Boolean,
+    default: false,
+  },
+  createdAt: {
     type: Date,
     default: Date.now,
   },

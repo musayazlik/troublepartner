@@ -15,6 +15,7 @@ const PostDetail = ({ post, comments }) => {
   const [dropdownShow, setDropdownShow] = useState(false);
   const [edit, setEdit] = useState([]);
   const { data: session, status } = useSession();
+
   const createComment = (e) => {
     e.preventDefault();
 
@@ -208,6 +209,67 @@ const PostDetail = ({ post, comments }) => {
       });
   };
 
+  const deleteHandle = (id, element) => {
+    if (element === "post") {
+      Swal.fire({
+        icon: "warning",
+        title: "Are you sure?",
+        text: "Are you sure about deleting the post?",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios({
+            method: "DELETE",
+            url: `/api/posts?id=${id}`,
+          })
+            .then((res) => {
+              Swal.fire({
+                icon: "success",
+                title: "Post deleted",
+                showConfirmButton: false,
+                timer: 1500,
+              })
+                .then(() => {
+                  window.location.href = "/";
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      });
+    } else {
+      axios({
+        method: "DELETE",
+        url: `/api/comments?id=${id}`,
+      })
+        .then((res) => {
+          Swal.fire({
+            icon: "success",
+            title: "Comment deleted",
+            showConfirmButton: false,
+            timer: 1500,
+          })
+            .then(() => {
+              const deleteComment = comment.filter((item) => item._id !== id);
+              setComment(deleteComment);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   return (
     <>
       <Head>
@@ -240,21 +302,34 @@ const PostDetail = ({ post, comments }) => {
                     <div className="flex flex-row sm:flex-col justify-center items-center gap-4 sm:gap-2">
                       <div className="userAvatar w-10 h-10 sm:w-16 sm:h-16 relative">
                         <Image
-                          src={post.user.image}
+                          src={
+                            post.privacyStatus ? "/avatar.jpg" : post.user.image
+                          }
                           fill
                           alt="Avatar"
                           className="rounded-full border-4 border-slate-200 shadow-lg  sticky "
                         />
+                        {post.privacyStatus && (
+                          <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
+                        )}
                       </div>
                       <div className="userName">
                         <h2 className="text-lg sm:text-base mt-2 font-extrabold whitespace-nowrap text-center">
-                          {post.user.name}
+                          {post.privacyStatus ? "Anonymous" : post.user.name}
                         </h2>
                       </div>
                     </div>
 
                     <div className=" pt-2 pr-1 relative sm:hidden">
-                      <CardDropdown post={post} />
+                      <CardDropdown
+                        comment={comment?.user?._id}
+                        session={session?.user?.id}
+                        post={post}
+                        edit={edit}
+                        setEdit={setEdit}
+                        deleteHandle={deleteHandle}
+                        element="post"
+                      />
                     </div>
                   </div>
                   <div className="postInfor flex flex-col px-4 py-4 w-full ">
@@ -283,6 +358,7 @@ const PostDetail = ({ post, comments }) => {
                       post={post}
                       edit={edit}
                       setEdit={setEdit}
+                      deleteHandle={deleteHandle}
                       element="post"
                     />
                   </div>
@@ -328,19 +404,31 @@ const PostDetail = ({ post, comments }) => {
                       key={comment._id}
                       className="commentCard relative mb-6 flex border-2 border-b-4 shadow-md shadow-slate-200/50 rounded-md  gap-2 "
                     >
-                      <div className="userInfor flex flex-col items-center px-4 py-4 min-w-[100px] ">
-                        <div className="userAvatar">
+                      <div className="userInfor flex flex-col items-center px-8 py-4 min-w-[100px] ">
+                        <div className="userAvatar relative">
                           <Image
-                            src={comment.user.image}
+                            src={
+                              post.user._id === comment.user._id &&
+                              post.privacyStatus === true
+                                ? "/avatar.jpg"
+                                : comment.user.image
+                            }
                             width={64}
                             height={64}
                             alt="Avatar"
                             className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
                           />
+                          {post.user._id === comment.user._id &&
+                            post.privacyStatus === true && (
+                              <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
+                            )}
                         </div>
                         <div className="userName">
                           <h2 className="text-base mt-2 font-bold text-center ">
-                            {comment.user.name}
+                            {post.user._id === comment.user._id &&
+                            post.privacyStatus === true
+                              ? "Anonymous"
+                              : comment.user.name}
                           </h2>
                         </div>
                       </div>
@@ -381,6 +469,7 @@ const PostDetail = ({ post, comments }) => {
                           session={session?.user?.id}
                           post={post}
                           edit={edit}
+                          deleteHandle={deleteHandle}
                           setEdit={setEdit}
                           element="comment"
                         />
@@ -413,9 +502,20 @@ export default PostDetail;
 export async function getServerSideProps(context) {
   const { query } = context;
 
+  if (!query) {
+    return {
+      notFound: true,
+    };
+  }
+
   const id = query.id.split("-").pop();
 
   const resPost = await fetch(`${process.env.APP_URL}/api/posts/${id}`);
+  if (!resPost.ok) {
+    return {
+      notFound: true,
+    };
+  }
   const post = await resPost.json();
   const resComments = await fetch(
     `${process.env.APP_URL}/api/comments?postId=${id}`
