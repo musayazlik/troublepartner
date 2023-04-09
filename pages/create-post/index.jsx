@@ -10,7 +10,7 @@ import { BiInfoCircle } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
 
 const CreatePost = () => {
-  const [numberOfChars, setNumberOfChars] = React.useState(0);
+  const [numberOfChars, setNumberOfChars] = React.useState(200);
   const [maxLength, setMaxLength] = React.useState(200);
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -82,7 +82,7 @@ const CreatePost = () => {
     <Layout>
       <div className=" py-20">
         <div className="container mx-auto px-4 min-h-[200px]">
-          <section className="mt-20 grid grid-cols-12 gap-4">
+          <section className="mt-20 flex flex-col sm:grid sm:grid-cols-12 gap-4">
             <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
               <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                 <Image
