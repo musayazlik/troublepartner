@@ -181,7 +181,7 @@ const PostDetail = ({ session, data }) => {
                               key={post._id}
                               className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 w-full min-w-[400px]"
                             >
-                              <div className="flex justify-between items-center ">
+                              <div className="flex justify-between items-center gap-x-8 ">
                                 <Link
                                   href={`/post/${post.slug}-${post._id}`}
                                   className="flex flex-col mb-4 last:mb-0 w-full "
