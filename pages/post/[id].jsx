@@ -232,7 +232,7 @@ const PostDetail = ({ post, comments }) => {
                       className={` text-justify break-words
                       ${
                         edit?.element === "post"
-                          ? "border-2 border-teal-500 p-2 "
+                          ? "border-2 border-blue-500 p-2 "
                           : ""
                       }
                       `}
@@ -262,7 +262,7 @@ const PostDetail = ({ post, comments }) => {
                     {edit?.element === "post" ? (
                       <button
                         onClick={() => updateData(post._id)}
-                        className="bg-teal-500 font-extrabold text-xl border-2 border-teal-700 hover:shadow-lg duration-300 hover:shadow-teal-500/50 text-white px-4 py-2 rounded-sm"
+                        className="bg-blue-500 font-extrabold text-xl border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-4 py-2 rounded-sm"
                       >
                         Update
                       </button>
@@ -281,12 +281,12 @@ const PostDetail = ({ post, comments }) => {
                         : "Be the first to comment..."
                     }
                     rows={5}
-                    className="w-full border-2 font-medium resize-none p-4 border-slate-200 focus:outline-teal-500 focus:border-teal-500 rounded-md"
+                    className="w-full border-2 font-medium resize-none p-4 border-slate-200 focus:outline-blue-500 focus:border-blue-500 rounded-md"
                   />
                   <div className="flex justify-center mt-4">
                     <button
                       type="submit"
-                      className="bg-teal-500 font-extrabold text-xl border-2 border-teal-700 hover:shadow-lg duration-300 hover:shadow-teal-500/50 text-white px-4 py-2 rounded-sm"
+                      className="bg-blue-500 font-extrabold text-xl border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-4 py-2 rounded-sm"
                     >
                       Submit comment
                     </button>
@@ -296,9 +296,9 @@ const PostDetail = ({ post, comments }) => {
                   {comment.map((comment) => (
                     <div
                       key={comment._id}
-                      className="commentCard relative mb-6 flex border-2 border-b-4 shadow-md shadow-slate-200/50 rounded-md  "
+                      className="commentCard relative mb-6 flex justify-between border-2 border-b-4 shadow-md shadow-slate-200/50 rounded-md  "
                     >
-                      <div className="userInfor flex flex-col items-center px-4 sm:px-6 py-4 min-w-[100px] ">
+                      <div className="userInfor flex flex-col items-center px-4 sm:px-6 py-4 min-w-[100px] flex-shrink-0 ">
                         <div className="userAvatar relative w-12 h-12 sm:w-16 sm:h-16 ">
                           <Image
                             src={
@@ -316,7 +316,7 @@ const PostDetail = ({ post, comments }) => {
                               <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
                             )}
                         </div>
-                        <div className="userName">
+                        <div className="userName mt-2">
                           <h3 className="text-sm mt-2 font-bold text-center text-ellipsis overflow-hidden  ">
                             {post.user._id === comment.user._id &&
                             post.privacyStatus === true
@@ -325,12 +325,12 @@ const PostDetail = ({ post, comments }) => {
                           </h3>
                         </div>
                       </div>
-                      <div className="commetText p-4 pl-0 w-8/12">
+                      <div className="commetText p-4 pl-0 w-full">
                         <p
                           className={` text-sm sm:text-base break-words text-justify focus:outline-none rounded-md 
                       ${
                         edit?.element === "comment" && edit?.id === comment._id
-                          ? "border-2 border-teal-500 p-2 "
+                          ? "border-2 border-blue-500 p-2 "
                           : ""
                       }
                       `}
@@ -348,7 +348,7 @@ const PostDetail = ({ post, comments }) => {
                         edit?.id === comment._id ? (
                           <button
                             onClick={() => updateData(comment._id)}
-                            className="bg-teal-500 font-extrabold text-xl border-2 border-teal-700 hover:shadow-lg duration-300 hover:shadow-teal-500/50 text-white px-4 py-2 rounded-sm mt-5"
+                            className="bg-blue-500 font-extrabold text-xl border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-4 py-2 rounded-sm mt-5"
                           >
                             Update
                           </button>

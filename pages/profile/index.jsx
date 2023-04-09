@@ -136,7 +136,7 @@ const PostDetail = ({ session, data }) => {
                           name="name"
                           id="name"
                           disabled
-                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-teal-500 max-w-lg"
+                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 max-w-lg"
                           defaultValue={data.user[0].name}
                         />
                       </div>
@@ -153,13 +153,13 @@ const PostDetail = ({ session, data }) => {
                           id="email"
                           disabled
                           defaultValue={data.user[0].email}
-                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-teal-500 max-w-lg "
+                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 max-w-lg "
                         />
                       </div>
                     </div>
                     {/* <button
                       type="submit"
-                      className="mt-4 bg-teal-500 text-white px-4 py-2 rounded-md font-extrabold"
+                      className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md font-extrabold"
                     >
                       Save
                     </button> */}

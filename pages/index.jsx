@@ -74,7 +74,7 @@ export default function Home() {
                 </p>
                 <button
                   onClick={createPostPageHandle()}
-                  className="bg-teal-300  text-teal-700 font-bold py-2 px-4 rounded border-teal-600 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 mt-8"
+                  className="bg-blue-300  text-blue-700 font-bold py-2 px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 mt-8 outline-dashed outline-2 outline-blue-700/50 outline-offset-4"
                 >
                   Share Your Trouble
                 </button>
@@ -109,22 +109,22 @@ export default function Home() {
                 ))}
 
                 <div className="pagination flex gap-2 mt-6">
-                  <button className="bg-white  text-teal-700/70 font-bold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                  <button className="bg-white  text-blue-700/70 font-bold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
                     <BiChevronLeft fontSize={32} />
                   </button>
-                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
                     1
                   </button>
-                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
                     2
                   </button>
-                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
                     3
                   </button>
-                  <button className="bg-white  text-teal-700/70 font-extrabold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
                     4
                   </button>
-                  <button className="bg-white  text-teal-700/70 font-bold  rounded border-teal-700/70 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50 w-10 h-10 flex justify-center items-center">
+                  <button className="bg-white  text-blue-700/70 font-bold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
                     <BiChevronRight fontSize={32} />
                   </button>
                 </div>
@@ -147,7 +147,7 @@ export default function Home() {
       {loading && (
         <div className="fixed top-0 left-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div
-            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-teal-600  border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-600  border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
             role="status"
           >
             <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">

@@ -11,14 +11,14 @@ const Header = () => {
   const [showMenu, setShowMenu] = React.useState(false);
   return (
     <>
-      <div className="h-2 bg-teal-500"></div>
-      <div className=" shadow-lg shadow-teal-700 bg-slate-50 border-t-2 border-b-2 border-teal-700 ">
+      <div className="h-2 bg-blue-500"></div>
+      <div className=" shadow-lg shadow-blue-700 bg-slate-50 border-t-2 border-b-2 border-blue-700 ">
         <div className="md:container mx-auto px-4 ">
           <header className="text-slate-600 body-font">
             <div className="container mx-auto flex flex-wrap items-center justify-between  py-3 flex-row">
               <Link
                 href={"/"}
-                className="flex items-center text-teal-700  font-medium hover:scale-110 duration-300"
+                className="flex items-center text-blue-700  font-medium hover:scale-110 duration-300"
               >
                 <span className=" text-xl sm:text-2xl font-maxbold">
                   Trouble Partner
@@ -39,46 +39,46 @@ const Header = () => {
               >
                 <Link
                   href={"/"}
-                  className="relative w-full md:w-auto text-center py-2 md:py-0 mr-5 hover:text-teal-500 duration-300 hover:duration-300"
+                  className="relative w-full md:w-auto text-center py-2 md:py-0 mr-5 hover:text-blue-500 duration-300 hover:duration-300"
                 >
                   Home
                   {pathname === "/" && (
-                    <span className="absolute w-full h-1 bg-teal-500 bottom-0 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
-                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-teal-500 rounded-full animate-ping transition-none duration-500 "></span>
+                    <span className="absolute w-full h-1 bg-blue-500 -bottom-1 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
+                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                     </span>
                   )}
                 </Link>
 
                 <Link
                   href={"/about"}
-                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-teal-500 duration-300"
+                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-blue-500 duration-300"
                 >
                   About
                   {pathname === "/about" && (
-                    <span className="absolute w-full h-1 bg-teal-500 bottom-0 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
-                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-teal-500 rounded-full animate-ping transition-none duration-500 "></span>
+                    <span className="absolute w-full h-1 bg-blue-500 bottom-0 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
+                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                     </span>
                   )}
                 </Link>
                 <Link
-                  href={"/prices"}
-                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-teal-500 duration-300"
+                  href={"/pricing"}
+                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-blue-500 duration-300 relative "
                 >
                   Pricing
-                  {pathname === "/prices" && (
-                    <span className="absolute w-full h-1 bg-teal-500 bottom-0 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
-                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-teal-500 rounded-full animate-ping transition-none duration-500 "></span>
+                  {pathname === "/pricing" && (
+                    <span className="absolute w-full h-1 bg-blue-500 -bottom-1 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
+                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                     </span>
                   )}
                 </Link>
                 <Link
-                  href={"Contact"}
-                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-teal-500 duration-300"
+                  href={"/contact"}
+                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-blue-500 duration-300 relative"
                 >
                   Contact
                   {pathname === "/contact" && (
-                    <span className="absolute w-full h-1 bg-teal-500 bottom-0 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
-                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-teal-500 rounded-full animate-ping transition-none duration-500 "></span>
+                    <span className="absolute w-full h-1 bg-blue-500 -bottom-1 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
+                      <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                     </span>
                   )}
                 </Link>
@@ -101,7 +101,7 @@ const Header = () => {
                       onClick={() => {
                         signIn("google");
                       }}
-                      className="bg-teal-300   text-teal-700 font-bold py-1.5 md:py-2 px-2 md:px-4 rounded border-teal-600 duration-300 hover:text-teal-50 hover:bg-teal-700 border-2  hover:shadow-lg hover:shadow-teal-600/50"
+                      className="bg-blue-300   text-blue-700 font-bold py-1.5 md:py-2 px-2 md:px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50"
                     >
                       <HiOutlineUser className="inline-block text-2xl lg:hidden  " />
                       <span className="hidden lg:flex">
@@ -115,14 +115,14 @@ const Header = () => {
                     setShowMenu(!showMenu);
                   }}
                 >
-                  <HiMenuAlt1 className="md:hidden text-3xl text-teal-700" />
+                  <HiMenuAlt1 className="md:hidden text-3xl text-blue-700" />
                 </button>
               </div>
             </div>
           </header>
         </div>
       </div>
-      <div className="h-2 bg-teal-500"></div>
+      <div className="h-2 bg-blue-500"></div>
     </>
   );
 };

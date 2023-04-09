@@ -30,7 +30,7 @@ const AvatarDropDown = () => {
 
         {isOpen && (
           <div
-            className={`drowpdownMenu z-40 absolute -right-2 sm:right-0  bg-slate-50 min-w-[200px] max-w-[240px] rounded-md border-2 border-teal-600 border-b-4 border-b-teal-600 duration-300 ${
+            className={`drowpdownMenu z-40 absolute -right-2 sm:right-0  bg-slate-50 min-w-[200px] max-w-[240px] rounded-md border-2 border-gray-600 border-b-4 border-b-gray-600 duration-300 ${
               isOpen
                 ? "opacity-100 visible  top-12"
                 : " opacity-0 invisible -top-4"
