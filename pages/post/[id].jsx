@@ -229,7 +229,7 @@ const PostDetail = ({ post, comments }) => {
                   </div>
                   <div className="postInfor flex flex-col px-4 py-4 w-full ">
                     <p
-                      className={` text-justify
+                      className={` text-justify break-words
                       ${
                         edit?.element === "post"
                           ? "border-2 border-teal-500 p-2 "
@@ -325,7 +325,7 @@ const PostDetail = ({ post, comments }) => {
                           </h2>
                         </div>
                       </div>
-                      <div className="commetText p-4 pl-0 w-full">
+                      <div className="commetText break-words p-4 pl-0 w-full">
                         <p
                           className={` text-sm sm:text-base text-justify focus:outline-none rounded-md 
                       ${
