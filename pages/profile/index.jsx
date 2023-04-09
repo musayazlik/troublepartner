@@ -115,7 +115,7 @@ const PostDetail = ({ session, data }) => {
                 </div>
               </div>
               <div className="context flex flex-col col-span-12 lg:col-span-8 ">
-                <div className="px-6 sm:px-12">
+                <div className="px-2 sm:px-12">
                   <div action="">
                     <div className="flex flex-col gap-4">
                       <div>
@@ -124,7 +124,7 @@ const PostDetail = ({ session, data }) => {
                           User Information
                         </h2>
                       </div>
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-3">
                         <label
                           htmlFor="name"
                           className="text-md font-bold text-slate-700"
@@ -140,7 +140,7 @@ const PostDetail = ({ session, data }) => {
                           defaultValue={data.user[0].name}
                         />
                       </div>
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-3">
                         <label
                           htmlFor="email"
                           className="text-md font-bold text-slate-700"
@@ -165,7 +165,7 @@ const PostDetail = ({ session, data }) => {
                     </button> */}
                   </div>
                 </div>
-                <div className="px-6 sm:px-12 mt-8">
+                <div className="px-2 sm:px-12 mt-8">
                   <div>
                     <div className="flex flex-col gap-4">
                       <div>
@@ -174,12 +174,12 @@ const PostDetail = ({ session, data }) => {
                           My Posts
                         </h2>
                       </div>
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-3">
                         <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
                           {data.posts.map((post) => (
                             <div
                               key={post._id}
-                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-4 last:mb-0 w-full"
+                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 w-full min-w-[400px]"
                             >
                               <div className="flex justify-between items-center ">
                                 <Link
@@ -187,10 +187,16 @@ const PostDetail = ({ session, data }) => {
                                   className="flex flex-col mb-4 last:mb-0 w-full "
                                 >
                                   <div className="card_content w-full flex flex-col">
-                                    <p>{post.text.slice(0, 100)}...</p>
+                                    <p
+                                      style={{
+                                        wordBreak: "break-word",
+                                      }}
+                                    >
+                                      {post.text.slice(0, 100)}...
+                                    </p>
                                     <div className="flex justify-between items-center mt-3">
-                                      <div className="flex gap-5 ">
-                                        <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                      <div className="flex gap-3 ">
+                                        <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
                                           <BiTimeFive
                                             className=" "
                                             fontSize={20}
@@ -199,7 +205,7 @@ const PostDetail = ({ session, data }) => {
                                             {formatDate(post.createdAt)}
                                           </span>
                                         </div>
-                                        <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                        <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
                                           <BiComment
                                             className=" "
                                             fontSize={20}
@@ -208,7 +214,7 @@ const PostDetail = ({ session, data }) => {
                                             {post.numComments}
                                           </span>
 
-                                          <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ml-3 ">
+                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70 ml-1 ">
                                             {post.privacyStatus ? (
                                               <FiEyeOff
                                                 className=" "
@@ -244,7 +250,7 @@ const PostDetail = ({ session, data }) => {
                     </div>
                   </div>
                 </div>
-                <div className="px-6 sm:px-12 mt-8">
+                <div className="px-2 sm:px-12 mt-8">
                   <div>
                     <div className="flex flex-col gap-4">
                       <div>
@@ -253,19 +259,26 @@ const PostDetail = ({ session, data }) => {
                           My Comments
                         </h2>
                       </div>
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-3">
                         <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
                           {data.comments.map((commet) => (
                             <div
                               key={commet._id}
-                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-4 last:mb-0"
+                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 min-w-[400px]"
                             >
                               <div className="flex justify-between items-center ">
                                 <div className="card_content w-full flex flex-col">
-                                  <p>{commet.text.slice(0, 100)}...</p>
+                                  <p
+                                    className=""
+                                    style={{
+                                      wordBreak: "break-word",
+                                    }}
+                                  >
+                                    {commet.text.slice(0, 100)}...
+                                  </p>
                                   <div className="flex justify-between items-center mt-3">
                                     <div className="flex gap-5 ">
-                                      <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                      <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
                                         <BiTimeFive
                                           className=" "
                                           fontSize={20}

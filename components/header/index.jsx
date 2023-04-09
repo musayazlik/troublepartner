@@ -18,7 +18,7 @@ const Header = () => {
             <div className="container mx-auto flex flex-wrap items-center justify-between  py-3 flex-row">
               <Link
                 href={"/"}
-                className="flex items-center text-blue-700  font-medium hover:scale-110 duration-300"
+                className="flex items-center text-slate-700  font-medium hover:scale-110 duration-300"
               >
                 <span className=" text-xl sm:text-2xl font-maxbold">
                   Trouble Partner
