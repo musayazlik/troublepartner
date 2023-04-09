@@ -317,17 +317,17 @@ const PostDetail = ({ post, comments }) => {
                             )}
                         </div>
                         <div className="userName">
-                          <h2 className="text-sm mt-2 font-bold text-center ">
+                          <h3 className="text-sm mt-2 font-bold text-center text-ellipsis overflow-hidden  ">
                             {post.user._id === comment.user._id &&
                             post.privacyStatus === true
                               ? "Anonymous"
                               : comment.user.name}
-                          </h2>
+                          </h3>
                         </div>
                       </div>
-                      <div className="commetText break-words p-4 pl-0 w-full">
+                      <div className="commetText p-4 pl-0 w-8/12">
                         <p
-                          className={` text-sm sm:text-base text-justify focus:outline-none rounded-md 
+                          className={` text-sm sm:text-base break-words text-justify focus:outline-none rounded-md 
                       ${
                         edit?.element === "comment" && edit?.id === comment._id
                           ? "border-2 border-teal-500 p-2 "
