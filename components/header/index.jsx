@@ -64,7 +64,7 @@ const Header = () => {
                   href={"/prices"}
                   className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-teal-500 duration-300"
                 >
-                  Prices
+                  Pricing
                   {pathname === "/prices" && (
                     <span className="absolute w-full h-1 bg-teal-500 bottom-0 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
                       <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-teal-500 rounded-full animate-ping transition-none duration-500 "></span>

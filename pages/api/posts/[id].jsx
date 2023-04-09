@@ -32,7 +32,6 @@ export default async function handler(req, res) {
       break;
 
       try {
-        console.log(req.body);
         const post = await Post.create(req.body);
         res.status(201).json({ data: post });
       } catch (error) {

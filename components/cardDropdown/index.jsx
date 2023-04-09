@@ -21,6 +21,38 @@ const CardDropdown = (props) => {
     deleteHandle,
   } = props;
 
+  const complainHandle = (id, element) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to complain this ${element}!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, complain it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post("/api/complain", {
+            id: id,
+            element: element,
+          })
+          .then((res) => {
+            Swal.fire({
+              title: "Complain!",
+              text: "Your complain has been sent.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((err) => {
+            Swal.fire("Error!", "Something went wrong.", "error");
+          });
+      }
+    });
+  };
+
   return (
     <>
       <BsThreeDotsVertical
@@ -29,7 +61,7 @@ const CardDropdown = (props) => {
       />
       <div className="dropdownMenu">
         <ul
-          className={`absolute z-20 bg-white right-2 border-2 border-slate-400  ease-in-out duration-200 rounded-md shadow-lg shadow-slate-300/60 ${
+          className={`absolute overflow-hidden z-20 bg-white right-2 border-2 border-slate-400  ease-in-out duration-200 rounded-md shadow-lg shadow-slate-300/60 ${
             dropdownShow
               ? " top-9 opacity-100 visible"
               : " top-0 opacity-0 invisible"
@@ -70,7 +102,15 @@ const CardDropdown = (props) => {
           ) : null}
 
           <li className="px-3 py-2 font-medium text-slate-700 hover:bg-slate-300 rounded-b-md flex gap-2 items-center">
-            <button className="focus:outline-none flex gap-2 items-center">
+            <button
+              className="focus:outline-none flex gap-2 items-center"
+              onClick={() => {
+                complainHandle(
+                  element === "post" ? post._id : commentId,
+                  element
+                );
+              }}
+            >
               <AiOutlineWarning /> Complain
             </button>
           </li>

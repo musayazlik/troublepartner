@@ -56,15 +56,6 @@ const AvatarDropDown = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/orders"
-                  className=" flex gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white "
-                >
-                  <BiBasket className="w-6 h-6 " />
-                  Orders
-                </Link>
-              </li>
-              <li>
                 <button
                   onClick={() => {
                     signOut();

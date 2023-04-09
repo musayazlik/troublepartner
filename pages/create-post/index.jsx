@@ -6,8 +6,12 @@ import { useSession, getSession } from "next-auth/react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import { BiInfoCircle } from "react-icons/bi";
+import { BsInfoCircleFill } from "react-icons/bs";
 
 const CreatePost = () => {
+  const [numberOfChars, setNumberOfChars] = React.useState(0);
+  const [maxLength, setMaxLength] = React.useState(200);
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -15,6 +19,15 @@ const CreatePost = () => {
     e.preventDefault();
     const text = e.target.text.value;
     const privacyStatus = e.target.privacy.checked;
+
+    if (text.length < 10) {
+      Swal.fire("Error!", "Your post must be at least 10 characters.", "error");
+      return;
+    }
+    if (text.length > 200) {
+      Swal.fire("Error!", "Your post must be at most 200 characters.", "error");
+      return;
+    }
 
     Swal.fire({
       title: "Do you confirm?",
@@ -45,12 +58,26 @@ const CreatePost = () => {
             router.push("/");
           })
           .catch((err) => {
-            console.log(err);
             Swal.fire("Error!", "Something went wrong.", "error");
           });
       }
     });
   };
+
+  const numberOfCharacters = (text) => {
+    const numberOfChars = text.length;
+    const totalChars = 200;
+    const remainingChars = totalChars - numberOfChars;
+
+    if (remainingChars < 0) {
+      setNumberOfChars(0);
+      const truncatedText = text.slice(0, totalChars);
+      textarea.value = truncatedText;
+      return;
+    }
+    setNumberOfChars(remainingChars);
+  };
+
   return (
     <Layout>
       <div className=" py-20">
@@ -95,8 +122,21 @@ const CreatePost = () => {
                     id="text"
                     cols="30"
                     rows="10"
+                    maxLength={200}
                     className="border-2 outline-double shadow-lg shadow-teal-700/40 outline-teal-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-teal-600/50 outline-4 font-bold"
+                    onChange={(e) => {
+                      numberOfCharacters(e.target.value);
+                    }}
                   ></textarea>
+                  <div className="flex gap-3 items-center">
+                    <p className="mb-0">{numberOfChars} characters left.</p>
+                    <p>
+                      <BsInfoCircleFill
+                        title="You can become a premium member for an additional 300 characters."
+                        className="inline-block text-lg text-yellow-500"
+                      />
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex flex-col items-start gap-4 my-4">
@@ -109,10 +149,17 @@ const CreatePost = () => {
                       type="checkbox"
                       name="privacy"
                       id="privacy"
-                      className="w-6 h-6 checked:bg-teal-500 accent-teal-500 "
+                      disabled
+                      className="w-6 h-6 checked:bg-teal-500 accent-teal-500 disabled:opacity-50 disabled:cursor-not-allowed "
                     />
-                    <p className="font-bold text-lg">
+                    <p className="font-bold text-lg text-gray-400 cursor-not-allowed">
                       I want to hide my identity.
+                    </p>
+                    <p>
+                      <BsInfoCircleFill
+                        title="Sharing confidential content is exclusive to premium members."
+                        className="inline-block text-lg text-yellow-500"
+                      />
                     </p>
                   </div>
                 </div>

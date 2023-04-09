@@ -9,6 +9,7 @@ import Head from "next/head";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 import CardDropdown from "@/components/cardDropdown";
+import { toast } from "react-toastify";
 
 const PostDetail = ({ post, comments }) => {
   const [comment, setComment] = useState([...comments]);
@@ -44,132 +45,15 @@ const PostDetail = ({ post, comments }) => {
       .then((res) => {
         setComment([...comment, res.data.data]);
         e.target[0].value = "";
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Comment added",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
-      });
-  };
-
-  const deleteComment = (id) => {
-    axios({
-      method: "DELETE",
-      url: `/api/comments?id=${id}`,
-    })
-      .then((res) => {
-        Swal.fire({
-          icon: "warning",
-          title: "Are you sure?",
-          text: "Are you sure about deleting the comment?",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            setComment(comment.filter((item) => item._id !== id));
-            Swal.fire({
-              icon: "success",
-              title: "Deleted",
-              text: res.data.message,
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
-      });
-  };
-
-  const deletePost = (id) => {
-    axios({
-      method: "DELETE",
-      url: `/api/posts?id=${id}`,
-    })
-      .then((res) => {
-        Swal.fire({
-          icon: "warning",
-          title: "Are you sure?",
-          text: "Are you sure about deleting the post?",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire({
-              icon: "success",
-              title: "Deleted",
-              text: res.data.message,
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            window.location.href = "/";
-          }
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
-      });
-  };
-
-  const editComment = (id) => {
-    const commentText = document.getElementById(id).value;
-    if (!commentText) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Comment cannot be empty",
-      });
-      return;
-    }
-
-    const data = {
-      text: commentText,
-      user: session?.user?.id,
-      post: post._id,
-    };
-
-    axios({
-      method: "PUT",
-      url: `/api/comments?id=${id}`,
-      data: data,
-    })
-      .then((res) => {
-        setComment(
-          comment.map((item) => {
-            if (item._id === id) {
-              return res.data.data;
-            }
-            return item;
-          })
-        );
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Comment updated",
-          showConfirmButton: false,
-          timer: 1500,
+        toast.success("Comment added.", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
       })
       .catch((err) => {
@@ -236,11 +120,19 @@ const PostDetail = ({ post, comments }) => {
                   window.location.href = "/";
                 })
                 .catch((err) => {
-                  console.log(err);
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: err.message,
+                  });
                 });
             })
             .catch((err) => {
-              console.log(err);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message,
+              });
             });
         }
       });
@@ -250,22 +142,25 @@ const PostDetail = ({ post, comments }) => {
         url: `/api/comments?id=${id}`,
       })
         .then((res) => {
-          Swal.fire({
-            icon: "success",
-            title: "Comment deleted",
-            showConfirmButton: false,
-            timer: 1500,
-          })
-            .then(() => {
-              const deleteComment = comment.filter((item) => item._id !== id);
-              setComment(deleteComment);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          toast.success("Comment deleted.", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          const deleteComment = comment.filter((item) => item._id !== id);
+          setComment(deleteComment);
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err.message,
+          });
         });
     }
   };
@@ -346,7 +241,6 @@ const PostDetail = ({ post, comments }) => {
                         : { contentEditable: false })}
                       onInput={(e) => {
                         setEdit({ ...edit, text: e.target.innerText });
-                        console.log(e.target.innerText);
                       }}
                       dangerouslySetInnerHTML={{ __html: post.text }}
                     />
@@ -447,7 +341,6 @@ const PostDetail = ({ post, comments }) => {
                             : { contentEditable: false })}
                           onInput={(e) => {
                             setEdit({ ...edit, text: e.target.innerText });
-                            console.log(e.target.innerText);
                           }}
                           dangerouslySetInnerHTML={{ __html: comment.text }}
                         />

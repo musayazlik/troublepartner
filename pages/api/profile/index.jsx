@@ -13,19 +13,27 @@ export default async function handler(req, res) {
       try {
         const posts = await Post.find({
           user: ObjectId(req.query.id),
-        });
+        })
+          .where("deleteStatus")
+          .equals("false")
+          .sort({ createdAt: -1 });
         const user = await Users.find({
           _id: ObjectId(req.query.id),
         });
 
         const postsWithComments = await Comment.find({
           user: ObjectId(req.query.id),
-        });
+        })
+          .where("deleteStatus")
+          .equals("false")
+          .sort({ createdAt: -1 });
 
         for (let i = 0; i < posts.length; i++) {
           const numComments = await Comment.countDocuments({
             post: posts[i]._id,
-          });
+          })
+            .where("deleteStatus")
+            .equals("false");
 
           posts[i] = {
             ...posts[i]._doc,

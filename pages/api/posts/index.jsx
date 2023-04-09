@@ -21,12 +21,12 @@ export default async function handler(req, res) {
           .equals(false)
           .sort({ createdAt: -1 });
 
-        console.log(posts);
-
         for (let i = 0; i < posts.length; i++) {
           const numComments = await Comment.countDocuments({
             post: posts[i]._id,
-          });
+          })
+            .where("deleteStatus")
+            .equals("false");
 
           posts[i] = {
             ...posts[i]._doc,
@@ -42,7 +42,6 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        console.log(req.body);
         const post = await Post.create(req.body);
         res.status(201).json({ data: post });
       } catch (error) {
@@ -69,8 +68,6 @@ export default async function handler(req, res) {
           { $set: { deleteStatus: true } },
           { new: true, runValidators: true }
         );
-
-        console.log(PostData);
 
         const CommentData = await Comment.updateMany(
           { post: req.query.id },

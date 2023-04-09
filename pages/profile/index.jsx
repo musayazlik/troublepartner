@@ -9,8 +9,82 @@ import { BiTimeFive, BiComment } from "react-icons/bi";
 import Link from "next/link";
 import formatDate from "@/helpers/formatDate";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const PostDetail = ({ session, data }) => {
+  const deleteHandle = (id, element) => {
+    if (element === "post") {
+      Swal.fire({
+        icon: "warning",
+        title: "Are you sure?",
+        text: "Are you sure about deleting the post?",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios({
+            method: "DELETE",
+            url: `/api/posts?id=${id}`,
+          })
+            .then((res) => {
+              Swal.fire({
+                icon: "success",
+                title: "Post deleted",
+                showConfirmButton: false,
+                timer: 1500,
+              })
+                .then(() => {
+                  window.location.reload();
+                })
+                .catch((err) => {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: err.message,
+                  });
+                });
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message,
+              });
+            });
+        }
+      });
+    } else {
+      axios({
+        method: "DELETE",
+        url: `/api/comments?id=${id}`,
+      })
+        .then((res) => {
+          toast.success("Comment deleted.", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          window.location.reload();
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err.message,
+          });
+        });
+    }
+  };
+
   return (
     <>
       <Head>
@@ -105,64 +179,61 @@ const PostDetail = ({ session, data }) => {
                           {data.posts.map((post) => (
                             <div
                               key={post._id}
-                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-4 last:mb-0"
+                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-4 last:mb-0 w-full"
                             >
                               <div className="flex justify-between items-center ">
-                                <div className="card_content w-full flex flex-col">
-                                  <p>
-                                    {post.text.length > 100 ? (
-                                      <span>
-                                        {post.text.slice(0, 100)}...
-                                        <Link href={`/post/${post._id}`}>
-                                          <a className="text-teal-500 font-bold">
-                                            Read more
-                                          </a>
-                                        </Link>
-                                      </span>
-                                    ) : (
-                                      post.text
-                                    )}
-                                  </p>
-                                  <div className="flex justify-between items-center mt-3">
-                                    <div className="flex gap-5 ">
-                                      <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
-                                        <BiTimeFive
-                                          className=" "
-                                          fontSize={20}
-                                        />
-                                        <span className="mt-0.5">
-                                          {formatDate(post.createdAt)}
-                                        </span>
-                                      </div>
-                                      <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
-                                        <BiComment
-                                          className=" "
-                                          fontSize={20}
-                                        />
-                                        <span className="mt-0.5">
-                                          {post.numComments}
-                                        </span>
+                                <Link
+                                  href={`/post/${post.slug}-${post._id}`}
+                                  className="flex flex-col mb-4 last:mb-0 w-full "
+                                >
+                                  <div className="card_content w-full flex flex-col">
+                                    <p>{post.text.slice(0, 100)}...</p>
+                                    <div className="flex justify-between items-center mt-3">
+                                      <div className="flex gap-5 ">
+                                        <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                          <BiTimeFive
+                                            className=" "
+                                            fontSize={20}
+                                          />
+                                          <span className="mt-0.5">
+                                            {formatDate(post.createdAt)}
+                                          </span>
+                                        </div>
+                                        <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                          <BiComment
+                                            className=" "
+                                            fontSize={20}
+                                          />
+                                          <span className="mt-0.5">
+                                            {post.numComments}
+                                          </span>
 
-                                        <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ml-3 ">
-                                          {post.privacyStatus ? (
-                                            <FiEyeOff
-                                              className=" "
-                                              fontSize={20}
-                                              title="This content was shared privately."
-                                            />
-                                          ) : (
-                                            <FiEye
-                                              className=" "
-                                              fontSize={20}
-                                              title="This content was shared without profile private."
-                                            />
-                                          )}
+                                          <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ml-3 ">
+                                            {post.privacyStatus ? (
+                                              <FiEyeOff
+                                                className=" "
+                                                fontSize={20}
+                                                title="This content was shared privately."
+                                              />
+                                            ) : (
+                                              <FiEye
+                                                className=" "
+                                                fontSize={20}
+                                                title="This content was shared without profile private."
+                                              />
+                                            )}
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <button className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1">
+                                </Link>
+                                <button
+                                  onClick={() => {
+                                    deleteHandle(post._id, "post");
+                                  }}
+                                  className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1"
+                                >
                                   <MdDeleteOutline className=" text-2xl" />
                                 </button>
                               </div>
@@ -191,20 +262,7 @@ const PostDetail = ({ session, data }) => {
                             >
                               <div className="flex justify-between items-center ">
                                 <div className="card_content w-full flex flex-col">
-                                  <p>
-                                    {commet.text.length > 100 ? (
-                                      <span>
-                                        {commet.text.slice(0, 100)}...
-                                        <Link href={`/commet/${commet._id}`}>
-                                          <a className="text-teal-500 font-bold">
-                                            Read more
-                                          </a>
-                                        </Link>
-                                      </span>
-                                    ) : (
-                                      commet.text
-                                    )}
-                                  </p>
+                                  <p>{commet.text.slice(0, 100)}...</p>
                                   <div className="flex justify-between items-center mt-3">
                                     <div className="flex gap-5 ">
                                       <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
@@ -219,7 +277,12 @@ const PostDetail = ({ session, data }) => {
                                     </div>
                                   </div>
                                 </div>
-                                <button className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1">
+                                <button
+                                  onClick={() => {
+                                    deleteHandle(commet._id, "comment");
+                                  }}
+                                  className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1"
+                                >
                                   <MdDeleteOutline className=" text-2xl" />
                                 </button>
                               </div>
@@ -268,8 +331,6 @@ export async function getServerSideProps(context) {
     `${process.env.APP_URL}/api/profile?id=${session.user.id}`
   );
   const data = await resData.json();
-
-  console.log(data);
 
   return {
     props: {

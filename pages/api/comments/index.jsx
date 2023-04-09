@@ -20,8 +20,6 @@ export default async function handler(req, res) {
           })
           .where("deleteStatus")
           .equals(false);
-
-        console.log(comments);
         res.status(200).json({ data: comments, message: "Comments added." });
       } catch (error) {
         res.status(400).json({ message: error.message });

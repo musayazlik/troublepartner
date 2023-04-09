@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import formatDate from "@/helpers/formatDate";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const { user, setUser, loading, setLoading } = useAppContext();
@@ -28,7 +29,7 @@ export default function Home() {
         setPosts(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire("Error!", "Something went wrong.", "error");
       });
   }, [session]);
 
