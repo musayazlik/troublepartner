@@ -10,6 +10,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 import CardDropdown from "@/components/cardDropdown";
 import { toast } from "react-toastify";
+import MemberType from "@/components/memberType";
 
 const PostDetail = ({ post, comments }) => {
   const [comment, setComment] = useState([...comments]);
@@ -207,6 +208,7 @@ const PostDetail = ({ post, comments }) => {
                         {post.privacyStatus && (
                           <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
                         )}
+                        <MemberType type={post.user.memberType} />
                       </div>
                       <div className="userName">
                         <h2 className="text-lg sm:text-base mt-2 font-extrabold whitespace-nowrap text-center">
@@ -229,13 +231,14 @@ const PostDetail = ({ post, comments }) => {
                   </div>
                   <div className="postInfor flex flex-col px-4 py-4 w-full ">
                     <p
-                      className={` text-justify break-words
+                      className={` 
                       ${
                         edit?.element === "post"
                           ? "border-2 border-blue-500 p-2 "
                           : ""
                       }
                       `}
+                      style={{ wordBreak: "break-word" }}
                       {...(edit?.element === "post"
                         ? { contentEditable: true }
                         : { contentEditable: false })}
@@ -315,6 +318,8 @@ const PostDetail = ({ post, comments }) => {
                             post.privacyStatus === true && (
                               <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
                             )}
+
+                          <MemberType type={comment.user.memberType} />
                         </div>
                         <div className="userName mt-2">
                           <h3 className="text-sm mt-2 font-bold text-center text-ellipsis overflow-hidden  ">
@@ -327,7 +332,8 @@ const PostDetail = ({ post, comments }) => {
                       </div>
                       <div className="commetText p-4 pl-0 w-full">
                         <p
-                          className={` text-sm sm:text-base break-words text-justify focus:outline-none rounded-md 
+                          style={{ wordBreak: "break-word" }}
+                          className={` text-sm sm:text-base  text-justify focus:outline-none rounded-md 
                       ${
                         edit?.element === "comment" && edit?.id === comment._id
                           ? "border-2 border-blue-500 p-2 "

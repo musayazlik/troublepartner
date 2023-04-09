@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  memberType: {
+    type: String,
+    default: "free",
+  },
   jobTitle: {
     type: String,
     default: "user",

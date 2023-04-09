@@ -16,7 +16,7 @@ export default async function handler(req, res) {
           .populate({
             path: "user",
             model: Users,
-            select: ["name", "image"],
+            select: ["name", "image", "role", "memberType"],
           })
           .where("deleteStatus")
           .equals(false);
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         await comment.populate({
           path: "user",
           model: Users,
-          select: ["name", "image"],
+          select: ["name", "image", "role", "memberType"],
         });
         res.status(201).json({ data: comment });
       } catch (error) {

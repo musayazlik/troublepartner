@@ -18,6 +18,8 @@
     "express-validator": "^6.15.0",
     "firebase": "^9.19.1",
     "firebase-admin": "^11.5.0",
+    "flowbite": "^1.6.4",
+    "flowbite-react": "^0.4.3",
     "formik": "^2.2.9",
     "googleapis": "^114.0.0",
     "mongodb": "^4.13.0",

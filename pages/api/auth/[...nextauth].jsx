@@ -16,6 +16,7 @@ const options = {
           email: profile.email,
           image: profile.picture,
           role: "user",
+          memberType: "free",
           securityStatus: false,
         };
       },
@@ -26,6 +27,8 @@ const options = {
     session: async ({ session, token, user }) => {
       if (session?.user) {
         session.user.id = user.id;
+        session.user.role = user.role;
+        session.user.memberType = user.memberType;
       }
       return session;
     },

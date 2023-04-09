@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../layout";
 import Image from "next/image";
+import { Tooltip, Button } from "flowbite-react";
 
 import { useSession, getSession } from "next-auth/react";
 import axios from "axios";
@@ -112,8 +113,8 @@ const CreatePost = () => {
                 </p>
               </div>
               <form onSubmit={handleSubmit} className="w-full px-6 sm:px-14">
-                <div className="flex flex-col gap-4">
-                  <label htmlFor="text" className="font-extrabold text-xl">
+                <div className="flex flex-col ">
+                  <label htmlFor="text" className="font-extrabold text-xl mb-4">
                     Tell your problem...
                   </label>
 
@@ -123,23 +124,21 @@ const CreatePost = () => {
                     cols="30"
                     rows="10"
                     maxLength={200}
-                    className="border-2 outline-double shadow-lg shadow-teal-700/40 outline-teal-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-teal-600/50 outline-4 font-bold"
+                    className="mb-6 border-2 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
                     onChange={(e) => {
                       numberOfCharacters(e.target.value);
                     }}
                   ></textarea>
-                  <div className="flex gap-3 items-center">
+                  <div className="flex gap-3 items-center mb-6">
                     <p className="mb-0">{numberOfChars} characters left.</p>
-                    <p>
-                      <BsInfoCircleFill
-                        title="You can become a premium member for an additional 300 characters."
-                        className="inline-block text-lg text-yellow-500"
-                      />
-                    </p>
+
+                    <Tooltip content="You can become a premium member for an additional 300 characters.">
+                      <BsInfoCircleFill className="inline-block text-lg text-gray-500" />
+                    </Tooltip>
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start gap-4 my-4">
+                <div className="flex flex-col  ">
                   <label
                     htmlFor="privacy"
                     className="font-extrabold text-xl"
@@ -150,21 +149,18 @@ const CreatePost = () => {
                       name="privacy"
                       id="privacy"
                       disabled
-                      className="w-6 h-6 checked:bg-teal-500 accent-teal-500 disabled:opacity-50 disabled:cursor-not-allowed "
+                      className="w-6 h-6 checked:bg-blue-500 accent-blue-500 disabled:opacity-50 disabled:cursor-not-allowed "
                     />
                     <p className="font-bold text-lg text-gray-400 cursor-not-allowed">
                       I want to hide my identity.
                     </p>
-                    <p>
-                      <BsInfoCircleFill
-                        title="Sharing confidential content is exclusive to premium members."
-                        className="inline-block text-lg text-yellow-500"
-                      />
-                    </p>
+                    <Tooltip content="Sharing confidential content is exclusive to premium members.">
+                      <BsInfoCircleFill className="inline-block text-lg text-gray-500" />
+                    </Tooltip>
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md mt-8 border-2 border-slate-800/50 border-b-4 font-extrabold text-lg lg:text-xl">
+                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-8 border-2 border-slate-800/50 border-b-4 font-extrabold text-lg lg:text-xl">
                     Create Post
                   </button>
                 </div>

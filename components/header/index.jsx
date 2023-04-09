@@ -101,7 +101,7 @@ const Header = () => {
                       onClick={() => {
                         signIn("google");
                       }}
-                      className="bg-blue-300   text-blue-700 font-bold py-1.5 md:py-2 px-2 md:px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50"
+                      className="bg-slate-300   text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4 rounded border-slate-600 duration-300 hover:text-slate-50 hover:bg-slate-700 border-2  hover:shadow-lg hover:shadow-slate-600/50"
                     >
                       <HiOutlineUser className="inline-block text-2xl lg:hidden  " />
                       <span className="hidden lg:flex">
@@ -115,7 +115,7 @@ const Header = () => {
                     setShowMenu(!showMenu);
                   }}
                 >
-                  <HiMenuAlt1 className="md:hidden text-3xl text-blue-700" />
+                  <HiMenuAlt1 className="md:hidden text-3xl text-slate-700" />
                 </button>
               </div>
             </div>

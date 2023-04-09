@@ -11,7 +11,7 @@ const Pricing = () => {
             Pricing
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-slate-500">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical.
+            Try Our Free Package, Upgrade To Our Premium Plan When You Need It!
           </p>
           <div className="flex mx-auto border-2 border-slate-500 rounded overflow-hidden mt-6">
             <button
@@ -42,7 +42,7 @@ const Pricing = () => {
               <h2 className="text-sm tracking-widest title-font mb-1 font-medium uppercase">
                 Free
               </h2>
-              <h3 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-bold">
+              <h3 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-extrabold">
                 <span>$0</span>
                 <span className="text-lg ml-1 font-normal text-gray-500">
                   {status === "monthly" ? "/mo" : "/yr"}
@@ -121,14 +121,14 @@ const Pricing = () => {
               <h2 className="text-sm tracking-widest title-font mb-1 font-medium uppercase">
                 Premium
               </h2>
-              <h3 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-bold">
+              <h3 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-extrabold">
                 <span>{status === "monthly" ? "$4.99" : "$49"}</span>
                 <span className="text-lg ml-1 font-normal text-gray-500">
                   {status === "monthly" ? "/mo" : "/yr"}
                 </span>
               </h3>
               <p className="flex items-center text-gray-600 mb-2">
-                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -141,10 +141,10 @@ const Pricing = () => {
                     <path d="M20 6L9 17l-5-5"></path>
                   </svg>
                 </span>
-                Vexillologist pitchfork
+                Content sharing with unlimited character limit
               </p>
               <p className="flex items-center text-gray-600 mb-2">
-                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -157,10 +157,10 @@ const Pricing = () => {
                     <path d="M20 6L9 17l-5-5"></path>
                   </svg>
                 </span>
-                Tumeric plaid portland
+                Share content both publicly and privately
               </p>
               <p className="flex items-center text-gray-600 mb-2">
-                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -173,10 +173,10 @@ const Pricing = () => {
                     <path d="M20 6L9 17l-5-5"></path>
                   </svg>
                 </span>
-                Hexagon neutra unicorn
+                Unlimited content sharing
               </p>
               <p className="flex items-center text-gray-600 mb-6">
-                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -189,7 +189,7 @@ const Pricing = () => {
                     <path d="M20 6L9 17l-5-5"></path>
                   </svg>
                 </span>
-                Mixtape chillwave tumeric
+                Badge that you are a premium member
               </p>
               <button className="flex items-center mt-auto duration-300 text-white bg-yellow-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-yellow-600 rounded">
                 Buy Now
