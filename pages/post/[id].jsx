@@ -229,7 +229,7 @@ const PostDetail = ({ post, comments }) => {
                   </div>
                   <div className="postInfor flex flex-col px-4 py-4 w-full ">
                     <p
-                      className={` break-all
+                      className={` text-justify
                       ${
                         edit?.element === "post"
                           ? "border-2 border-teal-500 p-2 "
@@ -296,10 +296,10 @@ const PostDetail = ({ post, comments }) => {
                   {comment.map((comment) => (
                     <div
                       key={comment._id}
-                      className="commentCard relative mb-6 flex border-2 border-b-4 shadow-md shadow-slate-200/50 rounded-md  gap-2 "
+                      className="commentCard relative mb-6 flex border-2 border-b-4 shadow-md shadow-slate-200/50 rounded-md  "
                     >
-                      <div className="userInfor flex flex-col items-center px-8 py-4 min-w-[100px] ">
-                        <div className="userAvatar relative">
+                      <div className="userInfor flex flex-col items-center px-4 sm:px-6 py-4 min-w-[100px] ">
+                        <div className="userAvatar relative w-12 h-12 sm:w-16 sm:h-16 ">
                           <Image
                             src={
                               post.user._id === comment.user._id &&
@@ -307,10 +307,9 @@ const PostDetail = ({ post, comments }) => {
                                 ? "/avatar.jpg"
                                 : comment.user.image
                             }
-                            width={64}
-                            height={64}
+                            fill
                             alt="Avatar"
-                            className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
+                            className="rounded-full border-4 border-slate-200 shadow-lg  sticky "
                           />
                           {post.user._id === comment.user._id &&
                             post.privacyStatus === true && (
@@ -318,7 +317,7 @@ const PostDetail = ({ post, comments }) => {
                             )}
                         </div>
                         <div className="userName">
-                          <h2 className="text-base mt-2 font-bold text-center ">
+                          <h2 className="text-sm mt-2 font-bold text-center ">
                             {post.user._id === comment.user._id &&
                             post.privacyStatus === true
                               ? "Anonymous"
@@ -326,9 +325,9 @@ const PostDetail = ({ post, comments }) => {
                           </h2>
                         </div>
                       </div>
-                      <div className="commetText p-4 w-full">
+                      <div className="commetText p-4 pl-0 w-full">
                         <p
-                          className={` break-all focus:outline-none rounded-md 
+                          className={` text-sm sm:text-base text-justify focus:outline-none rounded-md 
                       ${
                         edit?.element === "comment" && edit?.id === comment._id
                           ? "border-2 border-teal-500 p-2 "

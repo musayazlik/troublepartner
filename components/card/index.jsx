@@ -42,7 +42,7 @@ const Card = ({
               <h3 className="text-slate-700 font-extrabold text-xl sm:text-2xl">
                 {privacyStatus ? "Anonymous" : name}
               </h3>
-              <p className="text-slate-600 text-base  sm:text-lg mb-4 sm:mb-0 break-all">
+              <p className="text-slate-600 text-base  sm:text-lg mb-4 sm:mb-0 ">
                 {text}
               </p>
             </div>
