@@ -2,6 +2,7 @@ import React from "react";
 import { BiTimeFive, BiComment, BiRightArrow } from "react-icons/bi";
 import Image from "next/image";
 import Link from "next/link";
+// import MemberType from "@components/memberType";
 
 const Card = ({
   id,
@@ -12,6 +13,7 @@ const Card = ({
   time = "",
   comment = "",
   slug,
+  // memberType,
 }) => {
   return (
     <>
@@ -34,6 +36,10 @@ const Card = ({
                 {privacyStatus && (
                   <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
                 )}
+
+                <div className="absolute top-0">
+                  {/* <MemberType type={memberType} /> */}
+                </div>
               </div>
               <span className="w-full h-1 sm:w-1 sm:h-full bg-slate-200/50"></span>
             </div>

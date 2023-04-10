@@ -9,10 +9,11 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import { BiInfoCircle } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { Adsense } from "@ctrl/react-adsense";
 
 const CreatePost = () => {
-  const [numberOfChars, setNumberOfChars] = React.useState(200);
-  const [maxLength, setMaxLength] = React.useState(200);
+  const [numberOfChars, setNumberOfChars] = React.useState(140);
+  const [maxLength, setMaxLength] = React.useState(140);
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -25,8 +26,8 @@ const CreatePost = () => {
       Swal.fire("Error!", "Your post must be at least 10 characters.", "error");
       return;
     }
-    if (text.length > 200) {
-      Swal.fire("Error!", "Your post must be at most 200 characters.", "error");
+    if (text.length > 140) {
+      Swal.fire("Error!", "Your post must be at most 140 characters.", "error");
       return;
     }
 
@@ -67,7 +68,7 @@ const CreatePost = () => {
 
   const numberOfCharacters = (text) => {
     const numberOfChars = text.length;
-    const totalChars = 200;
+    const totalChars = 140;
     const remainingChars = totalChars - numberOfChars;
 
     if (remainingChars < 0) {
@@ -85,15 +86,14 @@ const CreatePost = () => {
         <div className="container mx-auto px-4 min-h-[200px]">
           <section className="mt-20 flex flex-col sm:grid sm:grid-cols-12 gap-4">
             <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
-              <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                <Image
-                  src="https://i.pravatar.cc/300"
-                  width={300}
-                  height={250}
-                  alt="Avatar"
-                  className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
-                />
-              </div>
+              <Adsense
+                client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                style={{ display: "block" }}
+                layout="in-article"
+                format="fluid"
+                data-full-width-responsive="true"
+              />
             </div>
             <div className="cardArea flex flex-col items-center col-span-8 gap-6 ">
               <div className="mb-8 px-6 sm:px-14 ">
@@ -123,7 +123,7 @@ const CreatePost = () => {
                     id="text"
                     cols="30"
                     rows="10"
-                    maxLength={200}
+                    maxLength={140}
                     className="mb-6 border-2 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
                     onChange={(e) => {
                       numberOfCharacters(e.target.value);
@@ -167,15 +167,14 @@ const CreatePost = () => {
               </form>
             </div>
             <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
-              <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                <Image
-                  src="https://i.pravatar.cc/300"
-                  width={300}
-                  height={250}
-                  alt="Avatar"
-                  className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
-                />
-              </div>
+              <Adsense
+                client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                style={{ display: "block" }}
+                layout="in-article"
+                format="fluid"
+                data-full-width-responsive="true"
+              />
             </div>
           </section>
         </div>

@@ -12,6 +12,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { Adsense } from "@ctrl/react-adsense";
 
 const PostDetail = ({ session, data }) => {
   const deleteHandle = (id, element) => {
@@ -99,20 +100,38 @@ const PostDetail = ({ session, data }) => {
         <div className="pt-12 pb-20">
           <div className="container mx-auto px-4 ">
             {/* Google adsense */}
-            <div className=" h-28 flex justify-center items-center"></div>
+            <div className=" h-28 flex justify-center items-center">
+              <Adsense
+                client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                style={{ display: "block" }}
+                layout="in-article"
+                format="fluid"
+                data-full-width-responsive="true"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-slate-900">
+                Profile
+              </h1>
+              <p className=" mx-auto leading-relaxed text-base text-slate-500">
+                This is your profile page. You can see your posts and comments
+                here.
+              </p>
+            </div>
           </div>
+
           <div className="container mx-auto px-4 min-h-[200px]">
             <section className="mt-12 flex flex-col sm:grid sm:grid-cols-12 gap-4">
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
-                <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Image
-                    src="https://i.pravatar.cc/300"
-                    width={300}
-                    height={250}
-                    alt="Avatar"
-                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
-                  />
-                </div>
+                <Adsense
+                  client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                  slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                  style={{ display: "block" }}
+                  layout="in-article"
+                  format="fluid"
+                  data-full-width-responsive="true"
+                />
               </div>
               <div className="context flex flex-col col-span-12 lg:col-span-8 ">
                 <div className="px-2 sm:px-12">
@@ -308,15 +327,14 @@ const PostDetail = ({ session, data }) => {
                 </div>
               </div>
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
-                <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Image
-                    src="https://i.pravatar.cc/300"
-                    width={300}
-                    height={250}
-                    alt="Avatar"
-                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
-                  />
-                </div>
+                <Adsense
+                  client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                  slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                  style={{ display: "block" }}
+                  layout="in-article"
+                  format="fluid"
+                  data-full-width-responsive="true"
+                />
               </div>
             </section>
           </div>

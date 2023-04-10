@@ -14,6 +14,7 @@ const options = {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
+          password: "",
           image: profile.picture,
           role: "user",
           memberType: "free",

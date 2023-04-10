@@ -1,38 +1,22 @@
 import Head from "next/head";
 import Layout from "./layout";
-import Image from "next/image";
 import Card from "@/components/card";
-import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { useSession } from "next-auth/react";
 import { useAppContext } from "@/context";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import formatDate from "@/helpers/formatDate";
-import Swal from "sweetalert2";
-import { Adsense } from "@ctrl/react-adsense";
 
-export default function Home() {
-  const { user, setUser, loading, setLoading } = useAppContext();
-  const [posts, setPosts] = useState([]);
+import { Adsense } from "@ctrl/react-adsense";
+import { BsCaretDownFill } from "react-icons/bs";
+
+export default function Home({ posts }) {
+  const { loading } = useAppContext();
+  const [postsData, setPostsData] = useState([...posts.data]);
   const { push } = useRouter();
 
-  const { data: session, status } = useSession();
-
-  useEffect(() => {
-    axios({
-      method: "GET",
-      url: "/api/posts",
-    })
-      .then((res) => {
-        setPosts(res.data.data);
-      })
-      .catch((err) => {
-        Swal.fire("Error!", "Something went wrong.", "error");
-      });
-  }, [session]);
+  const { status } = useSession();
 
   const createPostPageHandle = () => {
     if (status === "authenticated") {
@@ -41,9 +25,14 @@ export default function Home() {
       };
     } else {
       return () => {
-        signIn("google");
+        push("/auth/sign-in");
       };
     }
+  };
+
+  const loadMoreHandle = async () => {
+    const { data } = await axios.get(`/api/posts?offset=${postsData.length}`);
+    setPostsData([...postsData, ...data.data]);
   };
 
   return (
@@ -96,7 +85,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="cardArea flex flex-col items-center col-span-12 lg:col-span-8 gap-6 ">
-                {posts.map((post) => (
+                {postsData.map((post) => (
                   <Card
                     key={post._id}
                     id={post._id}
@@ -104,33 +93,29 @@ export default function Home() {
                     name={post.user.name}
                     text={post.text}
                     slug={post.slug}
+                    // memberType={post.user.memberType}
                     privacyStatus={post.privacyStatus}
                     time={formatDate(post.createdAt)}
                     comment={post.numComments}
                   />
                 ))}
 
-                <div className="pagination flex gap-2 mt-6">
-                  <button className="bg-white  text-blue-700/70 font-bold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
-                    <BiChevronLeft fontSize={32} />
-                  </button>
-                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
-                    1
-                  </button>
-                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
-                    2
-                  </button>
-                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
-                    3
-                  </button>
-                  <button className="bg-white  text-blue-700/70 font-extrabold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
-                    4
-                  </button>
-                  <button className="bg-white  text-blue-700/70 font-bold  rounded border-blue-700/70 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 w-10 h-10 flex justify-center items-center">
-                    <BiChevronRight fontSize={32} />
-                  </button>
-                </div>
+                {postsData.length !== posts?.count && (
+                  <div>
+                    <div>
+                      <button
+                        onClick={loadMoreHandle}
+                        className="bg-blue-300 flex  items-center text-blue-700 font-bold py-2 px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 mt-8 outline-dashed outline-2 outline-blue-700/50 outline-offset-4 gap-4"
+                      >
+                        <BsCaretDownFill />
+                        <span className="">Load More</span>
+                        <BsCaretDownFill />
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
+
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Adsense
@@ -161,4 +146,15 @@ export default function Home() {
       )}
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetch(`${process.env.APP_URL}/api/posts`);
+  const posts = await res.json();
+
+  return {
+    props: {
+      posts: posts,
+    },
+  };
 }

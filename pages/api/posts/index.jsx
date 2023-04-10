@@ -11,15 +11,23 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
+        const { offset = 0, limit = 4 } = req.query;
+        const startIndex = parseInt(offset);
+        const endIndex = parseInt(offset) + parseInt(limit);
+
         const posts = await Post.find({})
+          .skip(startIndex)
+          .limit(limit)
           .populate({
             path: "user",
             model: Users,
-            select: ["name", "image"],
+            select: ["name", "image", "memberType"],
           })
           .where("deleteStatus")
           .equals(false)
           .sort({ createdAt: -1 });
+
+        const count = await Post.countDocuments();
 
         for (let i = 0; i < posts.length; i++) {
           const numComments = await Comment.countDocuments({
@@ -34,7 +42,7 @@ export default async function handler(req, res) {
           };
         }
 
-        res.status(200).json({ data: posts });
+        res.status(200).json({ data: posts, count: count });
       } catch (error) {
         res.status(400).json({ message: error.message });
       }

@@ -23,6 +23,7 @@
     "flowbite-react": "^0.4.3",
     "formik": "^2.2.9",
     "googleapis": "^114.0.0",
+    "iyzipay": "^2.0.48",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.1",
     "next": "13.2.4",

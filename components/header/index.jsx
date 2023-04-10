@@ -42,7 +42,7 @@ const Header = () => {
                   className="relative w-full md:w-auto text-center py-2 md:py-0 mr-5 hover:text-blue-500 duration-300 hover:duration-300"
                 >
                   Home
-                  {pathname === "/" && (
+                  {(pathname === "/" || pathname.startsWith("/post/")) && (
                     <span className="absolute w-full h-1 bg-blue-500 -bottom-1 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
                       <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                     </span>
@@ -51,11 +51,11 @@ const Header = () => {
 
                 <Link
                   href={"/about"}
-                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-blue-500 duration-300"
+                  className="mr-5 w-full md:w-auto text-center py-2 md:py-0 hover:text-blue-500 duration-300 relative"
                 >
-                  About
+                  About Us
                   {pathname === "/about" && (
-                    <span className="absolute w-full h-1 bg-blue-500 bottom-0 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
+                    <span className="absolute w-full h-1 bg-blue-500 -bottom-1 left-0 right-0 mx-auto rounded-full transition-all duration-300 ">
                       <span className="absolute inline-block left-0 right-0 mx-auto h-1.5 w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                     </span>
                   )}
@@ -97,17 +97,20 @@ const Header = () => {
                   <AvatarDropDown />
                 ) : (
                   <div className="flex justify-center font-extrabold">
-                    <button
-                      onClick={() => {
-                        signIn("google");
-                      }}
-                      className="bg-slate-300   text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4 rounded border-slate-600 duration-300 hover:text-slate-50 hover:bg-slate-700 border-2  hover:shadow-lg hover:shadow-slate-600/50"
+                    <Link
+                      href="/auth/sign-in"
+                      className="  text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-slate-600 hover:bg-slate-200 "
                     >
                       <HiOutlineUser className="inline-block text-2xl lg:hidden  " />
-                      <span className="hidden lg:flex">
-                        Sign in with Google
-                      </span>
-                    </button>
+                      <span className="hidden lg:flex">Sign In</span>
+                    </Link>
+                    <Link
+                      href="/auth/sign-up"
+                      className="bg-slate-300   text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4  border-slate-600 duration-300 hover:text-slate-50 hover:bg-slate-700 border-2  hover:shadow-lg rounded-sm hover:shadow-slate-600/50"
+                    >
+                      <HiOutlineUser className="inline-block text-2xl lg:hidden  " />
+                      <span className="hidden lg:flex">Sign Up</span>
+                    </Link>
                   </div>
                 )}
                 <button

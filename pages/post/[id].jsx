@@ -10,7 +10,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 import CardDropdown from "@/components/cardDropdown";
 import { toast } from "react-toastify";
-import MemberType from "@/components/memberType";
+// import MemberType from "@/components/memberType";
 import { Adsense } from "@ctrl/react-adsense";
 
 const PostDetail = ({ post, comments }) => {
@@ -219,7 +219,7 @@ const PostDetail = ({ post, comments }) => {
                         {post.privacyStatus && (
                           <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
                         )}
-                        <MemberType type={post.user.memberType} />
+                        {/* <MemberType type={post.user.memberType} /> */}
                       </div>
                       <div className="userName">
                         <h2 className="text-lg sm:text-base mt-2 font-extrabold whitespace-nowrap text-center">
@@ -330,7 +330,7 @@ const PostDetail = ({ post, comments }) => {
                               <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
                             )}
 
-                          <MemberType type={comment.user.memberType} />
+                          {/* <MemberType type={comment.user.memberType} /> */}
                         </div>
                         <div className="userName mt-2">
                           <h3 className="text-sm mt-2 font-bold text-center text-ellipsis overflow-hidden  ">

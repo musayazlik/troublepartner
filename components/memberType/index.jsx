@@ -16,7 +16,7 @@ export const MemberType = ({ type }) => {
     return (
       <div className="relative flex justify-content-end">
         <Tooltip content="Admin">
-          <AiOutlineCrown className="z-10 relative text-teal-600 w-6 h-6 bg-teal-400 p-0.5 rounded-full border-teal-500 border-2 shadow-md shadow-teal-500/70" />
+          <BiUser className="z-10 relative text-teal-600 w-6 h-6 bg-teal-400 p-0.5 rounded-full border-teal-500 border-2 shadow-md shadow-teal-500/70" />
         </Tooltip>
       </div>
     );
