@@ -12,6 +12,7 @@ import axios from "axios";
 import { useState } from "react";
 import formatDate from "@/helpers/formatDate";
 import Swal from "sweetalert2";
+import { Adsense } from "@ctrl/react-adsense";
 
 export default function Home() {
   const { user, setUser, loading, setLoading } = useAppContext();
@@ -84,13 +85,7 @@ export default function Home() {
             <section className="mt-20 flex flex-col sm:grid sm:grid-cols-12 gap-4">
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Image
-                    src="https://i.pravatar.cc/300"
-                    width={300}
-                    height={250}
-                    alt="Avatar"
-                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
-                  />
+                  <Adsense client="ca-pub-8831973080518055" slot="5352367283" />
                 </div>
               </div>
               <div className="cardArea flex flex-col items-center col-span-12 lg:col-span-8 gap-6 ">
@@ -131,13 +126,7 @@ export default function Home() {
               </div>
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Image
-                    src="https://i.pravatar.cc/300"
-                    width={300}
-                    height={250}
-                    alt="Avatar"
-                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
-                  />
+                  <Adsense client="ca-pub-8831973080518055" slot="5352367283" />
                 </div>
               </div>
             </section>
