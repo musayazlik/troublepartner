@@ -86,11 +86,12 @@ export default function Home() {
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Adsense
-                    client="ca-pub-8831973080518055"
-                    slot="2555953872"
+                    client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                    slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
                     style={{ display: "block" }}
                     layout="in-article"
                     format="fluid"
+                    data-full-width-responsive="true"
                   />
                 </div>
               </div>
@@ -133,11 +134,12 @@ export default function Home() {
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Adsense
-                    client="ca-pub-8831973080518055"
-                    slot="2555953872"
+                    client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                    slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
                     style={{ display: "block" }}
                     layout="in-article"
                     format="fluid"
+                    data-full-width-responsive="true"
                   />
                 </div>
               </div>

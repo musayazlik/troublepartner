@@ -11,6 +11,7 @@ import Link from "next/link";
 import CardDropdown from "@/components/cardDropdown";
 import { toast } from "react-toastify";
 import MemberType from "@/components/memberType";
+import { Adsense } from "@ctrl/react-adsense";
 
 const PostDetail = ({ post, comments }) => {
   const [comment, setComment] = useState([...comments]);
@@ -177,18 +178,28 @@ const PostDetail = ({ post, comments }) => {
         <div className="pt-12 pb-20">
           <div className="container mx-auto px-4 ">
             {/* Google adsense */}
-            <div className=" h-28 flex justify-center items-center"></div>
+            <div className=" h-28 flex justify-center items-center">
+              <Adsense
+                client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                style={{ display: "block" }}
+                layout="in-article"
+                format="fluid"
+                data-full-width-responsive="true"
+              />
+            </div>
           </div>
           <div className="container mx-auto px-4 min-h-[200px]">
             <section className="mt-12 flex flex-col sm:grid sm:grid-cols-12 gap-4">
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Image
-                    src="https://i.pravatar.cc/300"
-                    width={300}
-                    height={250}
-                    alt="Avatar"
-                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
+                  <Adsense
+                    client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                    slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                    style={{ display: "block" }}
+                    layout="in-article"
+                    format="fluid"
+                    data-full-width-responsive="true"
                   />
                 </div>
               </div>
@@ -378,12 +389,13 @@ const PostDetail = ({ post, comments }) => {
               </div>
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Image
-                    src="https://i.pravatar.cc/300"
-                    width={300}
-                    height={250}
-                    alt="Avatar"
-                    className="rounded-full border-4 border-slate-200 shadow-lg min-w-[64px] min-h-[64px] sticky "
+                  <Adsense
+                    client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+                    slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
+                    style={{ display: "block" }}
+                    layout="in-article"
+                    format="fluid"
+                    data-full-width-responsive="true"
                   />
                 </div>
               </div>
