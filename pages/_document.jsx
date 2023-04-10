@@ -19,18 +19,22 @@ export default function Document() {
       <body className="bg-slate-50">
         <Main />
         <NextScript />
+
         <Script
-          id="Adsense-id"
-          style="display:block"
-          data-ad-format="fluid"
-          data-ad-layout-key="-6t+ed+2i-1n-4w"
-          data-ad-client="ca-pub-8831973080518055"
-          data-ad-slot="5352367283"
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        >
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </Script>
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+        />
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', ${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID});
+        `,
+          }}
+        />
       </body>
     </Html>
   );

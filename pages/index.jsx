@@ -88,7 +88,7 @@ export default function Home() {
                   <Adsense
                     client="ca-pub-8831973080518055"
                     slot="5352367283"
-                    style={{ display: "block", width: 250, height: 300 }}
+                    style={{ display: "block", width: 260 }}
                     layout="in-article"
                     format="fluid"
                   />
@@ -135,7 +135,7 @@ export default function Home() {
                   <Adsense
                     client="ca-pub-8831973080518055"
                     slot="5352367283"
-                    style={{ display: "block", width: 250, height: 300 }}
+                    style={{ display: "block", width: 260 }}
                     layout="in-article"
                     format="fluid"
                   />
