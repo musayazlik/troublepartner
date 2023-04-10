@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -18,10 +19,18 @@ export default function Document() {
       <body className="bg-slate-50">
         <Main />
         <NextScript />
-        <script
+        <Script
+          id="Adsense-id"
+          style="display:block"
+          data-ad-format="fluid"
+          data-ad-layout-key="-6t+ed+2i-1n-4w"
+          data-ad-client="ca-pub-8831973080518055"
+          data-ad-slot="5352367283"
           async
-          src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        >
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </Script>
       </body>
     </Html>
   );

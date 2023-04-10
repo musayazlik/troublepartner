@@ -12,7 +12,7 @@ import axios from "axios";
 import { useState } from "react";
 import formatDate from "@/helpers/formatDate";
 import Swal from "sweetalert2";
-import AdSense from "react-adsense";
+import { Adsense } from "@ctrl/react-adsense";
 
 export default function Home() {
   const { user, setUser, loading, setLoading } = useAppContext();
@@ -85,9 +85,12 @@ export default function Home() {
             <section className="mt-20 flex flex-col sm:grid sm:grid-cols-12 gap-4">
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <AdSense.Google
+                  <Adsense
                     client="ca-pub-8831973080518055"
                     slot="5352367283"
+                    style={{ display: "block", width: 250, height: 300 }}
+                    layout="in-article"
+                    format="fluid"
                   />
                 </div>
               </div>
@@ -129,9 +132,12 @@ export default function Home() {
               </div>
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <AdSense.Google
+                  <Adsense
                     client="ca-pub-8831973080518055"
                     slot="5352367283"
+                    style={{ display: "block", width: 250, height: 300 }}
+                    layout="in-article"
+                    format="fluid"
                   />
                 </div>
               </div>
