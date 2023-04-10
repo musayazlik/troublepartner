@@ -18,6 +18,10 @@ export default function Document() {
       <body className="bg-slate-50">
         <Main />
         <NextScript />
+        <script
+          async
+          src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        />
       </body>
     </Html>
   );
