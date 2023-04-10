@@ -87,8 +87,8 @@ export default function Home() {
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Adsense
                     client="ca-pub-8831973080518055"
-                    slot="5352367283"
-                    style={{ display: "block", width: 260 }}
+                    slot="2555953872"
+                    style={{ display: "block" }}
                     layout="in-article"
                     format="fluid"
                   />
@@ -134,8 +134,8 @@ export default function Home() {
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Adsense
                     client="ca-pub-8831973080518055"
-                    slot="5352367283"
-                    style={{ display: "block", width: 260 }}
+                    slot="2555953872"
+                    style={{ display: "block" }}
                     layout="in-article"
                     format="fluid"
                   />
