@@ -11,6 +11,8 @@ import formatDate from "@/helpers/formatDate";
 import { Adsense } from "@ctrl/react-adsense";
 import { BsCaretDownFill } from "react-icons/bs";
 
+import { GoogleAdsenseContainer } from "@/components/googleAdsense";
+
 export default function Home({ posts }) {
   const { data: session, status } = useSession();
   const { loading } = useAppContext();
@@ -75,14 +77,7 @@ export default function Home({ posts }) {
             <section className="mt-20 flex flex-col sm:grid sm:grid-cols-12 gap-4">
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Adsense
-                    client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
-                    slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
-                    style={{ display: "block" }}
-                    layout="in-article"
-                    format="fluid"
-                    data-full-width-responsive="true"
-                  />
+                  <GoogleAdsenseContainer />
                 </div>
               </div>
               <div className="cardArea flex flex-col items-center col-span-12 lg:col-span-8 gap-6 ">
@@ -119,14 +114,7 @@ export default function Home({ posts }) {
 
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
-                  <Adsense
-                    client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
-                    slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
-                    style={{ display: "block" }}
-                    layout="in-article"
-                    format="fluid"
-                    data-full-width-responsive="true"
-                  />
+                  <GoogleAdsenseContainer />
                 </div>
               </div>
             </section>
