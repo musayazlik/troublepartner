@@ -40,7 +40,6 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        console.log(req.body);
         let request = {
           price: req.body.paymentMethod === "monthly" ? 4.99 : 49.9,
           locale: Iyzipay.LOCALE.EN,

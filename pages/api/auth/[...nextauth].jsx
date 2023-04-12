@@ -70,12 +70,14 @@ const options = {
 
   callbacks: {
     async session({ session, token, user }) {
+      const data = await User.findOne({ email: session.user.email });
       if (user) {
         session.user = {
           id: user.id,
           email: user.email,
           name: user.name,
           image: user.image,
+          role: data.role,
         };
       }
 
@@ -85,6 +87,7 @@ const options = {
           email: token.email,
           image: token.picture,
           name: token.name,
+          role: data.role,
         };
       }
 

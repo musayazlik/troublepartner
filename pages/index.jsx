@@ -17,6 +17,8 @@ export default function Home({ posts }) {
   const [postsData, setPostsData] = useState([...posts.data]);
   const { push } = useRouter();
 
+  console.log(session);
+
   const createPostPageHandle = () => {
     if (status === "authenticated") {
       return () => {

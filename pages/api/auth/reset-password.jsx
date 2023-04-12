@@ -17,8 +17,6 @@ export default async function handler(req, res) {
     }
 
     if (user.token !== req.body.token) {
-      console.log(user.token);
-      console.log(req.body.token);
       return res.status(401).json({ message: "Token not found" });
     }
 

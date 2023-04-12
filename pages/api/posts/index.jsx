@@ -27,7 +27,9 @@ export default async function handler(req, res) {
           .equals(false)
           .sort({ createdAt: -1 });
 
-        const count = await Post.countDocuments();
+        const count = await Post.countDocuments({
+          deleteStatus: false,
+        });
 
         for (let i = 0; i < posts.length; i++) {
           const numComments = await Comment.countDocuments({

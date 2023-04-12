@@ -53,7 +53,7 @@ export default async function handler(req, res) {
           // E-postayı gönder
           transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-              console.log(error);
+              console.log(message.error);
             } else {
               res.status(200).json({ message: "Email sent" });
             }
