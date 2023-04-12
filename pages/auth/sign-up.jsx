@@ -2,8 +2,51 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
-const signUp = () => {
+const SignUp = () => {
+  const { push } = useRouter();
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const surname = e.target.surname.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    axios({
+      method: "POST",
+      url: "/api/auth/sign-up",
+      data: {
+        name,
+        surname,
+        email,
+        password,
+      },
+    })
+      .then((res) => {
+        Swal.fire({
+          title: "Success!",
+          text: "User created successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        push("/auth/sign-in");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -12,7 +55,42 @@ const signUp = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create and account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-4 md:space-y-3" onSubmit={handleSignUp}>
+              <div className="flex gap-4">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="John"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="surname"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Surname
+                  </label>
+                  <input
+                    type="text"
+                    name="surname"
+                    id="surname"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Doe"
+                    required
+                  />
+                </div>
+              </div>
               <div>
                 <label
                   htmlFor="email"
@@ -53,8 +131,8 @@ const signUp = () => {
                   Confirm password
                 </label>
                 <input
-                  type="confirm-password"
-                  name="confirm-password"
+                  type="password"
+                  name="confirmPassword"
                   id="confirm-password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -121,4 +199,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;

@@ -16,6 +16,7 @@ import {
 
 import { MdPayment } from "react-icons/md";
 import axios from "axios";
+const sha1 = require("sha1");
 
 const Pricing = () => {
   const [status, setStatus] = React.useState("monthly");
@@ -47,6 +48,7 @@ const Pricing = () => {
         console.log(err);
       });
   };
+
   return (
     <div className="relative">
       <Layout>
@@ -108,8 +110,9 @@ const Pricing = () => {
                       <path d="M20 6L9 17l-5-5"></path>
                     </svg>
                   </span>
-                  Sharing content with 140 character limit.
+                  Sharing content and comment with 200 character limit.
                 </p>
+
                 <p className="flex items-center text-gray-600 mb-2">
                   <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                     <svg
@@ -140,9 +143,14 @@ const Pricing = () => {
                       <path d="M20 6L9 17l-5-5"></path>
                     </svg>
                   </span>
-                  3 content sharing
+                  Restricted content sharing
                 </p>
-                <button className="flex items-center mt-auto duration-300 text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
+                <button
+                  onClick={() => {
+                    paymentdeneme();
+                  }}
+                  className="flex items-center mt-auto duration-300 text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded"
+                >
                   Buy Now
                   <svg
                     fill="none"
@@ -187,8 +195,9 @@ const Pricing = () => {
                       <path d="M20 6L9 17l-5-5"></path>
                     </svg>
                   </span>
-                  Content sharing with unlimited character limit
+                  Content and comment sharing with unlimited character limit
                 </p>
+
                 <p className="flex items-center text-gray-600 mb-2">
                   <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                     <svg
@@ -237,11 +246,16 @@ const Pricing = () => {
                   </span>
                   Badge that you are a premium member
                 </p>
-                <div className="absolute top-0 left-0 w-full h-full bg-yellow-400/40 flex text-5xl text-yellow-700 font-ultrabold justify-center items-center ">
+                <div className="absolute top-0 left-0 w-full h-full bg-yellow-400/95 flex text-5xl text-yellow-700 font-ultrabold justify-center items-center ">
                   Coming Soon
                 </div>
                 {session ? (
-                  <Button onClick={() => setShow(true)}>Toggle modal</Button>
+                  <Button
+                    onClick={() => setShow(true)}
+                    className="bg-yellow-600"
+                  >
+                    Buy Now
+                  </Button>
                 ) : (
                   <button
                     onClick={() => push("/auth/sign-in")}

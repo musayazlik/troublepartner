@@ -136,7 +136,7 @@ const PostDetail = ({ session, data }) => {
               <div className="context flex flex-col col-span-12 lg:col-span-8 ">
                 <div className="px-2 sm:px-12">
                   <div action="">
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-start gap-4">
                       <div>
                         <h2 className="font-black text-xl text-slate-700">
                           {" "}
@@ -145,21 +145,64 @@ const PostDetail = ({ session, data }) => {
                       </div>
                       <div className="flex flex-col gap-3">
                         <label
-                          htmlFor="name"
+                          htmlFor="picture"
                           className="text-md font-bold text-slate-700"
                         >
-                          Name
+                          Picture
                         </label>
-                        <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          disabled
-                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 max-w-lg"
-                          defaultValue={data.user[0].name}
-                        />
+                        <div className="relative ">
+                          <Image
+                            src={data.user[0].image}
+                            width={100}
+                            height={100}
+                            disabled
+                            alt="Picture"
+                            className="rounded-full border-2 border-slate-500 cursor-default"
+                          />
+                          {/* <input
+                            type="file"
+                            name="picture"
+                            id="picture"
+                            disabled
+                            className="border-2 border-slate-800/50 cursor-auto border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 w-full h-full z-20 absolute top-0 left-0 opacity-0 inline-block "
+                          /> */}
+                        </div>
                       </div>
-                      <div className="flex flex-col gap-3">
+                      <div className="flex gap-4 w-full max-w-lg ">
+                        <div className="flex flex-col w-full">
+                          <label
+                            htmlFor="name"
+                            className="text-md font-bold text-slate-700"
+                          >
+                            Name
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            disabled
+                            className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 "
+                            defaultValue={data.user[0].name}
+                          />
+                        </div>
+                        <div className="flex flex-col w-full">
+                          <label
+                            htmlFor="surname"
+                            className="text-md font-bold text-slate-700"
+                          >
+                            Surname
+                          </label>
+                          <input
+                            type="text"
+                            name="surname"
+                            id="surname"
+                            disabled
+                            className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
+                            defaultValue={data.user[0].surname}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-3 w-full max-w-lg">
                         <label
                           htmlFor="email"
                           className="text-md font-bold text-slate-700"
@@ -172,7 +215,7 @@ const PostDetail = ({ session, data }) => {
                           id="email"
                           disabled
                           defaultValue={data.user[0].email}
-                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 max-w-lg "
+                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 "
                         />
                       </div>
                     </div>
@@ -193,79 +236,91 @@ const PostDetail = ({ session, data }) => {
                           My Posts
                         </h2>
                       </div>
-                      <div className="flex flex-col gap-3">
-                        <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
-                          {data.posts.map((post) => (
-                            <div
-                              key={post._id}
-                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 w-full min-w-[400px]"
-                            >
-                              <div className="flex justify-between items-center gap-x-8 ">
-                                <Link
-                                  href={`/post/${post.slug}-${post._id}`}
-                                  className="flex flex-col mb-4 last:mb-0 w-full "
-                                >
-                                  <div className="card_content w-full flex flex-col">
-                                    <p
-                                      style={{
-                                        wordBreak: "break-word",
-                                      }}
-                                    >
-                                      {post.text.slice(0, 100)}...
-                                    </p>
-                                    <div className="flex justify-between items-center mt-3">
-                                      <div className="flex gap-3 ">
-                                        <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
-                                          <BiTimeFive
-                                            className=" "
-                                            fontSize={20}
-                                          />
-                                          <span className="mt-0.5">
-                                            {formatDate(post.createdAt)}
-                                          </span>
-                                        </div>
-                                        <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
-                                          <BiComment
-                                            className=" "
-                                            fontSize={20}
-                                          />
-                                          <span className="mt-0.5">
-                                            {post.numComments}
-                                          </span>
+                      {data.posts.length > 0 ? (
+                        <div className="flex flex-col gap-3">
+                          <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
+                            {data.posts.map((post) => (
+                              <div
+                                key={post._id}
+                                className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 w-full min-w-[400px]"
+                              >
+                                <div className="flex justify-between items-center gap-x-8 ">
+                                  <Link
+                                    href={`/post/${post.slug}-${post._id}`}
+                                    className="flex flex-col mb-4 last:mb-0 w-full "
+                                  >
+                                    <div className="card_content w-full flex flex-col">
+                                      <p
+                                        style={{
+                                          wordBreak: "break-word",
+                                        }}
+                                      >
+                                        {post.text.slice(0, 100)}...
+                                      </p>
+                                      <div className="flex justify-between items-center mt-3">
+                                        <div className="flex gap-3 ">
+                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                            <BiTimeFive
+                                              className=" "
+                                              fontSize={20}
+                                            />
+                                            <span className="mt-0.5">
+                                              {formatDate(post.createdAt)}
+                                            </span>
+                                          </div>
+                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                            <BiComment
+                                              className=" "
+                                              fontSize={20}
+                                            />
+                                            <span className="mt-0.5">
+                                              {post.numComments}
+                                            </span>
 
-                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70 ml-1 ">
-                                            {post.privacyStatus ? (
-                                              <FiEyeOff
-                                                className=" "
-                                                fontSize={20}
-                                                title="This content was shared privately."
-                                              />
-                                            ) : (
-                                              <FiEye
-                                                className=" "
-                                                fontSize={20}
-                                                title="This content was shared without profile private."
-                                              />
-                                            )}
+                                            <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70 ml-1 ">
+                                              {post.privacyStatus ? (
+                                                <FiEyeOff
+                                                  className=" "
+                                                  fontSize={20}
+                                                  title="This content was shared privately."
+                                                />
+                                              ) : (
+                                                <FiEye
+                                                  className=" "
+                                                  fontSize={20}
+                                                  title="This content was shared without profile private."
+                                                />
+                                              )}
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </Link>
-                                <button
-                                  onClick={() => {
-                                    deleteHandle(post._id, "post");
-                                  }}
-                                  className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1"
-                                >
-                                  <MdDeleteOutline className=" text-2xl" />
-                                </button>
+                                  </Link>
+                                  <button
+                                    onClick={() => {
+                                      deleteHandle(post._id, "post");
+                                    }}
+                                    className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1"
+                                  >
+                                    <MdDeleteOutline className=" text-2xl" />
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <p className="px-2 bg-gray-200 py-2 text-slate-500 font-medium rounded-sm">
+                          You have not created any post yet.{" "}
+                          <Link
+                            href="/create-post"
+                            className="text-blue-500 font-bold"
+                          >
+                            Create Post
+                          </Link>
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -278,50 +333,56 @@ const PostDetail = ({ session, data }) => {
                           My Comments
                         </h2>
                       </div>
-                      <div className="flex flex-col gap-3">
-                        <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
-                          {data.comments.map((commet) => (
-                            <div
-                              key={commet._id}
-                              className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 min-w-[400px]"
-                            >
-                              <div className="flex justify-between items-center gap-x-8 ">
-                                <div className="card_content w-full flex flex-col">
-                                  <p
-                                    className=""
-                                    style={{
-                                      wordBreak: "break-word",
-                                    }}
-                                  >
-                                    {commet.text.slice(0, 100)}...
-                                  </p>
-                                  <div className="flex justify-between items-center mt-3">
-                                    <div className="flex gap-5 ">
-                                      <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
-                                        <BiTimeFive
-                                          className=" "
-                                          fontSize={20}
-                                        />
-                                        <span className="mt-0.5">
-                                          {formatDate(commet.createdAt)}
-                                        </span>
+                      {data.comments.length > 0 ? (
+                        <div className="flex flex-col gap-3">
+                          <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
+                            {data.comments.map((commet) => (
+                              <div
+                                key={commet._id}
+                                className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 min-w-[400px]"
+                              >
+                                <div className="flex justify-between items-center gap-x-8 ">
+                                  <div className="card_content w-full flex flex-col">
+                                    <p
+                                      className=""
+                                      style={{
+                                        wordBreak: "break-word",
+                                      }}
+                                    >
+                                      {commet.text.slice(0, 100)}...
+                                    </p>
+                                    <div className="flex justify-between items-center mt-3">
+                                      <div className="flex gap-5 ">
+                                        <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                          <BiTimeFive
+                                            className=" "
+                                            fontSize={20}
+                                          />
+                                          <span className="mt-0.5">
+                                            {formatDate(commet.createdAt)}
+                                          </span>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
+                                  <button
+                                    onClick={() => {
+                                      deleteHandle(commet._id, "comment");
+                                    }}
+                                    className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1"
+                                  >
+                                    <MdDeleteOutline className=" text-2xl" />
+                                  </button>
                                 </div>
-                                <button
-                                  onClick={() => {
-                                    deleteHandle(commet._id, "comment");
-                                  }}
-                                  className="hover:border-2 hover:border-red-700 border-2 border-transparent duration-300 hover:text-red-200 text-red-600 bg-transparent hover:bg-red-500 rounded-md p-1"
-                                >
-                                  <MdDeleteOutline className=" text-2xl" />
-                                </button>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <p className="px-2 bg-gray-200 py-2 text-slate-500 font-medium rounded-sm">
+                          You have not commented on any post yet.
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

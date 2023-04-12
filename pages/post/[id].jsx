@@ -3,10 +3,9 @@ import Layout from "../layout";
 import Image from "next/image";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { AiOutlineDelete } from "react-icons/ai";
+
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 import CardDropdown from "@/components/cardDropdown";
 import { toast } from "react-toastify";
@@ -283,29 +282,45 @@ const PostDetail = ({ post, comments }) => {
                     ) : null}
                   </div>
                 </div>
-                <form
-                  onSubmit={(e) => createComment(e)}
-                  className="commentCreate"
-                >
-                  <textarea
-                    type="text"
-                    placeholder={
-                      comment.length > 0
-                        ? "Add a comment..."
-                        : "Be the first to comment..."
-                    }
-                    rows={5}
-                    className="w-full border-2 font-medium resize-none p-4 border-slate-200 focus:outline-blue-500 focus:border-blue-500 rounded-md"
-                  />
-                  <div className="flex justify-center mt-4">
-                    <button
-                      type="submit"
-                      className="bg-blue-500 font-extrabold text-xl border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-4 py-2 rounded-sm"
-                    >
-                      Submit comment
-                    </button>
-                  </div>
-                </form>
+
+                {session ? (
+                  <form
+                    onSubmit={(e) => createComment(e)}
+                    className="commentCreate"
+                  >
+                    <textarea
+                      type="text"
+                      placeholder={
+                        comment.length > 0
+                          ? "Add a comment..."
+                          : "Be the first to comment..."
+                      }
+                      rows={5}
+                      className="w-full border-2 font-medium resize-none p-4 border-slate-200 focus:outline-blue-500 focus:border-blue-500 rounded-md"
+                    />
+                    <div className="flex justify-center mt-4">
+                      <button
+                        type="submit"
+                        className="bg-blue-500 font-extrabold text-xl border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-4 py-2 rounded-sm"
+                      >
+                        Submit comment
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <>
+                    <div className="flex justify-center  mb-8">
+                      <Link
+                        href="/auth/sign-in"
+                        className="bg-blue-500 font-extrabold text-xl border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-4 py-2 rounded-sm"
+                      >
+                        Login to comment
+                      </Link>
+                    </div>
+                    <hr className="border-slate-300/50 border" />
+                  </>
+                )}
+
                 <div className="commets mt-12 mb-28">
                   {comment.map((comment) => (
                     <div

@@ -5,18 +5,34 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  surname: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
+  },
+  emailVerified: {
+    type: Boolean,
+    default: false,
   },
   password: {
     type: String,
     required: true,
   },
+  token: {
+    type: String,
+    default: null,
+  },
+  tokenExpiration: {
+    type: Date,
+    default: null,
+  },
   image: {
     type: String,
     required: true,
-    default: "https://i.pravatar.cc/150?img=1",
+    default: "/images/default-user.png",
   },
   role: {
     type: String,

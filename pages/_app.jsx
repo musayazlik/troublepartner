@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import { Wrapper } from "@/context";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -23,13 +23,13 @@ Router.events.on("routeChangeError", () => {
 
 function App({ Component, pageProps }) {
   return (
-    <Wrapper>
-      <SessionProvider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
+      <Wrapper>
         <Component {...pageProps} />
         <GoogleAnalytics trackPageViews />
         <ToastContainer />
-      </SessionProvider>
-    </Wrapper>
+      </Wrapper>
+    </SessionProvider>
   );
 }
 

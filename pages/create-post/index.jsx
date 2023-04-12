@@ -12,8 +12,8 @@ import { BsInfoCircleFill } from "react-icons/bs";
 import { Adsense } from "@ctrl/react-adsense";
 
 const CreatePost = () => {
-  const [numberOfChars, setNumberOfChars] = React.useState(140);
-  const [maxLength, setMaxLength] = React.useState(140);
+  const [numberOfChars, setNumberOfChars] = React.useState(200);
+  const [maxLength, setMaxLength] = React.useState(200);
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -26,7 +26,7 @@ const CreatePost = () => {
       Swal.fire("Error!", "Your post must be at least 10 characters.", "error");
       return;
     }
-    if (text.length > 140) {
+    if (text.length > 200) {
       Swal.fire("Error!", "Your post must be at most 140 characters.", "error");
       return;
     }
@@ -68,7 +68,7 @@ const CreatePost = () => {
 
   const numberOfCharacters = (text) => {
     const numberOfChars = text.length;
-    const totalChars = 140;
+    const totalChars = 200;
     const remainingChars = totalChars - numberOfChars;
 
     if (remainingChars < 0) {
@@ -123,7 +123,7 @@ const CreatePost = () => {
                     id="text"
                     cols="30"
                     rows="10"
-                    maxLength={140}
+                    maxLength={200}
                     className="mb-6 border-2 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
                     onChange={(e) => {
                       numberOfCharacters(e.target.value);
@@ -132,7 +132,7 @@ const CreatePost = () => {
                   <div className="flex gap-3 items-center mb-6">
                     <p className="mb-0">{numberOfChars} characters left.</p>
 
-                    <Tooltip content="You can become a premium member for an additional 300 characters.">
+                    <Tooltip content="Share content with unlimited characters with a premium membership.">
                       <BsInfoCircleFill className="inline-block text-lg text-gray-500" />
                     </Tooltip>
                   </div>

@@ -3,8 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
+import { useSession } from "next-auth/react";
 
 const SignIn = () => {
+  const { data: session } = useSession();
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const res = await signIn("credentials", {
+      email,
+      password,
+      callbackUrl: "/",
+    });
+    console.log(res);
+  };
+
+  console.log(session);
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -13,7 +30,12 @@ const SignIn = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in to your account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={(e) => {
+                handleSignIn(e);
+              }}
+            >
               <div>
                 <label
                   htmlFor="email"

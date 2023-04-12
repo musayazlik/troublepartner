@@ -12,11 +12,10 @@ import { Adsense } from "@ctrl/react-adsense";
 import { BsCaretDownFill } from "react-icons/bs";
 
 export default function Home({ posts }) {
+  const { data: session, status } = useSession();
   const { loading } = useAppContext();
   const [postsData, setPostsData] = useState([...posts.data]);
   const { push } = useRouter();
-
-  const { status } = useSession();
 
   const createPostPageHandle = () => {
     if (status === "authenticated") {
