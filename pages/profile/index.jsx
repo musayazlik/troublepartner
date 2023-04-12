@@ -97,10 +97,10 @@ const PostDetail = ({ session, data }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout>
-        <div className="pt-12 pb-20">
+        <div className="my-20">
           <div className="container mx-auto px-4 ">
             {/* Google adsense */}
-            <div className=" h-28 flex justify-center items-center">
+            {/* <div className=" h-28 flex justify-center items-center">
               <Adsense
                 client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
                 slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT}
@@ -109,7 +109,7 @@ const PostDetail = ({ session, data }) => {
                 format="fluid"
                 data-full-width-responsive="true"
               />
-            </div>
+            </div> */}
             <div className="flex flex-col items-center">
               <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-slate-900">
                 Profile
@@ -168,7 +168,7 @@ const PostDetail = ({ session, data }) => {
                           /> */}
                         </div>
                       </div>
-                      <div className="flex gap-4 w-full max-w-lg ">
+                      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-lg ">
                         <div className="flex flex-col w-full">
                           <label
                             htmlFor="name"

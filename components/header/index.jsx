@@ -13,9 +13,9 @@ const Header = () => {
     <>
       <div className="h-2 bg-blue-500"></div>
       <div className=" shadow-lg shadow-blue-700 bg-slate-50 border-t-2 border-b-2 border-blue-700 ">
-        <div className="md:container mx-auto px-4 ">
+        <div className="lg:container mx-auto px-4 ">
           <header className="text-slate-600 body-font">
-            <div className="container mx-auto flex flex-wrap items-center justify-between  py-3 flex-row">
+            <div className=" flex flex-wrap items-center justify-between  py-3 flex-row">
               <Link
                 href={"/"}
                 className="flex items-center text-slate-700  font-medium hover:scale-110 duration-300"
@@ -99,17 +99,22 @@ const Header = () => {
                   <div className="flex justify-center font-extrabold">
                     <Link
                       href="/auth/sign-in"
-                      className="  text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-slate-600 hover:bg-slate-200 "
+                      className="  text-slate-700 text-base hidden md:flex md-flex font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-slate-600 hover:bg-slate-200  "
                     >
-                      <HiOutlineUser className="inline-block text-2xl lg:hidden  " />
-                      <span className="hidden lg:flex">Sign In</span>
+                      <span className="">Sign In</span>
                     </Link>
                     <Link
                       href="/auth/sign-up"
-                      className="bg-slate-300   text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4  border-slate-600 duration-300 hover:text-slate-50 hover:bg-slate-700 border-2  hover:shadow-lg rounded-sm hover:shadow-slate-600/50"
+                      className="bg-slate-300 text-base hidden md:flex md-flex text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4  border-slate-600 duration-300 hover:text-slate-50 hover:bg-slate-700 border-2  hover:shadow-lg rounded-sm hover:shadow-slate-600/50"
                     >
-                      <HiOutlineUser className="inline-block text-2xl lg:hidden  " />
-                      <span className="hidden lg:flex">Sign Up</span>
+                      <span className="">Sign Up</span>
+                    </Link>
+                    {/* Mobile User Login */}
+                    <Link
+                      href="/auth/sign-in"
+                      className=" w-9 h-9 md:hidden flex justify-center items-center  text-slate-700 font-bold rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50  "
+                    >
+                      <HiOutlineUser className="text-xl  " />
                     </Link>
                   </div>
                 )}
@@ -117,8 +122,9 @@ const Header = () => {
                   onClick={() => {
                     setShowMenu(!showMenu);
                   }}
+                  className="md:hidden w-9 h-9 flex justify-center items-center  text-slate-700 font-bold  rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50"
                 >
-                  <HiMenuAlt1 className="md:hidden text-3xl text-slate-700" />
+                  <HiMenuAlt1 className="text-xl " />
                 </button>
               </div>
             </div>

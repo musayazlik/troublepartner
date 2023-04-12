@@ -18,19 +18,18 @@ const AvatarDropDown = () => {
   };
   return (
     <>
-      <div className="relative">
+      <div className="relative w-9 h-9">
         <Image
           src={session?.user?.image}
-          width={48}
-          height={48}
+          fill
           alt="Avatar"
-          className="rounded-full border-4 border-slate-200 shadow-lg min-w-[48px] min-h-[48px] sticky "
+          className="rounded-full border-2 border-slate-200 shadow-lg  sticky "
           onClick={() => setIsOpen(!isOpen)}
         />
 
         {isOpen && (
           <div
-            className={`drowpdownMenu z-40 absolute -right-2 sm:right-0  bg-slate-50 min-w-[200px] max-w-[240px] rounded-md border-2 border-gray-600 border-b-4 border-b-gray-600 duration-300 ${
+            className={`drowpdownMenu z-40 absolute -right-2 sm:right-0 mt-2 bg-gray-100 min-w-[200px] max-w-[240px] rounded-md border border-gray-600 shadow-lg shadow-slate-400/50 duration-300 ${
               isOpen
                 ? "opacity-100 visible  top-12"
                 : " opacity-0 invisible -top-4"
@@ -49,7 +48,7 @@ const AvatarDropDown = () => {
               <li className="mt-2">
                 <Link
                   href="/profile"
-                  className="flex gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="flex gap-2 px-4 py-2 hover:bg-gray-300 duration-300 "
                 >
                   <BiUser className="w-6 h-6 " />
                   Profile
@@ -60,7 +59,7 @@ const AvatarDropDown = () => {
                   onClick={() => {
                     signOut();
                   }}
-                  className="flex w-full gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="flex w-full gap-2 px-4 py-2 hover:bg-gray-300 duration-300"
                 >
                   <BiLogOut className="w-6 h-6 -translate-x-1" />
                   Sign out

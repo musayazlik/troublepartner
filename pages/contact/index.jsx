@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const Contact = () => {
   const [token, setToken] = useState("");
   const recaptchaRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -45,6 +46,8 @@ const Contact = () => {
       token,
     };
 
+    setLoading(true);
+
     axios({
       method: "POST",
       url: "/api/contact",
@@ -56,12 +59,14 @@ const Contact = () => {
           title: "Success",
           text: "Your message has been sent successfully!",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2000,
         });
 
         event.target.name.value = "";
         event.target.email.value = "";
         event.target.message.value = "";
+        recaptchaRef.current.reset();
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -130,13 +135,34 @@ const Contact = () => {
               </div>
               <div class="p-2 flex justify-center w-full">
                 <ReCAPTCHA
-                  sitekey="6Ldf4nAlAAAAAHaYBHA8u1QRB7XObkQBLYjQyW7O"
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                   ref={recaptchaRef}
-                  onChange={(value) => setToken(value)}
                 />
               </div>
               <div class="p-2 w-full">
-                <button class="flex mx-auto text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">
+                <button class="flex justify-center items-center gap-3 mx-auto text-white bg-blue-500 border-0 py-2 px-4 focus:outline-none hover:bg-blue-600 rounded text-xl font-bold">
+                  {loading && (
+                    <svg
+                      className="animate-spin  h-5 w-5 mb-0.5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      ></path>
+                    </svg>
+                  )}
                   Submit
                 </button>
               </div>
