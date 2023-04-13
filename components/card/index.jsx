@@ -20,7 +20,7 @@ const Card = ({
       <div className="w-full">
         <Link
           href={{
-            pathname: `post/${slug + "-" + id}`,
+            pathname: `post/${slug}`,
           }}
         >
           <div className="card border-2 border-b-slate-400/30  border-slate-100 shadow-lg shadow-slate-200 hover:shadow-slate-500/30 duration-300 rounded-lg  flex flex-col sm:flex-row px-8 py-8 gap-4 min-h-[240px]">

@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     case "GET":
       try {
         const posts = await Post.find({
-          _id: ObjectId(req.query.id),
+          slug: req.query.slug,
         })
           .populate({
             path: "user",
@@ -26,14 +26,6 @@ export default async function handler(req, res) {
         }
 
         res.status(200).json({ data: posts });
-      } catch (error) {
-        res.status(400).json({ message: error.message });
-      }
-      break;
-
-      try {
-        const post = await Post.create(req.body);
-        res.status(201).json({ data: post });
       } catch (error) {
         res.status(400).json({ message: error.message });
       }

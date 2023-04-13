@@ -1,24 +1,30 @@
 import React from "react";
 import Layout from "../layout";
-import Image from "next/image";
-import { Tooltip, Button } from "flowbite-react";
+import { Tooltip } from "flowbite-react";
 
 import { useSession, getSession } from "next-auth/react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
-import { BiInfoCircle } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Adsense } from "@ctrl/react-adsense";
 
 const CreatePost = () => {
-  const [numberOfChars, setNumberOfChars] = React.useState(200);
-  const [maxLength, setMaxLength] = React.useState(200);
-  const { data: session, status } = useSession();
+  const [numberOfChars, setNumberOfChars] = React.useState({
+    title: 0,
+    text: 0,
+  });
+
+  const { data: session } = useSession();
+  const [maxLength, setMaxLength] = React.useState({
+    title: 43,
+    text: session.user.memberType === "premium" ? 1000 : 400,
+  });
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const title = e.target.title.value;
     const text = e.target.text.value;
     const privacyStatus = e.target.privacy.checked;
 
@@ -26,7 +32,8 @@ const CreatePost = () => {
       Swal.fire("Error!", "Your post must be at least 10 characters.", "error");
       return;
     }
-    if (text.length > 200) {
+
+    if (text.length > 200 && session.user.memberType !== "premium") {
       Swal.fire("Error!", "Your post must be at most 140 characters.", "error");
       return;
     }
@@ -43,11 +50,14 @@ const CreatePost = () => {
       if (result.isConfirmed) {
         axios
           .post("/api/posts", {
+            title,
             text,
             user: session.user.id,
-            slug: text.slice(0, 50).split(" ").join("-"),
-            privacyStatus: privacyStatus,
-            premiumTimeStatus: false,
+            slug: title.split(" ").join("-").toLowerCase(),
+            privacyStatus:
+              session.user.memberType === "premium" ? privacyStatus : false,
+            premiumTimeStatus:
+              session.user.memberType === "premium" ? true : false,
           })
           .then((res) => {
             Swal.fire({
@@ -67,17 +77,7 @@ const CreatePost = () => {
   };
 
   const numberOfCharacters = (text) => {
-    const numberOfChars = text.length;
-    const totalChars = 200;
-    const remainingChars = totalChars - numberOfChars;
-
-    if (remainingChars < 0) {
-      setNumberOfChars(0);
-      const truncatedText = text.slice(0, totalChars);
-      textarea.value = truncatedText;
-      return;
-    }
-    setNumberOfChars(remainingChars);
+    setNumberOfChars({ ...numberOfChars, text: text.length });
   };
 
   return (
@@ -113,6 +113,23 @@ const CreatePost = () => {
                 </p>
               </div>
               <form onSubmit={handleSubmit} className="w-full px-6 sm:px-14">
+                <div className="flex flex-col mb-5">
+                  <label
+                    htmlFor="title"
+                    className="font-extrabold text-xl mb-4"
+                  >
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    maxLength={maxLength.title}
+                    placeholder="Trouble with my car..."
+                    className="mb-6 border-2 placeholder:text-slate-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
+                  />
+                </div>
+
                 <div className="flex flex-col ">
                   <label htmlFor="text" className="font-extrabold text-xl mb-4">
                     Tell your problem...
@@ -123,18 +140,26 @@ const CreatePost = () => {
                     id="text"
                     cols="30"
                     rows="10"
-                    maxLength={200}
-                    className="mb-6 border-2 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
+                    {...(session.user.memberType === "premium" && {
+                      maxLength: maxLength,
+                    })}
+                    placeholder="I have a problem with my car. I can't start it. I don't know what to do. I need help."
+                    className="mb-6 border-2 placeholder:text-slate-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
                     onChange={(e) => {
                       numberOfCharacters(e.target.value);
                     }}
                   ></textarea>
                   <div className="flex gap-3 items-center mb-6">
-                    <p className="mb-0">{numberOfChars} characters left.</p>
-
-                    <Tooltip content="Share content with unlimited characters with a premium membership.">
-                      <BsInfoCircleFill className="inline-block text-lg text-gray-500" />
-                    </Tooltip>
+                    {session.user.memberType === "premium" ? null : (
+                      <>
+                        <p className="mb-0">
+                          {maxLength.text - numberOfChars.text} characters left.
+                        </p>
+                        <Tooltip content="Share content with unlimited characters with a premium membership.">
+                          <BsInfoCircleFill className="inline-block text-lg text-yellow-400" />
+                        </Tooltip>
+                      </>
+                    )}
                   </div>
                 </div>
 
@@ -148,15 +173,30 @@ const CreatePost = () => {
                       type="checkbox"
                       name="privacy"
                       id="privacy"
-                      disabled
-                      className="w-6 h-6 checked:bg-blue-500 accent-blue-500 disabled:opacity-50 disabled:cursor-not-allowed "
+                      disabled={
+                        session.user.memberType === "premium" ? false : true
+                      }
+                      className={`w-6 h-6 checked:bg-blue-500 accent-blue-500 checked:scale-110 checked:outline-double checked:outline-2 checked:outline-offset-4 duration-300 disabled:opacity-50 ${
+                        session.user.memberType === "premium"
+                          ? ""
+                          : "cursor-not-allowed"
+                      }  `}
                     />
-                    <p className="font-bold text-lg text-gray-400 cursor-not-allowed">
+                    <p
+                      className={`font-bold text-lg text-gray-400 ${
+                        session.user.memberType === "premium"
+                          ? "text-gray-500"
+                          : "cursor-not-allowed text-gray-400"
+                      }`}
+                    >
                       I want to hide my identity.
                     </p>
-                    <Tooltip content="Sharing confidential content is exclusive to premium members.">
-                      <BsInfoCircleFill className="inline-block text-lg text-gray-500" />
-                    </Tooltip>
+
+                    {session.user.memberType === "premium" ? null : (
+                      <Tooltip content="Sharing confidential content is exclusive to premium members.">
+                        <BsInfoCircleFill className="inline-block text-lg text-yellow-400" />
+                      </Tooltip>
+                    )}
                   </div>
                 </div>
                 <div className="flex justify-center">

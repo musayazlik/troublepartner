@@ -10,17 +10,15 @@ import formatDate from "@/helpers/formatDate";
 
 import { Adsense } from "@ctrl/react-adsense";
 import { BsCaretDownFill } from "react-icons/bs";
+import Image from "next/image";
 
 import { GoogleAdsenseContainer } from "@/components/googleAdsense";
 
 export default function Home({ posts }) {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const { loading } = useAppContext();
   const [postsData, setPostsData] = useState([...posts.data]);
   const { push } = useRouter();
-
-  console.log(session);
-
   const createPostPageHandle = () => {
     if (status === "authenticated") {
       return () => {
@@ -52,13 +50,13 @@ export default function Home({ posts }) {
           <div className="md:container mx-auto px-4 min-h-[200px]">
             <section className="flex justify-center">
               <div className="flex flex-col items-center max-w-2xl">
-                <h2 className="text-slate-700 font-maxbold text-center text-4xl sm:text-5xl md:text-6xl">
-                  Trouble Partner
+                <h2 className="text-slate-700 font-maxbold text-center text-4xl sm:text-5xl md:text-6xl relative w-96 h-36">
+                  <Image src="Logo.svg" fill alt="Logo" className="mb-4" />
                 </h2>
                 <p className="text-slate-600 text-center font-semibold text-lg lg:text-2xl relative inline-flex justify-center">
                   Your problem is our problem.
                 </p>
-                <p className="text-center leading-5 px-4 text-slate-800/60 mt-4 font-medium text-sm md:text-base max-w-lg">
+                <p className="text-center leading-5 px-4 text-slate-800/60 mt-4 font-medium text-sm md:text-base max-w-xl">
                   Share your problem, either as yourself or anonymously. People
                   will connect with you and find solutions. they&apos;ll find
                   it. That&apos;s how simple it is. That&apos;s how beautiful it

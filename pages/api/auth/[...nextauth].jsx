@@ -78,6 +78,7 @@ const options = {
           name: user.name,
           image: user.image,
           role: data.role,
+          memberType: data.memberType,
         };
       }
 
@@ -88,6 +89,7 @@ const options = {
           image: token.picture,
           name: token.name,
           role: data.role,
+          memberType: data.memberType,
         };
       }
 

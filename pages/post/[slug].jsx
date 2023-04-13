@@ -433,9 +433,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const id = query.id.split("-").pop();
-
-  const resPost = await fetch(`${process.env.APP_URL}/api/posts/${id}`);
+  const resPost = await fetch(`${process.env.APP_URL}/api/posts/${query.slug}`);
   if (!resPost.ok) {
     return {
       notFound: true,
@@ -443,7 +441,7 @@ export async function getServerSideProps(context) {
   }
   const post = await resPost.json();
   const resComments = await fetch(
-    `${process.env.APP_URL}/api/comments?postId=${id}`
+    `${process.env.APP_URL}/api/comments?postId=${post.data[0]._id}`
   );
   const comments = await resComments.json();
 

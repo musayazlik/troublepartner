@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import AvatarDropDown from "../avatarDropDown";
 import { signIn, useSession } from "next-auth/react";
 import { HiMenuAlt1, HiOutlineUser } from "react-icons/hi";
+import Image from "next/image";
 
 const Header = () => {
   const { pathname } = useRouter();
@@ -20,8 +21,8 @@ const Header = () => {
                 href={"/"}
                 className="flex items-center text-slate-700  font-medium hover:scale-110 duration-300"
               >
-                <span className=" text-xl sm:text-2xl font-maxbold">
-                  Trouble Partner
+                <span className=" text-xl sm:text-2xl font-maxbold h-12 relative w-40">
+                  <Image src="/Logo.svg" fill alt={"Logo"} />
                 </span>
               </Link>
 
