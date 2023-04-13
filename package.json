@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.4.0",
@@ -29,6 +30,7 @@
     "mongoose": "^6.8.1",
     "next": "13.2.4",
     "next-auth": "^4.21.1",
+    "next-sitemap": "^4.0.7",
     "nextjs-google-analytics": "^2.3.3",
     "nodemailer": "^6.9.1",
     "nprogress": "^0.2.0",
