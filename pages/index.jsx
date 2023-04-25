@@ -65,7 +65,7 @@ export default function Home({ posts }) {
                 </p>
                 <button
                   onClick={createPostPageHandle()}
-                  className="bg-blue-300  text-blue-700 font-bold py-2 px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 mt-8 outline-double outline-2 outline-slate-700 outline-offset-4"
+                  className="bg-blue-300  text-blue-700 font-bold py-2 px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 mt-8 outline outline-2 outline-slate-700 outline-offset-4"
                 >
                   Share Your Trouble
                 </button>
