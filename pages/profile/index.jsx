@@ -111,10 +111,10 @@ const PostDetail = ({ session, data }) => {
               />
             </div> */}
             <div className="flex flex-col items-center">
-              <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-slate-900">
+              <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-zinc-900">
                 Profile
               </h1>
-              <p className=" mx-auto leading-relaxed text-base text-slate-500">
+              <p className=" mx-auto leading-relaxed text-base text-zinc-500">
                 This is your profile page. You can see your posts and comments
                 here.
               </p>
@@ -138,7 +138,7 @@ const PostDetail = ({ session, data }) => {
                   <div action="">
                     <div className="flex flex-col items-start gap-4">
                       <div>
-                        <h2 className="font-black text-xl text-slate-700">
+                        <h2 className="font-black text-xl text-zinc-700">
                           {" "}
                           User Information
                         </h2>
@@ -146,7 +146,7 @@ const PostDetail = ({ session, data }) => {
                       <div className="flex flex-col gap-3">
                         <label
                           htmlFor="picture"
-                          className="text-md font-bold text-slate-700"
+                          className="text-md font-bold text-zinc-700"
                         >
                           Picture
                         </label>
@@ -157,14 +157,14 @@ const PostDetail = ({ session, data }) => {
                             height={100}
                             disabled
                             alt="Picture"
-                            className="rounded-full border-2 border-slate-500 cursor-default"
+                            className="rounded-full border-2 border-zinc-500 cursor-default"
                           />
                           {/* <input
                             type="file"
                             name="picture"
                             id="picture"
                             disabled
-                            className="border-2 border-slate-800/50 cursor-auto border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 w-full h-full z-20 absolute top-0 left-0 opacity-0 inline-block "
+                            className="border-2 border-zinc-800/50 cursor-auto border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 w-full h-full z-20 absolute top-0 left-0 opacity-0 inline-block "
                           /> */}
                         </div>
                       </div>
@@ -172,7 +172,7 @@ const PostDetail = ({ session, data }) => {
                         <div className="flex flex-col w-full">
                           <label
                             htmlFor="name"
-                            className="text-md font-bold text-slate-700"
+                            className="text-md font-bold text-zinc-700"
                           >
                             Name
                           </label>
@@ -181,14 +181,14 @@ const PostDetail = ({ session, data }) => {
                             name="name"
                             id="name"
                             disabled
-                            className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 "
+                            className="border-2 border-zinc-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 "
                             defaultValue={data.user[0].name}
                           />
                         </div>
                         <div className="flex flex-col w-full">
                           <label
                             htmlFor="surname"
-                            className="text-md font-bold text-slate-700"
+                            className="text-md font-bold text-zinc-700"
                           >
                             Surname
                           </label>
@@ -197,7 +197,7 @@ const PostDetail = ({ session, data }) => {
                             name="surname"
                             id="surname"
                             disabled
-                            className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
+                            className="border-2 border-zinc-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
                             defaultValue={data.user[0].surname}
                           />
                         </div>
@@ -205,7 +205,7 @@ const PostDetail = ({ session, data }) => {
                       <div className="flex flex-col gap-3 w-full max-w-lg">
                         <label
                           htmlFor="email"
-                          className="text-md font-bold text-slate-700"
+                          className="text-md font-bold text-zinc-700"
                         >
                           Email
                         </label>
@@ -215,7 +215,7 @@ const PostDetail = ({ session, data }) => {
                           id="email"
                           disabled
                           defaultValue={data.user[0].email}
-                          className="border-2 border-slate-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 "
+                          className="border-2 border-zinc-800/50 border-b-4 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 "
                         />
                       </div>
                     </div>
@@ -231,18 +231,18 @@ const PostDetail = ({ session, data }) => {
                   <div>
                     <div className="flex flex-col gap-4">
                       <div>
-                        <h2 className="font-black text-xl text-slate-700">
+                        <h2 className="font-black text-xl text-zinc-700">
                           {" "}
                           My Posts
                         </h2>
                       </div>
                       {data.posts.length > 0 ? (
                         <div className="flex flex-col gap-3">
-                          <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
+                          <div className="cardList border-2 border-zinc-300 p-2 rounded-lg max-h-96 overflow-auto ">
                             {data.posts.map((post) => (
                               <div
                                 key={post._id}
-                                className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 w-full min-w-[400px]"
+                                className="card bg-zinc-200 rounded-md p-4 border-2 border-zinc-500/50 mb-3 last:mb-0 w-full min-w-[400px]"
                               >
                                 <div className="flex justify-between items-center gap-x-8 ">
                                   <Link
@@ -259,7 +259,7 @@ const PostDetail = ({ session, data }) => {
                                       </p>
                                       <div className="flex justify-between items-center mt-3">
                                         <div className="flex gap-3 ">
-                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-zinc-900/70  ">
                                             <BiTimeFive
                                               className=" "
                                               fontSize={20}
@@ -268,7 +268,7 @@ const PostDetail = ({ session, data }) => {
                                               {formatDate(post.createdAt)}
                                             </span>
                                           </div>
-                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                          <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-zinc-900/70  ">
                                             <BiComment
                                               className=" "
                                               fontSize={20}
@@ -277,7 +277,7 @@ const PostDetail = ({ session, data }) => {
                                               {post.numComments}
                                             </span>
 
-                                            <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70 ml-1 ">
+                                            <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-zinc-900/70 ml-1 ">
                                               {post.privacyStatus ? (
                                                 <FiEyeOff
                                                   className=" "
@@ -311,7 +311,7 @@ const PostDetail = ({ session, data }) => {
                           </div>
                         </div>
                       ) : (
-                        <p className="px-2 bg-gray-200 py-2 text-slate-500 font-medium rounded-sm">
+                        <p className="px-2 bg-gray-200 py-2 text-zinc-500 font-medium rounded-sm">
                           You have not created any post yet.{" "}
                           <Link
                             href="/create-post"
@@ -328,18 +328,18 @@ const PostDetail = ({ session, data }) => {
                   <div>
                     <div className="flex flex-col gap-4">
                       <div>
-                        <h2 className="font-black text-xl text-slate-700">
+                        <h2 className="font-black text-xl text-zinc-700">
                           {" "}
                           My Comments
                         </h2>
                       </div>
                       {data.comments.length > 0 ? (
                         <div className="flex flex-col gap-3">
-                          <div className="cardList border-2 border-slate-300 p-2 rounded-lg max-h-96 overflow-auto ">
+                          <div className="cardList border-2 border-zinc-300 p-2 rounded-lg max-h-96 overflow-auto ">
                             {data.comments.map((commet) => (
                               <div
                                 key={commet._id}
-                                className="card bg-slate-200 rounded-md p-4 border-2 border-slate-500/50 mb-3 last:mb-0 min-w-[400px]"
+                                className="card bg-zinc-200 rounded-md p-4 border-2 border-zinc-500/50 mb-3 last:mb-0 min-w-[400px]"
                               >
                                 <div className="flex justify-between items-center gap-x-8 ">
                                   <div className="card_content w-full flex flex-col">
@@ -353,7 +353,7 @@ const PostDetail = ({ session, data }) => {
                                     </p>
                                     <div className="flex justify-between items-center mt-3">
                                       <div className="flex gap-5 ">
-                                        <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                                        <div className=" flex gap-3 items-center text-xs sm:text-sm font-extrabold text-zinc-900/70  ">
                                           <BiTimeFive
                                             className=" "
                                             fontSize={20}
@@ -379,7 +379,7 @@ const PostDetail = ({ session, data }) => {
                           </div>
                         </div>
                       ) : (
-                        <p className="px-2 bg-gray-200 py-2 text-slate-500 font-medium rounded-sm">
+                        <p className="px-2 bg-gray-200 py-2 text-zinc-500 font-medium rounded-sm">
                           You have not commented on any post yet.
                         </p>
                       )}

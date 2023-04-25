@@ -54,20 +54,20 @@ const Pricing = () => {
       <Layout>
         <div className="container mx-auto">
           <div className="flex flex-col text-center w-full my-20 ">
-            <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-slate-900">
+            <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-zinc-900">
               Pricing
             </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-slate-500">
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-zinc-500">
               Try Our Free Package, Upgrade To Our Premium Plan When You Need
               It!
             </p>
-            <div className="flex mx-auto border-2 border-slate-500 rounded overflow-hidden mt-6">
+            <div className="flex mx-auto border-2 border-zinc-500 rounded overflow-hidden mt-6">
               <button
                 onClick={() => {
                   setStatus("monthly");
                 }}
                 className={`py-1 px-4 focus:outline-none ${
-                  status === "monthly" ? "bg-slate-500 text-white " : ""
+                  status === "monthly" ? "bg-zinc-500 text-white " : ""
                 }`}
               >
                 Monthly
@@ -77,7 +77,7 @@ const Pricing = () => {
                   setStatus("annually");
                 }}
                 className={`py-1 px-4 focus:outline-none ${
-                  status === "annually" ? "bg-slate-500 text-white " : ""
+                  status === "annually" ? "bg-zinc-500 text-white " : ""
                 }`}
               >
                 Annually
@@ -288,7 +288,7 @@ const Pricing = () => {
       {show && (
         <>
           <div className="absolute px-6 py-6 top-0 left flex justify-center items-center w-full h-full z-50  ">
-            <div className="relative z-50 space-y-4 py-6 px-8 rounded-lg bg-slate-50 border-4 border-gray-600/10 border-b-8 ">
+            <div className="relative z-50 space-y-4 py-6 px-8 rounded-lg bg-zinc-50 border-4 border-gray-600/10 border-b-8 ">
               <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
                 Payment Information
               </h3>

@@ -26,7 +26,7 @@ const PostDetail = () => {
           <div className="container mx-auto px-4 mt-20  ">
             <div className="flex flex-col items-center">
               <div class="flex flex-col text-center w-full mb-12">
-                <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-slate-900">
+                <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-zinc-900">
                   About Us
                 </h1>
               </div>
@@ -56,8 +56,8 @@ const PostDetail = () => {
                   />
                 </div>
                 <div className="text-center mt-4 mb-4">
-                  <h1 className="text-2xl font-bold text-slate-900">Founder</h1>
-                  <h2 className="text-xl font-bold text-slate-900 mb-4">
+                  <h1 className="text-2xl font-bold text-zinc-900">Founder</h1>
+                  <h2 className="text-xl font-bold text-zinc-900 mb-4">
                     <a
                       href="https://www.linkedin.com/in/ahmet-ak%C4%B1n-0b1b4b1b3/"
                       target="_blank"
@@ -68,7 +68,7 @@ const PostDetail = () => {
                     </a>
                   </h2>
 
-                  <p className="text-base md:text-lg text-slate-900 px-4">
+                  <p className="text-base md:text-lg text-zinc-900 px-4">
                     Hello. I&#39;m Musa Yazlik. In 2017, I turned to writing
                     with the hacking of my personal website that I established.
                     At first, I learned the software by doing backend coding in

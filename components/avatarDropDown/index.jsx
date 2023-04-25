@@ -23,28 +23,28 @@ const AvatarDropDown = () => {
           src={session?.user?.image}
           fill
           alt="Avatar"
-          className="rounded-full border-2 border-slate-900 shadow-lg  sticky "
+          className="rounded-full border-2 border-zinc-900 shadow-lg  sticky "
           onClick={() => setIsOpen(!isOpen)}
         />
 
         <div
-          className={`drowpdownMenu z-40 absolute  right-0 mt-2 bg-gray-100 min-w-[200px] max-w-[240px] rounded-md border-2 border-gray-900 shadow-lg shadow-slate-900/20 duration-300 ${
+          className={`drowpdownMenu z-40 absolute  right-0 mt-2 bg-gray-100 min-w-[200px] max-w-[240px] rounded-md border-2 border-gray-900 shadow-lg shadow-zinc-900/20 duration-300 ${
             isOpen
               ? "opacity-100 visible  top-10"
               : " opacity-0 invisible -top-4"
           } `}
         >
           <div
-            className="absolute -top-3 right-3 w-3 h-3 bg-slate-900"
+            className="absolute -top-3 right-3 w-3 h-3 bg-zinc-900"
             style={{
               clipPath: "polygon(51% 22%, 0% 100%, 100% 100%)",
             }}
           ></div>
           <ul
-            className="py-2 text-md font-bold text-slate-900"
+            className="py-2 text-md font-bold text-zinc-900"
             aria-labelledby="avatarButton"
           >
-            <div className="px-4 pb-2 border-b border-b-slate-900/50 border-dashed">
+            <div className="px-4 pb-2 border-b border-b-zinc-900/50 border-dashed">
               <h3 className="whitespace-nowrap overflow-hidden text-ellipsis truncate">
                 Hello,
                 <span className="ml-2">

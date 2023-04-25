@@ -5,7 +5,7 @@ import { BsFillBalloonHeartFill } from "react-icons/bs";
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-slate-800 py-4 text-white border-t-4  border-blue-500">
+      <footer className="bg-zinc-800 py-4 text-white border-t-4  border-blue-500">
         <div className="container mx-auto px-4">
           <div className="copyright text-center text-xs sm:text-base flex justify-center gap-2">
             © {new Date().getFullYear()} -
@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="bg-gray-700 py-1.5">
-        <p className="text-center text-slate-100 text-xs sm:text-sm gap-2 flex justify-center">
+        <p className="text-center text-zinc-100 text-xs sm:text-sm gap-2 flex justify-center">
           <span className=" font-bold text-white">Designed and coded by</span>
           <span>
             <BsFillBalloonHeartFill

@@ -237,9 +237,9 @@ const PostDetail = ({ post, comments }) => {
               </div>
               <div className="context flex flex-col col-span-12 lg:col-span-8 ">
                 {/* Post Card Area */}
-                <div className="postCard mb-6 flex flex-col sm:flex-row border-2 border-slate-400 rounded-md gap-1 shadow-lg shadow-slate-300/60 ">
+                <div className="postCard mb-6 flex flex-col sm:flex-row border-2 border-zinc-400 rounded-md gap-1 shadow-lg shadow-zinc-300/60 ">
                   {/* Post User Avatar */}
-                  <div className="userInfor flex gap-6 sm:gap-0 sm:flex-col justify-between items-start sm:items-center px-3 py-2 border-l-8 rounded-tr-sm sm:rounded-none border-slate-400 bg-slate-300">
+                  <div className="userInfor flex gap-6 sm:gap-0 sm:flex-col justify-between items-start sm:items-center px-3 py-2 border-l-8 rounded-tr-sm sm:rounded-none border-zinc-400 bg-zinc-300">
                     <div className="flex flex-row sm:flex-col justify-center items-center gap-4 sm:gap-2">
                       <div className="userAvatar w-10 h-10 sm:w-16 sm:h-16 relative">
                         <Image
@@ -248,15 +248,15 @@ const PostDetail = ({ post, comments }) => {
                           }
                           fill
                           alt="Avatar"
-                          className="rounded-full border-4 border-slate-200 shadow-lg  sticky "
+                          className="rounded-full border-4 border-zinc-200 shadow-lg  sticky "
                         />
                         {post.privacyStatus && (
-                          <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
+                          <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
                         )}
                         {/* <MemberType type={post.user.memberType} /> */}
                       </div>
                       <div className="userName">
-                        <h2 className="text-sm sm:text-base md:mt-2 font-bold break-words text-center max-w-[120px] text-slate-800">
+                        <h2 className="text-sm sm:text-base md:mt-2 font-bold break-words text-center max-w-[120px] text-zinc-800">
                           {post.privacyStatus
                             ? "Anonymous"
                             : post.user.name + " " + post.user.surname}{" "}
@@ -283,8 +283,8 @@ const PostDetail = ({ post, comments }) => {
                       <h1
                         className={`text-xl font-bold break-words  ${
                           edit?.element === "post"
-                            ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-slate-900 animate-pulse focus:animate-none"
-                            : "text-slate-900"
+                            ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-zinc-900 animate-pulse focus:animate-none"
+                            : "text-zinc-900"
                         }`}
                         {...(edit?.element === "post"
                           ? { contentEditable: true }
@@ -299,8 +299,8 @@ const PostDetail = ({ post, comments }) => {
                       className={` text-sm sm:text-base font-medium break-words 
                       ${
                         edit?.element === "post"
-                          ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-slate-900 animate-pulse focus:animate-none "
-                          : "text-slate-900"
+                          ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-zinc-900 animate-pulse focus:animate-none "
+                          : "text-zinc-900"
                       }
                       `}
                       style={{ wordBreak: "break-word" }}
@@ -353,7 +353,7 @@ const PostDetail = ({ post, comments }) => {
                           : "Be the first to comment..."
                       }
                       rows={5}
-                      className="w-full border-2 font-medium resize-none p-4 border-slate-200 focus:outline-blue-500 focus:border-blue-500 rounded-md"
+                      className="w-full border-2 font-medium resize-none p-4 border-zinc-200 focus:outline-blue-500 focus:border-blue-500 rounded-md"
                     />
                     <div className="flex justify-center mt-4">
                       <button
@@ -374,7 +374,7 @@ const PostDetail = ({ post, comments }) => {
                         Login to comment
                       </Link>
                     </div>
-                    <hr className="border-slate-300/50 border" />
+                    <hr className="border-zinc-300/50 border" />
                   </>
                 )}
 
@@ -400,11 +400,11 @@ const PostDetail = ({ post, comments }) => {
                             }
                             fill
                             alt="Avatar"
-                            className="rounded-full border-4 border-slate-200 shadow-lg  sticky "
+                            className="rounded-full border-4 border-zinc-200 shadow-lg  sticky "
                           />
                           {post.user._id === comment.user._id &&
                             post.privacyStatus === true && (
-                              <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-slate-200/50 absolute rounded-full backdrop-blur-sm"></span>
+                              <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
                             )}
 
                           {/* <MemberType type={comment.user.memberType} /> */}

@@ -24,7 +24,7 @@ export const MemberType = ({ type }) => {
     return (
       <div className="relative flex justify-content-end">
         <Tooltip content="Free">
-          <BiUser className="z-10 relative text-slate-600 w-6 h-6 bg-slate-400 p-0.5 rounded-full border-slate-500 border-2 shadow-md shadow-slate-500/70" />
+          <BiUser className="z-10 relative text-zinc-600 w-6 h-6 bg-zinc-400 p-0.5 rounded-full border-zinc-500 border-2 shadow-md shadow-zinc-500/70" />
         </Tooltip>
       </div>
     );

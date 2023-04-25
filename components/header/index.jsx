@@ -13,13 +13,13 @@ const Header = () => {
   return (
     <>
       {/* <div className="h-2 bg-blue-500"></div> */}
-      <div className=" shadow-lg shadow-blue-700 bg-slate-50  border-b-2 border-blue-700 ">
+      <div className=" shadow-lg shadow-blue-700 bg-zinc-50  border-b-2 border-blue-700 ">
         <div className="lg:container mx-auto px-4 ">
-          <header className="text-slate-600 body-font">
+          <header className="text-zinc-600 body-font">
             <div className=" flex flex-wrap items-center justify-between  py-3 flex-row">
               <Link
                 href={"/"}
-                className="flex items-center text-slate-700  font-medium hover:scale-110 duration-300"
+                className="flex items-center text-zinc-700  font-medium hover:scale-110 duration-300"
               >
                 <span className=" text-xl sm:text-2xl font-maxbold h-12 relative w-40">
                   <Image src="/Logo.svg" fill alt={"Logo"} />
@@ -27,7 +27,7 @@ const Header = () => {
               </Link>
 
               <nav
-                className={`fixed px-4 md:px-0 pt-8 md:pt-0 flex items-start flex-col md:flex-row z-30 min-w-[260px] bg-slate-600 text-slate-50 md:text-slate-700 md:bg-transparent  h-screen md:h-auto top-0  md:relative md:flex md:flex-wrap gap-3 md:items-center text-lg font-semibold md:justify-center
+                className={`fixed px-4 md:px-0 pt-8 md:pt-0 flex items-start flex-col md:flex-row z-30 min-w-[260px] bg-zinc-600 text-zinc-50 md:text-zinc-700 md:bg-transparent  h-screen md:h-auto top-0  md:relative md:flex md:flex-wrap gap-3 md:items-center text-lg font-semibold md:justify-center
                  duration-300 ease-in-out transition-all
                 ${
                   showMenu
@@ -89,7 +89,7 @@ const Header = () => {
                   onClick={() => {
                     setShowMenu(false);
                   }}
-                  className="flex md:hidden fixed top-0 left-0 w-screen h-screen bg-slate-800/60 z-20"
+                  className="flex md:hidden fixed top-0 left-0 w-screen h-screen bg-zinc-800/60 z-20"
                 ></span>
               ) : null}
 
@@ -101,20 +101,20 @@ const Header = () => {
                     {/* Desktop Auth Button */}
                     <Link
                       href="/auth/sign-in"
-                      className="  text-slate-700 text-base hidden md:flex md-flex font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-slate-600 hover:bg-slate-200  "
+                      className="  text-zinc-700 text-base hidden md:flex md-flex font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-zinc-600 hover:bg-zinc-200  "
                     >
                       <span className="">Sign In</span>
                     </Link>
                     <Link
                       href="/auth/sign-up"
-                      className="bg-slate-300 text-base hidden md:flex md-flex text-slate-700 font-bold py-1.5 md:py-2 px-2 md:px-4  border-slate-900 duration-300 hover:text-slate-50 hover:bg-slate-700 border-2  hover:shadow-lg rounded-sm hover:shadow-slate-600/50"
+                      className="bg-zinc-300 text-base hidden md:flex md-flex text-zinc-700 font-bold py-1.5 md:py-2 px-2 md:px-4  border-zinc-900 duration-300 hover:text-zinc-50 hover:bg-zinc-700 border-2  hover:shadow-lg rounded-sm hover:shadow-zinc-600/50"
                     >
                       <span className="">Sign Up</span>
                     </Link>
                     {/* Mobile Auth Button*/}
                     <Link
                       href="/auth/sign-in"
-                      className=" w-9 h-9 md:hidden flex justify-center items-center  text-slate-700 font-bold rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50 border-2 border-slate-900  "
+                      className=" w-9 h-9 md:hidden flex justify-center items-center  text-zinc-700 font-bold rounded-sm   duration-300  bg-zinc-200 hover:bg-zinc-400 hover:text-zinc-50 border-2 border-zinc-900  "
                     >
                       <HiOutlineUser className="text-xl  " />
                     </Link>
@@ -124,7 +124,7 @@ const Header = () => {
                   onClick={() => {
                     setShowMenu(!showMenu);
                   }}
-                  className="md:hidden w-9 h-9 flex justify-center items-center  text-slate-900 font-bold  rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50 border-2 border-slate-900"
+                  className="md:hidden w-9 h-9 flex justify-center items-center  text-zinc-900 font-bold  rounded-sm   duration-300  bg-zinc-200 hover:bg-zinc-400 hover:text-zinc-50 border-2 border-zinc-900"
                 >
                   <HiMenuAlt1 className="text-xl " />
                 </button>

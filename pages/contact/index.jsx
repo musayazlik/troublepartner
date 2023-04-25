@@ -76,10 +76,10 @@ const Contact = () => {
     <Layout>
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-12">
-          <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-slate-900">
+          <h1 className="sm:text-4xl text-3xl font-maxbold title-font mb-2 text-zinc-900">
             Contact
           </h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-slate-500">
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-zinc-500">
             We look forward to hearing from you! If you have any questions,
             feedback or suggestions, do not hesitate to contact us. You can
             contact us by filling out the contact form below or by writing

@@ -128,7 +128,7 @@ const CreatePost = () => {
                     id="title"
                     maxLength={maxLength.title}
                     placeholder="Trouble with my car..."
-                    className="mb-6 border-2 placeholder:text-slate-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
+                    className="mb-6 border-2 placeholder:text-zinc-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-zinc-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-zinc-600 focus:shadow-lg focus:shadow-blue-600/80"
                   />
                 </div>
 
@@ -146,7 +146,7 @@ const CreatePost = () => {
                       maxLength: maxLength.text,
                     })}
                     placeholder="I have a problem with my car. I can't start it. I don't know what to do. I need help."
-                    className="mb-6 border-2 placeholder:text-slate-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"
+                    className="mb-6 border-2 placeholder:text-zinc-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-zinc-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-zinc-600 focus:shadow-lg focus:shadow-blue-600/80"
                     onChange={(e) => {
                       numberOfCharacters(e.target.value);
                     }}
@@ -202,7 +202,7 @@ const CreatePost = () => {
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-8 border-2 border-slate-800/50 border-b-4 font-extrabold text-lg lg:text-xl">
+                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-8 border-2 border-zinc-800/50 border-b-4 font-extrabold text-lg lg:text-xl">
                     Create Post
                   </button>
                 </div>
