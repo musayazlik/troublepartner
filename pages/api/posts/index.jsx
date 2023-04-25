@@ -21,7 +21,7 @@ export default async function handler(req, res) {
           .populate({
             path: "user",
             model: Users,
-            select: ["name", "image", "memberType"],
+            select: ["name", "surname", "image", "memberType"],
           })
           .where("deleteStatus")
           .equals(false)
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
       try {
         const updatedPost = await Post.findByIdAndUpdate(
           req.body.id,
-          { $set: { text: req.body.text } },
+          { $set: { text: req.body.text, title: req.body.title } },
           { new: true, runValidators: true }
         );
         res.status(200).json({ data: updatedPost });

@@ -18,6 +18,8 @@ const PostDetail = ({ post, comments }) => {
   const [edit, setEdit] = useState([]);
   const { data: session, status } = useSession();
 
+  /** Create Comment Function */
+
   const createComment = (e) => {
     e.preventDefault();
 
@@ -66,14 +68,24 @@ const PostDetail = ({ post, comments }) => {
       });
   };
 
+  /** Post or comment update function */
+
   const updateData = (id) => {
+    const postData = {
+      title: edit.title,
+      text: edit.text,
+      id: id,
+    };
+
+    const commentData = {
+      text: edit.text,
+      id: id,
+    };
+
     axios({
       method: "PATCH",
       url: edit.element === "post" ? `/api/posts` : `/api/comments`,
-      data: {
-        text: edit.text,
-        id: id,
-      },
+      data: edit.element === "post" ? postData : commentData,
     })
       .then((res) => {
         Swal.fire({
@@ -94,6 +106,7 @@ const PostDetail = ({ post, comments }) => {
       });
   };
 
+  /** Post or comment delete function */
   const deleteHandle = (id, element) => {
     if (element === "post") {
       Swal.fire({
@@ -169,7 +182,7 @@ const PostDetail = ({ post, comments }) => {
   return (
     <>
       <Head>
-        <title>{`${post.text.slice(0, 45)} | Trouble Partner`}</title>
+        <title>{`${post.title} | Trouble Partner`}</title>
         <meta name="description" content={post.text.slice(0, 150)} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -190,6 +203,7 @@ const PostDetail = ({ post, comments }) => {
           </div>
           <div className="container mx-auto px-4 min-h-[200px]">
             <section className="mt-12 flex flex-col sm:grid sm:grid-cols-12 gap-4">
+              {/* Left Side Adsense */}
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Adsense
@@ -203,8 +217,10 @@ const PostDetail = ({ post, comments }) => {
                 </div>
               </div>
               <div className="context flex flex-col col-span-12 lg:col-span-8 ">
-                <div className="postCard mb-6 flex flex-col sm:flex-row border-2 border-slate-400 rounded-md gap-1 shadow-lg shadow-slate-300/60">
-                  <div className="userInfor flex gap-6 sm:gap-0 sm:flex-col justify-between items-start sm:items-center px-4 py-4 rounded-tr-md border-l-8 border-slate-400 bg-slate-300">
+                {/* Post Card Area */}
+                <div className="postCard mb-6 flex flex-col sm:flex-row border-2 border-slate-400 rounded-md gap-1 shadow-lg shadow-slate-300/60 overflow-hidden">
+                  {/* Post User Avatar */}
+                  <div className="userInfor flex gap-6 sm:gap-0 sm:flex-col justify-between items-start sm:items-center px-4 py-4 border-l-8 border-slate-400 bg-slate-300">
                     <div className="flex flex-row sm:flex-col justify-center items-center gap-4 sm:gap-2">
                       <div className="userAvatar w-10 h-10 sm:w-16 sm:h-16 relative">
                         <Image
@@ -221,8 +237,10 @@ const PostDetail = ({ post, comments }) => {
                         {/* <MemberType type={post.user.memberType} /> */}
                       </div>
                       <div className="userName">
-                        <h2 className="text-lg sm:text-base mt-2 font-extrabold whitespace-nowrap text-center">
-                          {post.privacyStatus ? "Anonymous" : post.user.name}
+                        <h2 className="text-lg sm:text-base mt-2 font-black break-words text-center max-w-[120px]">
+                          {post.privacyStatus
+                            ? "Anonymous"
+                            : post.user.name + " " + post.user.surname}{" "}
                         </h2>
                       </div>
                     </div>
@@ -239,13 +257,31 @@ const PostDetail = ({ post, comments }) => {
                       />
                     </div>
                   </div>
-                  <div className="postInfor flex flex-col px-4 py-4 w-full ">
+
+                  {/* Post Detail Area */}
+                  <div className="postInfor flex flex-col px-4 py-4 flex-1 ">
+                    <div className="postTitle">
+                      <h1
+                        className={`text-2xl font-bold  ${
+                          edit?.element === "post"
+                            ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-slate-900 animate-pulse focus:animate-none"
+                            : "text-slate-900"
+                        }`}
+                        {...(edit?.element === "post"
+                          ? { contentEditable: true }
+                          : { contentEditable: false })}
+                        onInput={(e) => {
+                          setEdit({ ...edit, title: e.target.innerText });
+                        }}
+                        dangerouslySetInnerHTML={{ __html: post.title }}
+                      ></h1>
+                    </div>
                     <p
                       className={` 
                       ${
                         edit?.element === "post"
-                          ? "border-2 border-blue-500 p-2 "
-                          : ""
+                          ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-slate-900 animate-pulse focus:animate-none "
+                          : "text-slate-900"
                       }
                       `}
                       style={{ wordBreak: "break-word" }}
@@ -270,6 +306,7 @@ const PostDetail = ({ post, comments }) => {
                     />
                   </div>
                 </div>
+                {/* Edit Post Button */}
                 <div className="EditPostButton">
                   <div className="flex justify-center mb-12">
                     {edit?.element === "post" ? (
@@ -321,6 +358,8 @@ const PostDetail = ({ post, comments }) => {
                   </>
                 )}
 
+                {/* Post Comment */}
+
                 <div className="commets mt-12 mb-28">
                   {comment.map((comment) => (
                     <div
@@ -352,7 +391,7 @@ const PostDetail = ({ post, comments }) => {
                             {post.user._id === comment.user._id &&
                             post.privacyStatus === true
                               ? "Anonymous"
-                              : comment.user.name}
+                              : comment.user.name + " " + comment.user.surname}
                           </h3>
                         </div>
                       </div>
@@ -402,6 +441,8 @@ const PostDetail = ({ post, comments }) => {
                   ))}
                 </div>
               </div>
+
+              {/* Right Side Adsense */}
               <div className="col-span-2 px-4 py-4 relative hidden lg:flex">
                 <div className="h-40 sticky top-12 w-full flex justify-center items-center text-white ">
                   <Adsense

@@ -33,8 +33,8 @@ const CreatePost = () => {
       return;
     }
 
-    if (text.length > 200 && session.user.memberType !== "premium") {
-      Swal.fire("Error!", "Your post must be at most 140 characters.", "error");
+    if (text.length > 400 && session.user.memberType !== "premium") {
+      Swal.fire("Error!", "Your post must be at most 400 characters.", "error");
       return;
     }
 
@@ -79,6 +79,8 @@ const CreatePost = () => {
   const numberOfCharacters = (text) => {
     setNumberOfChars({ ...numberOfChars, text: text.length });
   };
+
+  console.log(session.user.memberType);
 
   return (
     <Layout>
@@ -140,8 +142,8 @@ const CreatePost = () => {
                     id="text"
                     cols="30"
                     rows="10"
-                    {...(session.user.memberType === "premium" && {
-                      maxLength: maxLength,
+                    {...(session.user.memberType !== "premium" && {
+                      maxLength: maxLength.text,
                     })}
                     placeholder="I have a problem with my car. I can't start it. I don't know what to do. I need help."
                     className="mb-6 border-2 placeholder:text-slate-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-slate-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-slate-600 focus:shadow-lg focus:shadow-blue-600/80"

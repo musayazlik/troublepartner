@@ -50,8 +50,8 @@ export default function Home({ posts }) {
           <div className="md:container mx-auto px-4 min-h-[200px]">
             <section className="flex justify-center">
               <div className="flex flex-col items-center max-w-2xl">
-                <h2 className="text-slate-700 font-maxbold text-center text-4xl sm:text-5xl md:text-6xl relative w-96 h-36">
-                  <Image src="Logo.svg" fill alt="Logo" className="mb-4" />
+                <h2 className="text-slate-700 font-maxbold text-center text-4xl sm:text-5xl md:text-6xl relative w-60 h-24 sm:w-96 sm:h-36 mb-4">
+                  <Image src="Logo.svg" fill alt="Logo" className="" />
                 </h2>
                 <p className="text-slate-600 text-center font-semibold text-lg lg:text-2xl relative inline-flex justify-center">
                   Your problem is our problem.
@@ -65,7 +65,7 @@ export default function Home({ posts }) {
                 </p>
                 <button
                   onClick={createPostPageHandle()}
-                  className="bg-blue-300  text-blue-700 font-bold py-2 px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 mt-8 outline-dashed outline-2 outline-blue-700/50 outline-offset-4"
+                  className="bg-blue-300  text-blue-700 font-bold py-2 px-4 rounded border-blue-600 duration-300 hover:text-blue-50 hover:bg-blue-700 border-2  hover:shadow-lg hover:shadow-blue-600/50 mt-8 outline-double outline-2 outline-slate-700 outline-offset-4"
                 >
                   Share Your Trouble
                 </button>
@@ -85,6 +85,8 @@ export default function Home({ posts }) {
                     id={post._id}
                     image={post.user.image}
                     name={post.user.name}
+                    surname={post.user.surname}
+                    title={post.title}
                     text={post.text}
                     slug={post.slug}
                     // memberType={post.user.memberType}

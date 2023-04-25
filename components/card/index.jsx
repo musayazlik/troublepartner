@@ -9,6 +9,8 @@ const Card = ({
   image = "",
   privacyStatus,
   name = "",
+  surname = "",
+  title = "",
   text = "",
   time = "",
   comment = "",
@@ -46,7 +48,7 @@ const Card = ({
             <div className="flex flex-col justify-between w-full  ">
               <div className="flex flex-col ">
                 <h3 className="text-slate-700 font-extrabold text-xl sm:text-2xl">
-                  {privacyStatus ? "Anonymous" : name}
+                  {title}
                 </h3>
                 <p
                   className="text-slate-600 text-base  sm:text-lg mb-4 sm:mb-0 "
@@ -54,7 +56,7 @@ const Card = ({
                     wordBreak: "break-word",
                   }}
                 >
-                  {text}
+                  {text.slice(0, 160)} ...
                 </p>
               </div>
               <div className="flex justify-between items-center">

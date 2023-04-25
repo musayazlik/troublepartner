@@ -98,6 +98,7 @@ const Header = () => {
                   <AvatarDropDown />
                 ) : (
                   <div className="flex justify-center font-extrabold">
+                    {/* Desktop Auth Button */}
                     <Link
                       href="/auth/sign-in"
                       className="  text-slate-700 text-base hidden md:flex md-flex font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-slate-600 hover:bg-slate-200  "
@@ -110,10 +111,10 @@ const Header = () => {
                     >
                       <span className="">Sign Up</span>
                     </Link>
-                    {/* Mobile User Login */}
+                    {/* Mobile Auth Button*/}
                     <Link
                       href="/auth/sign-in"
-                      className=" w-9 h-9 md:hidden flex justify-center items-center  text-slate-700 font-bold rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50  "
+                      className=" w-9 h-9 md:hidden flex justify-center items-center  text-slate-700 font-bold rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50 border-2 border-slate-600  "
                     >
                       <HiOutlineUser className="text-xl  " />
                     </Link>
@@ -123,7 +124,7 @@ const Header = () => {
                   onClick={() => {
                     setShowMenu(!showMenu);
                   }}
-                  className="md:hidden w-9 h-9 flex justify-center items-center  text-slate-700 font-bold  rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50"
+                  className="md:hidden w-9 h-9 flex justify-center items-center  text-slate-700 font-bold  rounded-sm   duration-300  bg-slate-200 hover:bg-slate-400 hover:text-slate-50 border-2 border-slate-600"
                 >
                   <HiMenuAlt1 className="text-xl " />
                 </button>
