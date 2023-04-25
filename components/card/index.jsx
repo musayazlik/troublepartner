@@ -1,5 +1,5 @@
 import React from "react";
-import { BiTimeFive, BiComment, BiRightArrow } from "react-icons/bi";
+import { BiTimeFive, BiComment, BiRightArrow, BiUser } from "react-icons/bi";
 import Image from "next/image";
 import Link from "next/link";
 // import MemberType from "@components/memberType";
@@ -68,6 +68,12 @@ const Card = ({
                   <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
                     <BiComment className=" " fontSize={20} />
                     <span className="mt-0.5">{comment}</span>
+                  </div>
+                  <div className=" flex gap-2 items-center text-xs sm:text-sm font-extrabold text-slate-900/70  ">
+                    <BiUser className=" " fontSize={20} />
+                    <span className="mt-0.5">
+                      {privacyStatus ? "Anonymous" : `${name} ${surname}`}
+                    </span>
                   </div>
                 </div>
               </div>

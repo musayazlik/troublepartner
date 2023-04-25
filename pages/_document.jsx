@@ -6,9 +6,9 @@ export default function Document() {
     <Html lang="en">
       <Head />
 
-      <meta name="theme-color" content="#2563eb" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="#2563eb" />
-      <meta name="msapplication-navbutton-color" content="#2563eb" />
+      <meta name="theme-color" content="#3b82f6" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="#3b82f6" />
+      <meta name="msapplication-navbutton-color" content="#3b82f6" />
 
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />

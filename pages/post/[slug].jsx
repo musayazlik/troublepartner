@@ -151,31 +151,50 @@ const PostDetail = ({ post, comments }) => {
         }
       });
     } else {
-      axios({
-        method: "DELETE",
-        url: `/api/comments?id=${id}`,
-      })
-        .then((res) => {
-          toast.success("Comment deleted.", {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          const deleteComment = comment.filter((item) => item._id !== id);
-          setComment(deleteComment);
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: err.message,
-          });
-        });
+      Swal.fire({
+        icon: "warning",
+        title: "Are you sure?",
+        text: "Are you sure about deleting the comment?",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios({
+            method: "DELETE",
+            url: `/api/comments?id=${id}`,
+          })
+            .then((res) => {
+              Swal.fire({
+                icon: "success",
+                title: "Comment deleted",
+                showConfirmButton: false,
+                timer: 1500,
+              })
+                .then(() => {
+                  const deleteComment = comment.filter(
+                    (item) => item._id !== id
+                  );
+                  setComment(deleteComment);
+                })
+                .catch((err) => {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: err.message,
+                  });
+                });
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message,
+              });
+            });
+        }
+      });
     }
   };
 
@@ -218,9 +237,9 @@ const PostDetail = ({ post, comments }) => {
               </div>
               <div className="context flex flex-col col-span-12 lg:col-span-8 ">
                 {/* Post Card Area */}
-                <div className="postCard mb-6 flex flex-col sm:flex-row border-2 border-slate-400 rounded-md gap-1 shadow-lg shadow-slate-300/60 overflow-hidden">
+                <div className="postCard mb-6 flex flex-col sm:flex-row border-2 border-slate-400 rounded-md gap-1 shadow-lg shadow-slate-300/60 ">
                   {/* Post User Avatar */}
-                  <div className="userInfor flex gap-6 sm:gap-0 sm:flex-col justify-between items-start sm:items-center px-4 py-4 border-l-8 border-slate-400 bg-slate-300">
+                  <div className="userInfor flex gap-6 sm:gap-0 sm:flex-col justify-between items-start sm:items-center px-3 py-2 border-l-8 rounded-tr-sm sm:rounded-none border-slate-400 bg-slate-300">
                     <div className="flex flex-row sm:flex-col justify-center items-center gap-4 sm:gap-2">
                       <div className="userAvatar w-10 h-10 sm:w-16 sm:h-16 relative">
                         <Image
@@ -237,7 +256,7 @@ const PostDetail = ({ post, comments }) => {
                         {/* <MemberType type={post.user.memberType} /> */}
                       </div>
                       <div className="userName">
-                        <h2 className="text-lg sm:text-base mt-2 font-black break-words text-center max-w-[120px]">
+                        <h2 className="text-sm sm:text-base md:mt-2 font-bold break-words text-center max-w-[120px] text-slate-800">
                           {post.privacyStatus
                             ? "Anonymous"
                             : post.user.name + " " + post.user.surname}{" "}
@@ -262,7 +281,7 @@ const PostDetail = ({ post, comments }) => {
                   <div className="postInfor flex flex-col px-4 py-4 flex-1 ">
                     <div className="postTitle">
                       <h1
-                        className={`text-2xl font-bold  ${
+                        className={`text-xl font-bold break-words  ${
                           edit?.element === "post"
                             ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-slate-900 animate-pulse focus:animate-none"
                             : "text-slate-900"
@@ -277,7 +296,7 @@ const PostDetail = ({ post, comments }) => {
                       ></h1>
                     </div>
                     <p
-                      className={` 
+                      className={` text-sm sm:text-base font-medium break-words 
                       ${
                         edit?.element === "post"
                           ? "border-2 border-blue-500 p-2 mb-2 rounded-sm text-blue-600 focus:text-slate-900 animate-pulse focus:animate-none "
@@ -294,6 +313,7 @@ const PostDetail = ({ post, comments }) => {
                       dangerouslySetInnerHTML={{ __html: post.text }}
                     />
                   </div>
+                  {/* Post Dropdown Button */}
                   <div className=" pt-2 pr-1 relative hidden sm:flex">
                     <CardDropdown
                       comment={comment?.user?._id}
@@ -364,10 +384,13 @@ const PostDetail = ({ post, comments }) => {
                   {comment.map((comment) => (
                     <div
                       key={comment._id}
-                      className="commentCard relative mb-6 flex justify-between border-2 border-b-4 shadow-md shadow-slate-200/50 rounded-md  "
+                      className="commentCard relative mb-6 flex flex-col sm:flex-row  justify-between border rounded-sm  "
                     >
-                      <div className="userInfor flex flex-col items-center px-4 sm:px-6 py-4 min-w-[100px] flex-shrink-0 ">
-                        <div className="userAvatar relative w-12 h-12 sm:w-16 sm:h-16 ">
+                      <div
+                        className="userInfor flex flex-row gap-4 
+                      sm:flex-col items-center px-4 sm:px-6 py-4 min-w-[100px]  bg-zinc-100 rounded-s-sm "
+                      >
+                        <div className="userAvatar relative w-10 h-10 sm:w-12 sm:h-12 ">
                           <Image
                             src={
                               post.user._id === comment.user._id &&
@@ -386,22 +409,35 @@ const PostDetail = ({ post, comments }) => {
 
                           {/* <MemberType type={comment.user.memberType} /> */}
                         </div>
-                        <div className="userName mt-2">
-                          <h3 className="text-sm mt-2 font-bold text-center text-ellipsis overflow-hidden  ">
+                        <div className="userName ">
+                          <h3 className="text-sm font-bold text-center text-ellipsis overflow-hidden  ">
                             {post.user._id === comment.user._id &&
                             post.privacyStatus === true
                               ? "Anonymous"
                               : comment.user.name + " " + comment.user.surname}
                           </h3>
                         </div>
+                        {/* Desktop Comment Dropdown Menu */}
+                        <div className=" block ml-auto sm:hidden  relative ">
+                          <CardDropdown
+                            commentId={comment._id}
+                            comment={comment?.user?._id}
+                            session={session?.user?.id}
+                            post={post}
+                            edit={edit}
+                            deleteHandle={deleteHandle}
+                            setEdit={setEdit}
+                            element="comment"
+                          />
+                        </div>
                       </div>
-                      <div className="commetText p-4 pl-0 w-full">
+                      <div className="commetText p-3 w-full">
                         <p
                           style={{ wordBreak: "break-word" }}
-                          className={` text-sm sm:text-base  text-justify focus:outline-none rounded-md 
+                          className={` text-sm sm:text-base leading-5 font-medium focus:outline-none rounded-md 
                       ${
                         edit?.element === "comment" && edit?.id === comment._id
-                          ? "border-2 border-blue-500 p-2 "
+                          ? "border-2 border-blue-500 p-2 max-h-28 overflow-auto "
                           : ""
                       }
                       `}
@@ -419,13 +455,14 @@ const PostDetail = ({ post, comments }) => {
                         edit?.id === comment._id ? (
                           <button
                             onClick={() => updateData(comment._id)}
-                            className="bg-blue-500 font-extrabold text-xl border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-4 py-2 rounded-sm mt-5"
+                            className="bg-blue-500 font-bold text-lg border-2 border-blue-700 hover:shadow-lg duration-300 hover:shadow-blue-500/50 text-white px-3 py-1.5 rounded-sm mt-5"
                           >
                             Update
                           </button>
                         ) : null}
                       </div>
-                      <div className=" pt-2 pr-1 relative ">
+                      {/* Desktop Comment Dropdown Menu */}
+                      <div className=" hidden sm:block pt-2 pr-1 relative ">
                         <CardDropdown
                           commentId={comment._id}
                           comment={comment?.user?._id}

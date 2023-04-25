@@ -246,7 +246,7 @@ const PostDetail = ({ session, data }) => {
                               >
                                 <div className="flex justify-between items-center gap-x-8 ">
                                   <Link
-                                    href={`/post/${post.slug}-${post._id}`}
+                                    href={`/post/${post.slug}`}
                                     className="flex flex-col mb-4 last:mb-0 w-full "
                                   >
                                     <div className="card_content w-full flex flex-col">

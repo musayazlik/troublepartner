@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         await comment.populate({
           path: "user",
           model: Users,
-          select: ["name", "image", "role", "memberType"],
+          select: ["name", "surname", "image", "role", "memberType"],
         });
         res.status(201).json({ data: comment });
       } catch (error) {

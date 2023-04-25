@@ -56,7 +56,7 @@ const CardDropdown = (props) => {
   return (
     <>
       <BsThreeDotsVertical
-        className="text-2xl text-slate-500"
+        className="text-2xl text-slate-500 cursor-pointer"
         onClick={() => setDropdownShow(!dropdownShow)}
       />
       <div className="dropdownMenu">

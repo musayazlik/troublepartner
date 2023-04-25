@@ -75,7 +75,8 @@ const options = {
         session.user = {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: data.name,
+          surname: data.surname,
           image: user.image,
           role: data.role,
           memberType: data.memberType,
@@ -87,7 +88,8 @@ const options = {
           id: token.sub,
           email: token.email,
           image: token.picture,
-          name: token.name,
+          name: data.name,
+          surname: data.surname,
           role: data.role,
           memberType: data.memberType,
         };
