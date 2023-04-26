@@ -53,10 +53,10 @@ export default function Home({ posts }) {
                 <h2 className="text-zinc-700 font-maxbold text-center text-4xl sm:text-5xl md:text-6xl relative w-60 h-24 sm:w-96 sm:h-36 mb-4">
                   <Image src="Logo.svg" fill alt="Logo" className="" />
                 </h2>
-                <p className="text-zinc-600 text-center font-semibold text-lg lg:text-2xl relative inline-flex justify-center">
+                <p className="text-zinc-800 text-center font-extrabold text-lg lg:text-2xl relative inline-flex justify-center">
                   Your problem is our problem.
                 </p>
-                <p className="text-center leading-5 px-4 text-zinc-800/60 mt-4 font-medium text-sm md:text-base max-w-xl">
+                <p className="text-center leading-5 px-4 text-zinc-800/80 mt-4 font-medium text-sm md:text-base max-w-xl">
                   Share your problem, either as yourself or anonymously. People
                   will connect with you and find solutions. they&apos;ll find
                   it. That&apos;s how simple it is. That&apos;s how beautiful it

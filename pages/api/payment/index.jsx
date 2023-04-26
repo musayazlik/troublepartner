@@ -1,24 +1,8 @@
 import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
-import Iyzipay from "iyzipay";
+const vallet = require("fast-vallet");
 
 export default async function handler(req, res) {
-  var iyzipay = new Iyzipay({
-    apiKey: process.env.IYZIPAY_API_KEY,
-    secretKey: process.env.IYZIPAY_SECRET_KEY,
-    uri: "https://sandbox-api.iyzipay.com",
-  });
-
-  const basketItems = [
-    {
-      id: "BI101",
-      name: "Premium Paket",
-      category1: "Paket",
-      itemType: Iyzipay.BASKET_ITEM_TYPE.VIRTUAL,
-      price: req.body.paymentMethod === "monthly" ? 4.99 : 49.9,
-    },
-  ];
-
   const { method } = req;
 
   await dbConnect();
@@ -40,45 +24,107 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        let request = {
-          price: req.body.paymentMethod === "monthly" ? 4.99 : 49.9,
-          locale: Iyzipay.LOCALE.EN,
-          paidPrice: req.body.paymentMethod === "monthly" ? 4.99 : 49.9,
-          currency: Iyzipay.CURRENCY.USD,
-          paymentGroup: Iyzipay.PAYMENT_GROUP.LISTING,
-          callbackUrl: process.env.APP_URL + "/api/payment",
-          cancelUrl: process.env.APP_URL,
-          buyer: {
-            id: req.body.user.id,
-            name: req.body.surname,
-            surname: req.body.surname,
-            email: req.body.user.email,
-            identityNumber: "11111111111",
-            registrationAddress: req.body.address,
-            ip: "1.1.1.1",
-            city: req.body.city,
-            country: req.body.country,
-          },
-          shippingAddress: {
-            contactName: req.body.name + " " + req.body.surname,
-            city: req.body.city,
-            country: req.body.country,
-            address: req.body.address,
-          },
-          billingAddress: {
-            contactName: req.body.name + " " + req.body.surname,
-            city: req.body.city,
-            country: req.body.country,
-            address: req.body.address,
-          },
-          basketItems,
+        console.log(req.body);
+        // const generateHash = (string) => {
+        //   const hash = crypto
+        //     .createHash("sha1")
+        //     .update(
+        //       userName +
+        //         password +
+        //         shopCode +
+        //         string +
+        //         process.env.Vallet_HashKey
+        //     )
+        //     .digest("hex");
+        //   return Buffer.from(hash, "hex").toString("base64");
+        // };
+
+        // const hashdata = await generateHash(
+        //   "123456789" +
+        //     "USD" +
+        //     "10" +
+        //     "10" +
+        //     "DIJITAL_URUN" +
+        //     "https://www.websiteniz.com/payment-ok" +
+        //     "https://www.websiteniz.com/payment-fail"
+        // );
+
+        // const postData = {
+        //   userName: process.env.Vallet_UserName,
+        //   password: process.env.Vallet_Password,
+        //   shopCode: process.env.Vallet_ShopCode,
+        //   productName: "dfgdffgdfg",
+        //   productData: "gdfgfdgfd",
+        //   productType: "DIJITAL_URUN",
+        //   productsTotalPrice: "10",
+        //   orderPrice: "10",
+        //   currency: "USD",
+        //   orderId: "123456789",
+        //   locale: "en",
+        //   buyerName: "dfgdfgdfg",
+        //   buyerSurName: "dfgdfgdfg",
+        //   buyerGsmNo: "05318345214",
+        //   buyerIp: "1.1.1.1",
+        //   buyerMail: "musayazlik@sdffsd.com",
+        //   buyerAdress: "dfgdfgdfgdfg",
+        //   buyerCountry: "TR",
+        //   buyerCity: "dfgdfgdfg",
+        //   buyerDistrict: "dfgdfgdfg",
+        //   callbackOkUrl: "https://www.websiteniz.com/payment-ok",
+        //   callbackFailUrl: "https://www.websiteniz.com/payment-fail",
+        //   module: "NATIVE_NODEJS",
+        //   hash: hashdata,
+        // };
+
+        // axios({
+        //   method: "post",
+        //   url: "https://www.vallet.com.tr/api/v1/create-payment-link",
+        //   data: {
+        //     userName: process.env.Vallet_UserName,
+        //     password: process.env.Vallet_Password,
+        //     shopCode: process.env.Vallet_ShopCode,
+        //   },
+        // })
+        //   .then((response) => {
+        //     console.log(response.data);
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
+
+        const data = {
+          referer: process.env.APP_URL, // Referer Domain example.com
+          hash: process.env.Vallet_HashKey, // Api Hash Anahtarı
+          userName: process.env.Vallet_UserName, // Apı User
+          password: process.env.Vallet_Password, // Api Key
+          shopCode: process.env.Vallet_ShopCode, // Api Mağaza Kodu
+          productName: "productName",
+          productData: "productData",
+          productType: "DIJITAL_URUN",
+          productsTotalPrice: 21,
+          orderPrice: 20.0,
+          currency: "TRY",
+          orderId: "20",
+          locale: "locale",
+          conversationId: "DIJITAL_URUN",
+          buyerName: "buyerName",
+          buyerSurName: "buyerSurName",
+          buyerGsmNo: "buyerGsmNo",
+          buyerMail: "buyerEmail@gmail.com",
+          buyerIp: "124.432.423",
+          buyerAdress: "buyerAdress",
+          BuyerCountry: "BuyerCountry",
+          BuyerCity: "BuyerCity",
+          buyerDistrict: "buyerDistrict",
+          callbackOkUrl: "http://localhost/callbackOkUrl",
+          callbackFailUrl: "http://localhost/callbackFailUrl",
         };
 
-        iyzipay.checkoutFormInitialize.create(request, function (err, result) {
+        vallet.createPaymentLink(data, (err, res) => {
           if (err) {
-            res.status(400).json({ message: err.message });
+            console.log(err);
           } else {
-            res.status(200).json({ data: result });
+            res.status(200).json({ data: res });
           }
         });
       } catch (error) {

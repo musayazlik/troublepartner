@@ -8,6 +8,8 @@ export const getServerSideProps = async (context) => {
     posts &&
     posts?.data?.map((item) => ({
       loc: `${process.env.APP_URL}/post/${item.slug}`,
+      changefreq: "daily",
+      priority: 1,
       lastmod: item.updatedAt,
     }));
 

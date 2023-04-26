@@ -19,6 +19,7 @@
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
     "express-validator": "^6.15.0",
+    "fast-vallet": "^1.0.5",
     "firebase": "^9.19.1",
     "firebase-admin": "^11.5.0",
     "flowbite": "^1.6.4",

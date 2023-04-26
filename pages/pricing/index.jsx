@@ -24,7 +24,7 @@ const Pricing = () => {
   const { push } = useRouter();
   const [show, setShow] = React.useState(false);
 
-  const handleSubmit = (e) => {
+  const handlePayment = (e) => {
     e.preventDefault();
     const data = {
       name: e.currentTarget.name.value,
@@ -33,7 +33,6 @@ const Pricing = () => {
       city: e.currentTarget.city.value,
       country: e.currentTarget.country.value,
       user: session?.user,
-      paymentMethod: status,
     };
 
     axios({
@@ -42,7 +41,8 @@ const Pricing = () => {
       data,
     })
       .then((res) => {
-        window.location.href = res.data.data.paymentPageUrl;
+        console.log(res);
+        // window.location.href = res.data.data.paymentPageUrl;
       })
       .catch((err) => {
         console.log(err);
@@ -246,13 +246,13 @@ const Pricing = () => {
                   </span>
                   Badge that you are a premium member
                 </p>
-                <div className="absolute top-0 left-0 w-full h-full bg-yellow-400/95 flex text-5xl text-yellow-700 font-ultrabold justify-center items-center ">
+                {/* <div className="absolute top-0 left-0 w-full h-full bg-yellow-400/95 flex text-5xl text-yellow-700 font-ultrabold justify-center items-center ">
                   Coming Soon
-                </div>
+                </div> */}
                 {session ? (
                   <Button
                     onClick={() => setShow(true)}
-                    className="bg-yellow-600"
+                    className="bg-yellow-600 hover:bg-yellow-400 duration-200"
                   >
                     Buy Now
                   </Button>
@@ -306,7 +306,7 @@ const Pricing = () => {
               <form
                 className="flex flex-col gap-4"
                 onSubmit={(e) => {
-                  handleSubmit(e);
+                  handlePayment(e);
                 }}
               >
                 <div>
