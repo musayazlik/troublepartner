@@ -42,9 +42,12 @@ const Pricing = () => {
       data,
     })
       .then((res) => {
-        console.log(res.data);
-        // window.location.href =
-        //   res.data.data.payment_page_url_international_card;
+        if (res.data.status === "success") {
+          window.location.href =
+            res.data.data.payment_page_url_international_card;
+        } else {
+          console.log(res.data.errorMessage);
+        }
       })
       .catch((err) => {
         console.log(err);

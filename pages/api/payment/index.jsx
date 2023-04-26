@@ -74,8 +74,8 @@ export default async function handler(req, res) {
           buyerAdress: address,
           BuyerCountry: country,
           BuyerCity: city,
-          callbackOkUrl: `${process.env.APP_URL}/callback/callbackOkUrl`,
-          callbackFailUrl: `${process.env.APP_URL}/callback/callbackFailUrl`,
+          callbackOkUrl: `${domain}/callback/callbackOkUrl`,
+          callbackFailUrl: `${domain}/callback/callbackFailUrl`,
         };
 
         const sha1Hash = crypto
