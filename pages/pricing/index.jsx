@@ -42,11 +42,11 @@ const Pricing = () => {
       data,
     })
       .then((res) => {
-        if (res.data.status === "success") {
+        if (res.data.data.status === "success") {
           window.location.href =
             res.data.data.payment_page_url_international_card;
         } else {
-          console.log(res.data.errorMessage);
+          console.log(res.data.data.errorMessage);
         }
       })
       .catch((err) => {
