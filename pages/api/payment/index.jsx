@@ -24,74 +24,6 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        console.log(req.body);
-        // const generateHash = (string) => {
-        //   const hash = crypto
-        //     .createHash("sha1")
-        //     .update(
-        //       userName +
-        //         password +
-        //         shopCode +
-        //         string +
-        //         process.env.Vallet_HashKey
-        //     )
-        //     .digest("hex");
-        //   return Buffer.from(hash, "hex").toString("base64");
-        // };
-
-        // const hashdata = await generateHash(
-        //   "123456789" +
-        //     "USD" +
-        //     "10" +
-        //     "10" +
-        //     "DIJITAL_URUN" +
-        //     "https://www.websiteniz.com/payment-ok" +
-        //     "https://www.websiteniz.com/payment-fail"
-        // );
-
-        // const postData = {
-        //   userName: process.env.Vallet_UserName,
-        //   password: process.env.Vallet_Password,
-        //   shopCode: process.env.Vallet_ShopCode,
-        //   productName: "dfgdffgdfg",
-        //   productData: "gdfgfdgfd",
-        //   productType: "DIJITAL_URUN",
-        //   productsTotalPrice: "10",
-        //   orderPrice: "10",
-        //   currency: "USD",
-        //   orderId: "123456789",
-        //   locale: "en",
-        //   buyerName: "dfgdfgdfg",
-        //   buyerSurName: "dfgdfgdfg",
-        //   buyerGsmNo: "05318345214",
-        //   buyerIp: "1.1.1.1",
-        //   buyerMail: "musayazlik@sdffsd.com",
-        //   buyerAdress: "dfgdfgdfgdfg",
-        //   buyerCountry: "TR",
-        //   buyerCity: "dfgdfgdfg",
-        //   buyerDistrict: "dfgdfgdfg",
-        //   callbackOkUrl: "https://www.websiteniz.com/payment-ok",
-        //   callbackFailUrl: "https://www.websiteniz.com/payment-fail",
-        //   module: "NATIVE_NODEJS",
-        //   hash: hashdata,
-        // };
-
-        // axios({
-        //   method: "post",
-        //   url: "https://www.vallet.com.tr/api/v1/create-payment-link",
-        //   data: {
-        //     userName: process.env.Vallet_UserName,
-        //     password: process.env.Vallet_Password,
-        //     shopCode: process.env.Vallet_ShopCode,
-        //   },
-        // })
-        //   .then((response) => {
-        //     console.log(response.data);
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
-
         const data = {
           referer: process.env.APP_URL, // Referer Domain example.com
           hash: process.env.Vallet_HashKey, // Api Hash Anahtarı
@@ -116,8 +48,8 @@ export default async function handler(req, res) {
           BuyerCountry: "BuyerCountry",
           BuyerCity: "BuyerCity",
           buyerDistrict: "buyerDistrict",
-          callbackOkUrl: "http://localhost/callbackOkUrl",
-          callbackFailUrl: "http://localhost/callbackFailUrl",
+          callbackOkUrl: `${process.env.APP_URL}/callbackOkUrl`,
+          callbackFailUrl: `${process.env.APP_URL}/callbackFailUrl`,
         };
 
         vallet.createPaymentLink(data, (err, res) => {
