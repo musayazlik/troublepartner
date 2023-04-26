@@ -1,7 +1,7 @@
 import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
 const vallet = require("fast-vallet");
-import uid from "uid";
+import { uid } from "uid";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -58,7 +58,8 @@ export default async function handler(req, res) {
           if (err) {
             console.log(err);
           } else {
-            res.status(200).json({ data: res });
+            console.log("Msdfjfjkldjsdfjk");
+            console.log(res);
           }
         });
       } catch (error) {
