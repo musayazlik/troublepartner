@@ -44,6 +44,7 @@
     "sanitize-html": "^2.10.0",
     "sha1": "^1.1.1",
     "sweetalert2": "^11.7.3",
+    "uid": "^2.0.2",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {

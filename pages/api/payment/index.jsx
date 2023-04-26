@@ -1,6 +1,7 @@
 import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
 const vallet = require("fast-vallet");
+import uid from "uid";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -24,6 +25,7 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
+        const uidId = uid(10);
         const data = {
           referer: process.env.APP_URL, // Referer Domain example.com
           hash: process.env.Vallet_HashKey, // Api Hash Anahtarı
@@ -38,7 +40,7 @@ export default async function handler(req, res) {
           currency: "TRY",
           orderId: "20",
           locale: "locale",
-          conversationId: "DIJITAL_URUN",
+          conversationId: uidId,
           buyerName: "buyerName",
           buyerSurName: "buyerSurName",
           buyerGsmNo: "buyerGsmNo",
