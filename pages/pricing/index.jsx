@@ -42,9 +42,9 @@ const Pricing = () => {
       data,
     })
       .then((res) => {
-        // console.log(res.data.data.payment_page_url_international_card);
-        window.location.href =
-          res.data.data.payment_page_url_international_card;
+        console.log(res.data.data.payment_page_url_international_card);
+        // window.location.href =
+        //   res.data.data.payment_page_url_international_card;
       })
       .catch((err) => {
         console.log(err);
