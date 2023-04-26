@@ -30,6 +30,7 @@ const Pricing = () => {
       name: e.currentTarget.name.value,
       surname: e.currentTarget.surname.value,
       address: e.currentTarget.address.value,
+      phone: e.currentTarget.phone.value,
       city: e.currentTarget.city.value,
       country: e.currentTarget.country.value,
       user: session?.user,
@@ -41,8 +42,9 @@ const Pricing = () => {
       data,
     })
       .then((res) => {
-        console.log(res);
-        // window.location.href = res.data.data.paymentPageUrl;
+        // console.log(res.data.data.payment_page_url_international_card);
+        window.location.href =
+          res.data.data.payment_page_url_international_card;
       })
       .catch((err) => {
         console.log(err);
@@ -330,6 +332,18 @@ const Pricing = () => {
                     type="text"
                     name="surname"
                     placeholder="Doe"
+                    required={true}
+                  />
+                </div>
+                <div>
+                  <div className="mb-2 block">
+                    <Label htmlFor="phone" value="Phone" />
+                  </div>
+                  <TextInput
+                    id="phone"
+                    type="text"
+                    name="phone"
+                    placeholder="+1 555 555 5555"
                     required={true}
                   />
                 </div>
