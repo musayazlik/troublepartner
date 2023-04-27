@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       console.log("orderData", orderData);
 
       const userData = await User.findOneAndUpdate(
-        { _id: req.body.conversationId },
+        { _id: orderData.user.id },
         { memberType: "premium", premiumTime: Date.now() + 2592000000 },
         { new: true }
       );
