@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       req.body.status === "success" ||
       req.body.paymentStatus === "paymentOk"
     ) {
-      await Order.findOneAndUpdate(
+      const orderData = await Order.findOneAndUpdate(
         { orderId: req.body.orderId },
         { paymentStatus: "paymentOk", paymentType: req.body.paymentType },
         { new: true }
