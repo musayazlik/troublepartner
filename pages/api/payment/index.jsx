@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         const shopCode = process.env.VALLET_SHOPCODE;
         const domain = process.env.VALLET_DOMAIN;
         const callbackOkUrl = `${process.env.APP_URL}/api/payment/callbackOkUrl`;
-        const callbackFailUrl = `${process.env.APP_URL}/payment/fail`;
+        const callbackFailUrl = `${process.env.APP_URL}/payment/`;
         const name = req.body.name;
         const surname = req.body.surname;
         const email = req.body.user.email;
