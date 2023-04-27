@@ -5,7 +5,8 @@ import dbConnect from "@/utils/dbconnect";
 export default async function handler(req, res) {
   await dbConnect();
 
-  console.log(req);
+  console.log(req.body.status);
+  console.log(req.body.paymentStatus);
 
   try {
     if (
@@ -19,7 +20,7 @@ export default async function handler(req, res) {
       );
 
       await User.findOneAndUpdate(
-        { _id: req.body.user.id },
+        { _id: req.body.conversationId },
         { memberType: "premium", premiumTime: Date.now() + 2592000000 },
         { new: true }
       );

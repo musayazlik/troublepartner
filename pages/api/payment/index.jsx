@@ -31,6 +31,7 @@ export default async function handler(req, res) {
     case "POST":
       try {
         const orderId = uid(10);
+        const conversationId = req.body.user.id; // User Id
         const userName = process.env.VALLET_USERNAME;
         const password = process.env.VALLET_PASSWORD;
         const shopCode = process.env.VALLET_SHOPCODE;
