@@ -19,11 +19,15 @@ export default async function handler(req, res) {
         { new: true }
       );
 
-      await User.findOneAndUpdate(
+      console.log("orderData", orderData);
+
+      const userData = await User.findOneAndUpdate(
         { _id: req.body.conversationId },
         { memberType: "premium", premiumTime: Date.now() + 2592000000 },
         { new: true }
       );
+
+      console.log("userData", userData);
 
       res.writeHead(302, {
         Location: "/payment/success",
