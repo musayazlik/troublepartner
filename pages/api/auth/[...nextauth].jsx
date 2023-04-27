@@ -40,6 +40,7 @@ const options = {
               image: user.image,
               role: user.role,
               memberType: user.memberType,
+              premiumTime: null,
               securityStatus: user.securityStatus,
             };
           }
@@ -62,6 +63,7 @@ const options = {
           image: profile.picture,
           role: "user",
           memberType: "free",
+          premiumTime: null,
           securityStatus: false,
         };
       },
@@ -80,6 +82,7 @@ const options = {
           image: user.image,
           role: data.role,
           memberType: data.memberType,
+          premiumTime: data.premiumTime,
         };
       }
 
@@ -92,6 +95,7 @@ const options = {
           surname: data.surname,
           role: data.role,
           memberType: data.memberType,
+          premiumTime: data.premiumTime,
         };
       }
 

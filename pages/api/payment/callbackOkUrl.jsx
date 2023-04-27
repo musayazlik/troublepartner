@@ -1,4 +1,5 @@
 import Order from "@/models/orders";
+import User from "@/models/users";
 import dbConnect from "@/utils/dbconnect";
 
 export default async function handler(req, res) {
@@ -14,6 +15,12 @@ export default async function handler(req, res) {
       await Order.findOneAndUpdate(
         { orderId: req.body.orderId },
         { paymentStatus: "paymentOk", paymentType: req.body.paymentType },
+        { new: true }
+      );
+
+      await User.findOneAndUpdate(
+        { _id: req.body.user.id },
+        { memberType: "premium", premiumTime: Date.now() + 2592000000 },
         { new: true }
       );
 

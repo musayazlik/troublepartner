@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "free",
   },
+  premiumTime: {
+    type: Date,
+    default: null,
+  },
   jobTitle: {
     type: String,
     default: "user",
