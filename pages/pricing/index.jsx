@@ -314,29 +314,33 @@ const Pricing = () => {
                   handlePayment(e);
                 }}
               >
-                <div>
-                  <div className="mb-2 block">
-                    <Label htmlFor="name" value="Name" />
+                <div className="flex gap-4">
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label htmlFor="name" value="Name" />
+                    </div>
+                    <TextInput
+                      id="name"
+                      type="text"
+                      name="name"
+                      defaultValue={session?.user?.name}
+                      required={true}
+                      disabled={true}
+                    />
                   </div>
-                  <TextInput
-                    id="name"
-                    type="text"
-                    name="name"
-                    placeholder="John"
-                    required={true}
-                  />
-                </div>
-                <div>
-                  <div className="mb-2 block">
-                    <Label htmlFor="surname" value="Surname" />
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label htmlFor="surname" value="Surname" />
+                    </div>
+                    <TextInput
+                      id="surname"
+                      type="text"
+                      name="surname"
+                      defaultValue={session?.user?.surname}
+                      required={true}
+                      disabled={true}
+                    />
                   </div>
-                  <TextInput
-                    id="surname"
-                    type="text"
-                    name="surname"
-                    placeholder="Doe"
-                    required={true}
-                  />
                 </div>
                 <div>
                   <div className="mb-2 block">
@@ -344,7 +348,7 @@ const Pricing = () => {
                   </div>
                   <TextInput
                     id="phone"
-                    type="text"
+                    type="tel"
                     name="phone"
                     placeholder="+1 555 555 5555"
                     required={true}

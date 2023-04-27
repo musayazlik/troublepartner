@@ -1,5 +1,6 @@
 import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
+import Order from "@/models/orders";
 import { uid } from "uid";
 const crypto = require("crypto");
 const buffer = require("buffer");
@@ -7,6 +8,8 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   const { method } = req;
+
+  console.log(req.body);
 
   await dbConnect();
 
@@ -27,12 +30,13 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        const conversationId = uid(10);
         const orderId = uid(10);
         const userName = process.env.VALLET_USERNAME;
         const password = process.env.VALLET_PASSWORD;
         const shopCode = process.env.VALLET_SHOPCODE;
         const domain = process.env.VALLET_DOMAIN;
+        const callbackOkUrl = `${process.env.APP_URL}/api/payment/callbackOkUrl`;
+        const callbackFailUrl = `${process.env.APP_URL}/payment/fail`;
         const name = req.body.name;
         const surname = req.body.surname;
         const email = req.body.user.email;
@@ -43,12 +47,12 @@ export default async function handler(req, res) {
 
         const stringHash =
           orderId +
-          "USD" +
-          20 +
-          20 +
+          "TRY" +
+          1 +
+          1 +
           "DIJITAL_URUN" +
-          `${process.env.APP_URL}/callback/callbackOkUrl` +
-          `${process.env.APP_URL}/callback/callbackFailUrl`;
+          callbackOkUrl +
+          callbackFailUrl;
         const hashKey = process.env.VALLET_HASHKEY;
 
         const data = {
@@ -60,12 +64,11 @@ export default async function handler(req, res) {
           productName: "Trouble Partner Premium",
           productData: "Trouble Partner Premium",
           productType: "DIJITAL_URUN",
-          productsTotalPrice: 20,
-          orderPrice: 20,
-          currency: "USD",
+          productsTotalPrice: 1,
+          orderPrice: 1,
+          currency: "TRY",
           orderId,
           locale: "locale",
-          conversationId,
           buyerName: name,
           buyerSurName: surname,
           buyerGsmNo: phone,
@@ -74,8 +77,8 @@ export default async function handler(req, res) {
           buyerAdress: address,
           BuyerCountry: country,
           BuyerCity: city,
-          callbackOkUrl: `${process.env.APP_URL}/callback/callbackOkUrl`,
-          callbackFailUrl: `${process.env.APP_URL}/callback/callbackFailUrl`,
+          callbackOkUrl,
+          callbackFailUrl,
         };
 
         const sha1Hash = crypto
@@ -85,6 +88,24 @@ export default async function handler(req, res) {
         const packedHash = buffer.Buffer.from(sha1Hash, "hex");
         const base64EncodedHash = packedHash.toString("base64");
         data.hash = base64EncodedHash;
+
+        await Order.create({
+          orderId,
+          user: {
+            id: req.body.user.id,
+            name,
+            surname,
+            email,
+            phone,
+            country,
+            city,
+            address,
+          },
+          amount: 1,
+          currency: "TRY",
+          paymentStatus: "pending",
+          paymentType: "vallet",
+        });
 
         axios({
           method: "post",

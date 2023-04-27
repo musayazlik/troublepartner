@@ -65,6 +65,19 @@ const sendMail = async (email, type, token) => {
       `,
       };
       break;
+    case "order":
+      mailOptions = {
+        from: process.env.EMAIL_FROM,
+        to: email,
+        subject: "Order",
+        html: `
+        <h1>Order</h1>
+        <p>Click the link below to verify your email</p>
+        <a href="${process.env.APP_URL}/auth/verify-email?token=${token}">Verify Email</a>
+      `,
+      };
+      break;
+
     default:
       break;
   }
