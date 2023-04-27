@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 import { body, validationResult } from "express-validator";
 import sanitizeHtml from "sanitize-html";
 
-const sendMail = async (email, type, token) => {
+const sendMail = async (type, email, token = "", html) => {
   const oAuth2Client = new google.auth.OAuth2(
     process.env.OAUTH2_CLIENT_ID,
     process.env.OAUTH2_CLIENT_SECRET,
@@ -69,12 +69,26 @@ const sendMail = async (email, type, token) => {
       mailOptions = {
         from: process.env.EMAIL_FROM,
         to: email,
-        subject: "Order",
-        html: `
-        <h1>Order</h1>
-        <p>Click the link below to verify your email</p>
-        <a href="${process.env.APP_URL}/auth/verify-email?token=${token}">Verify Email</a>
-      `,
+        subject: "Thanks!",
+        html: html,
+      };
+      break;
+
+    case "contact":
+      mailOptions = {
+        from: process.env.EMAIL_FROM,
+        to: email,
+        subject: "Contact",
+        html: html,
+      };
+      break;
+
+    case "payment":
+      mailOptions = {
+        from: process.env.EMAIL_FROM,
+        to: email,
+        subject: "Payment",
+        html: html,
       };
       break;
 

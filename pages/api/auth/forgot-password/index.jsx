@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       { new: true }
     );
 
-    await sendMail(email, "reset", token);
+    await sendMail("reset", email, token);
 
     return res.status(200).json({});
   } catch (error) {

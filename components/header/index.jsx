@@ -27,8 +27,8 @@ const Header = () => {
               </Link>
 
               <nav
-                className={`fixed px-4 md:px-0 pt-8 md:pt-0 flex items-start flex-col md:flex-row z-30 min-w-[260px] bg-zinc-600 text-zinc-50 md:text-zinc-900  md:bg-transparent  h-screen md:h-auto top-0  md:relative md:flex md:flex-wrap gap-3 md:items-center text-lg font-black md:justify-center
-                 duration-300 ease-in-out transition-all
+                className={`fixed px-4 md:px-0 pt-8 md:pt-0 flex items-start flex-col md:flex-row z-30 min-w-[260px] bg-zinc-600 text-zinc-50 md:text-zinc-900  md:bg-transparent  h-screen md:h-auto top-0  md:relative md:flex md:flex-wrap gap-3 md:items-center text-lg  md:justify-center
+                 duration-300 ease-in-out transition-all font-extrabold
                 ${
                   showMenu
                     ? "visible right-[0px]"

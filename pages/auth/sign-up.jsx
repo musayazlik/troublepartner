@@ -155,12 +155,13 @@ const SignUp = () => {
                     className="font-light text-gray-500 dark:text-gray-300"
                   >
                     I accept the{" "}
-                    <a
+                    <Link
                       className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                      href="#"
+                      href="/terms-and-conditions"
+                      target="_blank"
                     >
                       Terms and Conditions
-                    </a>
+                    </Link>
                   </label>
                 </div>
               </div>

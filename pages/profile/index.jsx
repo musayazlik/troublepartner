@@ -5,7 +5,7 @@ import Head from "next/head";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { MdDeleteOutline } from "react-icons/md";
-import { BiTimeFive, BiComment } from "react-icons/bi";
+import { BiTimeFive, BiComment, BiUser } from "react-icons/bi";
 import Link from "next/link";
 import formatDate from "@/helpers/formatDate";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -13,6 +13,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { Adsense } from "@ctrl/react-adsense";
+import { BsPostcard } from "react-icons/bs";
 
 const PostDetail = ({ session, data }) => {
   const deleteHandle = (id, element) => {
@@ -137,9 +138,10 @@ const PostDetail = ({ session, data }) => {
                 <div className="px-2 sm:px-12">
                   <div action="">
                     <div className="flex flex-col items-start gap-4">
-                      <div>
-                        <h2 className="font-black text-xl text-zinc-700">
+                      <div className="bg-zinc-100 px-3 rounded-sm w-full py-2 border-b-2 border-zinc-400 shadow-sm shadow-zinc-400/50">
+                        <h2 className="font-bold text-xl text-zinc-900 flex gap-2 items-center">
                           {" "}
+                          <BiUser className="text-2xl" />
                           User Information
                         </h2>
                       </div>
@@ -230,9 +232,10 @@ const PostDetail = ({ session, data }) => {
                 <div className="px-2 sm:px-12 mt-8">
                   <div>
                     <div className="flex flex-col gap-4">
-                      <div>
-                        <h2 className="font-black text-xl text-zinc-700">
+                      <div className="bg-zinc-100 px-3 rounded-sm w-full py-2 border-b-2 border-zinc-400 shadow-sm shadow-zinc-400/50">
+                        <h2 className="font-bold text-xl text-zinc-900 flex gap-2 items-center">
                           {" "}
+                          <BsPostcard className="text-2xl" />
                           My Posts
                         </h2>
                       </div>
@@ -327,9 +330,10 @@ const PostDetail = ({ session, data }) => {
                 <div className="px-2 sm:px-12 mt-8">
                   <div>
                     <div className="flex flex-col gap-4">
-                      <div>
-                        <h2 className="font-black text-xl text-zinc-700">
+                      <div className="bg-zinc-100 px-3 rounded-sm w-full py-2 border-b-2 border-zinc-400 shadow-md shadow-zinc-300/50">
+                        <h2 className="font-bold text-xl text-zinc-900 flex gap-2 items-center">
                           {" "}
+                          <BiComment className="text-2xl" />
                           My Comments
                         </h2>
                       </div>

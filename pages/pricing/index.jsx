@@ -66,13 +66,15 @@ const Pricing = () => {
               Try Our Free Package, Upgrade To Our Premium Plan When You Need
               It!
             </p>
-            <div className="flex mx-auto border-2 border-zinc-500 rounded overflow-hidden mt-6">
+            <div className="flex mx-auto border-2 gap-2 border-zinc-300 rounded-md overflow-hidden mt-6 bg-zinc-100 p-1">
               <button
                 onClick={() => {
                   setStatus("monthly");
                 }}
-                className={`py-1 px-4 focus:outline-none ${
-                  status === "monthly" ? "bg-zinc-500 text-white " : ""
+                className={`py-1 rounded px-4  border-2 border-zinc-400 duration-300 ${
+                  status === "monthly"
+                    ? "bg-zinc-400 text-white border-zinc-500  "
+                    : ""
                 }`}
               >
                 Monthly
@@ -81,8 +83,10 @@ const Pricing = () => {
                 onClick={() => {
                   setStatus("annually");
                 }}
-                className={`py-1 px-4 focus:outline-none ${
-                  status === "annually" ? "bg-zinc-500 text-white " : ""
+                className={`py-1 rounded px-4 border-2 border-zinc-400 duration-300  ${
+                  status === "annually"
+                    ? "bg-zinc-400 text-white border-zinc-500  "
+                    : ""
                 }`}
               >
                 Annually
@@ -91,18 +95,18 @@ const Pricing = () => {
           </div>
           <div className="flex flex-wrap justify-center mb-20">
             <div className="p-4 xl:w-2/5 md:w-1/2 w-full">
-              <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+              <div className="h-full shadow-xl shadow-zinc-300/30 md:scale-95 p-6 rounded-lg border-2 border-zinc-300 flex flex-col relative overflow-hidden">
                 <h2 className="text-sm tracking-widest title-font mb-1 font-medium uppercase">
                   Free
                 </h2>
-                <h3 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-extrabold">
+                <h3 className="text-5xl text-zinc-900 leading-none flex items-center pb-4 mb-4 border-b border-zinc-200 font-extrabold">
                   <span>$0</span>
-                  <span className="text-lg ml-1 font-normal text-gray-500">
+                  <span className="text-lg ml-1 font-normal text-zinc-500">
                     {status === "monthly" ? "/mo" : "/yr"}
                   </span>
                 </h3>
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                <p className="flex items-center text-zinc-600 mb-2">
+                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-zinc-400 text-white rounded-full flex-shrink-0">
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -118,8 +122,8 @@ const Pricing = () => {
                   Sharing content and comment with 200 character limit.
                 </p>
 
-                <p className="flex items-center text-gray-600 mb-2">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                <p className="flex items-center text-zinc-600 mb-2">
+                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-zinc-400 text-white rounded-full flex-shrink-0">
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -134,8 +138,8 @@ const Pricing = () => {
                   </span>
                   Public import sharing
                 </p>
-                <p className="flex items-center text-gray-600 mb-6">
-                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                <p className="flex items-center text-zinc-600 mb-6">
+                  <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-zinc-400 text-white rounded-full flex-shrink-0">
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -152,9 +156,9 @@ const Pricing = () => {
                 </p>
                 <button
                   onClick={() => {
-                    paymentdeneme();
+                    push("/auth/sign-up");
                   }}
-                  className="flex items-center mt-auto duration-300 text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded"
+                  className="flex items-center mt-auto duration-300 text-white bg-zinc-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-zinc-500 rounded"
                 >
                   Buy Now
                   <svg
@@ -169,24 +173,24 @@ const Pricing = () => {
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
-                <p className="text-xs text-gray-500 mt-3">
+                <p className="text-xs text-zinc-500 mt-3">
                   This package is created automatically for everyone who is a
                   member.
                 </p>
               </div>
             </div>
             <div className="p-4 xl:w-2/5 md:w-1/2 w-full ">
-              <div className="h-full p-6 rounded-lg border-2 border-yellow-500 flex flex-col relative overflow-hidden">
+              <div className="h-full shadow-xl shadow-yellow-300/30 md:scale-105 p-6 rounded-lg border-2 border-yellow-500 flex flex-col relative overflow-hidden">
                 <h2 className="text-sm tracking-widest title-font mb-1 font-medium uppercase">
                   Premium
                 </h2>
-                <h3 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 font-extrabold">
+                <h3 className="text-5xl text-zinc-900 leading-none flex items-center pb-4 mb-4 border-b border-zinc-200 font-extrabold">
                   <span>{status === "monthly" ? "$4.99" : "$49.90"}</span>
-                  <span className="text-lg ml-1 font-normal text-gray-500">
+                  <span className="text-lg ml-1 font-normal text-zinc-500">
                     {status === "monthly" ? "/mo" : "/yr"}
                   </span>
                 </h3>
-                <p className="flex items-center text-gray-600 mb-2">
+                <p className="flex items-center text-zinc-600 mb-2">
                   <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                     <svg
                       fill="none"
@@ -203,7 +207,7 @@ const Pricing = () => {
                   Content and comment sharing with unlimited character limit
                 </p>
 
-                <p className="flex items-center text-gray-600 mb-2">
+                <p className="flex items-center text-zinc-600 mb-2">
                   <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                     <svg
                       fill="none"
@@ -219,7 +223,7 @@ const Pricing = () => {
                   </span>
                   Share content both publicly and privately
                 </p>
-                <p className="flex items-center text-gray-600 mb-2">
+                <p className="flex items-center text-zinc-600 mb-2">
                   <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                     <svg
                       fill="none"
@@ -235,7 +239,7 @@ const Pricing = () => {
                   </span>
                   Unlimited content sharing
                 </p>
-                <p className="flex items-center text-gray-600 mb-6">
+                <p className="flex items-center text-zinc-600 mb-6">
                   <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-yellow-400 shadow-md shadow-yellow-500/50 text-white rounded-full flex-shrink-0">
                     <svg
                       fill="none"
@@ -281,7 +285,7 @@ const Pricing = () => {
                   </button>
                 )}
 
-                <p className="text-xs text-gray-500 mt-3">
+                <p className="text-xs text-zinc-500 mt-3">
                   Enjoy the membership with the premium package.
                 </p>
               </div>
@@ -293,18 +297,18 @@ const Pricing = () => {
       {show && (
         <>
           <div className="absolute px-6 py-6 top-0 left flex justify-center items-center w-full h-full z-50  ">
-            <div className="relative z-50 space-y-4 py-6 px-8 rounded-lg bg-zinc-50 border-4 border-gray-600/10 border-b-8 ">
-              <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
+            <div className="relative z-50 space-y-4 py-6 px-8 rounded-lg bg-zinc-50 border-4 border-zinc-600/10 border-b-8 ">
+              <h3 className="text-2xl font-extrabold text-zinc-900 dark:text-white">
                 Payment Information
               </h3>
               <p>
-                <span className="text-gray-500 dark:text-gray-400">
+                <span className="text-zinc-500 dark:text-zinc-400">
                   You are about to purchase the premium package for{" "}
                 </span>
-                <span className="text-gray-900 dark:text-gray-100">
+                <span className="text-zinc-900 dark:text-zinc-100">
                   {status === "monthly" ? "$4.99" : "$49.90"}
                 </span>
-                <span className="text-gray-500 dark:text-gray-400">
+                <span className="text-zinc-500 dark:text-zinc-400">
                   {status === "monthly" ? "/mo" : "/yr"}
                 </span>
               </p>

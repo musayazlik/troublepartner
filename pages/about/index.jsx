@@ -56,7 +56,9 @@ const PostDetail = () => {
                   />
                 </div>
                 <div className="text-center mt-4 mb-4">
-                  <h1 className="text-2xl font-bold text-zinc-900">Founder</h1>
+                  <h1 className="text-2xl font-maxbold text-zinc-900">
+                    Founder
+                  </h1>
                   <h2 className="text-xl font-bold text-zinc-900 mb-4">
                     <a
                       href="https://www.linkedin.com/in/ahmet-ak%C4%B1n-0b1b4b1b3/"
