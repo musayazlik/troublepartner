@@ -29,6 +29,7 @@ const sendMail = async (type, email, token = "", html) => {
       // accessToken: await oAuth2Client.getAccessToken().token,
       // expires: 1484314697598,
     },
+    debug: true,
   });
 
   let mailOptions = {};
