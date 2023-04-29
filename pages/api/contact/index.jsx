@@ -3,12 +3,9 @@ import nodemailer from "nodemailer";
 import { body, validationResult } from "express-validator";
 import sanitizeHtml from "sanitize-html";
 import sendMail from "@/utils/sendMail";
-// import dbConnect from "@/utils/dbConnect";
-// import Message from "@/models/messages";
 
 export default async function handler(req, res) {
   const { method } = req;
-  // await dbConnect();
   const oAuth2Client = new google.auth.OAuth2(
     process.env.OAUTH2_CLIENT_ID,
     process.env.OAUTH2_CLIENT_SECRET,
@@ -19,7 +16,6 @@ export default async function handler(req, res) {
     refresh_token: process.env.OAUTH2_REFRESH_TOKEN,
   });
 
-  // Nodemailer kullanarak e-posta göndermek için yapılandırma
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -52,13 +48,6 @@ export default async function handler(req, res) {
           `;
 
           await sendMail("contact", process.env.EMAIL_TO, "", html);
-
-          // await Message.create({
-          //   name: sanitizeHtml(req.body.name),
-          //   email: sanitizeHtml(req.body.email),
-          //   message: sanitizeHtml(req.body.message),
-          // });
-
           res.status(200).json({ message: "Email sent successfully" });
         } else {
           res.status(400).json({ message: "Token not found" });
