@@ -1,6 +1,7 @@
 import User from "@models/users";
 import dbConnect from "@/utils/dbconnect";
-import { uuid } from "uuidv4";
+const { v4: uuidv4 } = require("uuid");
+const uuid = uuidv4();
 import sendMail from "@/utils/sendMail";
 
 export default async function handler(req, res) {
@@ -13,16 +14,18 @@ export default async function handler(req, res) {
   }
 
   try {
-    const token = uuid();
+    const token = uuid;
 
-    const isEmail = User.find({ email: email });
+    console.log(token);
+
+    const isEmail = User.findOne({ email: email });
 
     if (!isEmail) {
       return res.status(404).json({ message: "Email not found" });
     }
 
     await User.findOneAndUpdate(
-      email,
+      { email: email },
       {
         token: token,
         tokenExpiration: Date.now() + 3600000,
@@ -32,7 +35,7 @@ export default async function handler(req, res) {
 
     await sendMail("reset", email, token);
 
-    return res.status(200).json({});
+    return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
