@@ -25,18 +25,18 @@ const Card = ({
             pathname: `post/${slug}`,
           }}
         >
-          <div className="card border-2 border-b-zinc-400/30  border-zinc-100 shadow-lg shadow-zinc-200 hover:shadow-zinc-500/30 duration-300 rounded-lg  flex flex-col sm:flex-row px-8 py-8 gap-4 min-h-[240px] justify-between">
+          <div className="card border-2 border-b-zinc-600  border-zinc-100 shadow-lg shadow-zinc-200 hover:shadow-zinc-500/30 duration-300 rounded-lg  flex flex-col sm:flex-row px-8 py-8 gap-4 min-h-[240px] justify-between">
             <div className="image flex  sm:flex-col items-center gap-4 ">
               <div className=" relative">
                 <Image
-                  src={privacyStatus ? "/avatar.jpg" : image}
+                  src={privacyStatus ? "/images/79638-avatar-icon.gif" : image}
                   width={64}
                   height={64}
                   alt="Avatar"
                   className="rounded-full border-4 border-zinc-200 shadow-lg min-w-[64px] min-h-[64px] "
                 />
                 {privacyStatus && (
-                  <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
+                  <span className="w-10 h-10 sm:w-14 sm:h-14 left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
                 )}
 
                 <div className="absolute top-0">

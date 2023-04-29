@@ -244,14 +244,16 @@ const PostDetail = ({ post, comments }) => {
                       <div className="userAvatar w-10 h-10 sm:w-16 sm:h-16 relative">
                         <Image
                           src={
-                            post.privacyStatus ? "/avatar.jpg" : post.user.image
+                            post.privacyStatus
+                              ? "/images/79638-avatar-icon.gif"
+                              : post.user.image
                           }
                           fill
                           alt="Avatar"
                           className="rounded-full border-4 border-zinc-200 shadow-lg  sticky "
                         />
                         {post.privacyStatus && (
-                          <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
+                          <span className=" w-10 h-10 sm:w-14 sm:h-14  left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
                         )}
                         {/* <MemberType type={post.user.memberType} /> */}
                       </div>
@@ -390,21 +392,22 @@ const PostDetail = ({ post, comments }) => {
                         className="userInfor flex flex-row gap-4 
                       sm:flex-col items-center px-4 sm:px-6 py-4 min-w-[100px]  bg-zinc-100 rounded-s-sm "
                       >
-                        <div className="userAvatar relative w-10 h-10 sm:w-12 sm:h-12 ">
+                        <div className="userAvatar relative">
                           <Image
                             src={
                               post.user._id === comment.user._id &&
                               post.privacyStatus === true
-                                ? "/avatar.jpg"
+                                ? "/images/79638-avatar-icon.gif"
                                 : comment.user.image
                             }
-                            fill
+                            width={50}
+                            height={50}
                             alt="Avatar"
-                            className="rounded-full border-4 border-zinc-200 shadow-lg  sticky "
+                            className="rounded-full border-4 border-zinc-200 shadow-lg   "
                           />
                           {post.user._id === comment.user._id &&
                             post.privacyStatus === true && (
-                              <span className="w-14 h-14 left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
+                              <span className="w-10 h-10 sm:w-12 sm:h-12  left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm "></span>
                             )}
 
                           {/* <MemberType type={comment.user.memberType} /> */}

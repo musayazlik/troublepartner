@@ -5,7 +5,7 @@ import Link from "next/link";
 const TermsAndConditions = () => {
   return (
     <Layout>
-      <div className="container mx-auto py-28">
+      <div className="container mx-auto py-28 px-4">
         <h1 className="font-maxbold text-xl sm:text-3xl">
           TERMS AND CONDITIONS
         </h1>

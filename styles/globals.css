@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-blue-500 border-2 border-blue-800;
+  border-radius: 14px;
+}
+
+.active {
+  @apply bg-blue-500 text-white;
+}
+
+.nav_item_hover {
+  @apply hover:border-blue-800 hover:text-blue-50 hover:bg-blue-600 hover:scale-105;
+}
+
 * {
   font-family: "Nunito", sans-serif;
 }
