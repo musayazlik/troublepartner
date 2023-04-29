@@ -13,10 +13,10 @@ const sendMail = async (type, email, token = "", html) => {
   });
 
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    tls: {
-      rejectUnauthorized: false,
-    },
+    service: "Gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       type: "OAuth2",
       user: "musayazlik1997@gmail.com",
@@ -24,6 +24,7 @@ const sendMail = async (type, email, token = "", html) => {
       clientSecret: process.env.OAUTH2_CLIENT_SECRET,
       refreshToken: process.env.OAUTH2_REFRESH_TOKEN,
       accessToken: await oAuth2Client.getAccessToken().token,
+      expires: 1484314697598,
     },
   });
 
