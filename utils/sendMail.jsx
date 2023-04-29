@@ -17,6 +17,9 @@ const sendMail = async (type, email, token = "", html) => {
     auth: {
       type: "OAuth2",
       user: "musayazlik1997@gmail.com",
+      tls: {
+        rejectUnauthorized: false,
+      },
       clientId: process.env.OAUTH2_CLIENT_ID,
       clientSecret: process.env.OAUTH2_CLIENT_SECRET,
       refreshToken: process.env.OAUTH2_REFRESH_TOKEN,
