@@ -1,16 +1,16 @@
-import { google } from "googleapis";
+// import { google } from "googleapis";
 import nodemailer from "nodemailer";
 
 const sendMail = async (type, email, token = "", html) => {
-  const oAuth2Client = new google.auth.OAuth2(
-    process.env.OAUTH2_CLIENT_ID,
-    process.env.OAUTH2_CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground"
-  );
+  // const oAuth2Client = new google.auth.OAuth2(
+  //   process.env.OAUTH2_CLIENT_ID,
+  //   process.env.OAUTH2_CLIENT_SECRET,
+  //   "https://developers.google.com/oauthplayground"
+  // );
 
-  oAuth2Client.setCredentials({
-    refresh_token: process.env.OAUTH2_REFRESH_TOKEN,
-  });
+  // oAuth2Client.setCredentials({
+  //   refresh_token: process.env.OAUTH2_REFRESH_TOKEN,
+  // });
 
   const transporter = nodemailer.createTransport({
     service: "Gmail",
@@ -21,13 +21,13 @@ const sendMail = async (type, email, token = "", html) => {
       rejectUnauthorized: false,
     },
     auth: {
-      type: "OAuth2",
       user: "musayazlik1997@gmail.com",
-      clientId: process.env.OAUTH2_CLIENT_ID,
-      clientSecret: process.env.OAUTH2_CLIENT_SECRET,
-      refreshToken: process.env.OAUTH2_REFRESH_TOKEN,
-      accessToken: await oAuth2Client.getAccessToken().token,
-      expires: 1484314697598,
+      pass: "sagxxtyhlikexkos",
+      // clientId: process.env.OAUTH2_CLIENT_ID,
+      // clientSecret: process.env.OAUTH2_CLIENT_SECRET,
+      // refreshToken: process.env.OAUTH2_REFRESH_TOKEN,
+      // accessToken: await oAuth2Client.getAccessToken().token,
+      // expires: 1484314697598,
     },
   });
 
