@@ -16,9 +16,9 @@ const sendMail = async (type, email, token = "", html) => {
     service: "Gmail",
     host: "smtp.gmail.com",
     port: 465,
-    secure: false,
+    secure: true,
     tls: {
-      rejectUnauthorized: false,
+      rejectUnauthorized: true,
     },
     auth: {
       user: "musayazlik1997@gmail.com",
