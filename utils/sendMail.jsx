@@ -1,7 +1,5 @@
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
-import { body, validationResult } from "express-validator";
-import sanitizeHtml from "sanitize-html";
 
 const sendMail = async (type, email, token = "", html) => {
   const oAuth2Client = new google.auth.OAuth2(
