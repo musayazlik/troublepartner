@@ -1,12 +1,15 @@
-import AWS from "aws-sdk";
+const nodemailer = require("nodemailer");
 
 const sendMail = async (type, email, token = "", html) => {
-  const ses = new AWS.SES({
-    region: "eu-central-1",
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_TO,
+      pass: process.env.EMAIL_PASS,
+    },
   });
-  let params = {};
+
+  let mailOptions;
 
   switch (type) {
     case "verify":
@@ -22,39 +25,16 @@ const sendMail = async (type, email, token = "", html) => {
       };
       break;
     case "reset":
-      params = {
-        Destination: {
-          ToAddresses: [email], // Gönderilecek e-posta adresi
-        },
-        Message: {
-          Body: {
-            Html: {
-              Data: `
-              <h1>Reset your password</h1>
-              <p>Click the link below to reset your password</p>
-              <a href="${process.env.APP_URL}/auth/reset-password?token=${token}">Reset Password</a>
-            `,
-            },
-          },
-          Subject: {
-            Data: "Password Reset ", // E-posta konusu
-          },
-        },
-        Source: "troublepartner@yandex.com", // Gönderen e-posta adresi
+      mailOptions = {
+        from: "musayazlik97@gmail.com",
+        to: email,
+        subject: "Subject of the email",
+        text: "Content of the email",
       };
 
       break;
     case "welcome":
-      mailOptions = {
-        from: process.env.EMAIL_FROM,
-        to: email,
-        subject: "Welcome to the team",
-        html: `
-        <h1>Welcome to the team</h1>
-        <p>Click the link below to verify your email</p>
-        <a href="${process.env.APP_URL}/auth/verify-email?token=${token}">Verify Email</a>
-      `,
-      };
+      "";
       break;
     case "order":
       mailOptions = {
@@ -84,8 +64,13 @@ const sendMail = async (type, email, token = "", html) => {
       break;
   }
 
-  ses.sendEmail(params, function (err, data) {
-    if (err) console.log(err, err.stack);
+  // e-posta gönderme işlemi
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("E-posta gönderildi: " + info.response);
+    }
   });
 };
 
