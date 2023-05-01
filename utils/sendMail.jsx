@@ -1,34 +1,12 @@
-// import { google } from "googleapis";
-import nodemailer from "nodemailer";
+import AWS from "aws-sdk";
 
 const sendMail = async (type, email, token = "", html) => {
-  // const oAuth2Client = new google.auth.OAuth2(
-  //   process.env.OAUTH2_CLIENT_ID,
-  //   process.env.OAUTH2_CLIENT_SECRET,
-  //   "https://developers.google.com/oauthplayground"
-  // );
-
-  // oAuth2Client.setCredentials({
-  //   refresh_token: process.env.OAUTH2_REFRESH_TOKEN,
-  // });
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    port: 587,
-    auth: {
-      user: "musayazlik1997@gmail.com",
-      pass: "sagxxtyhlikexkos",
-      // clientId: process.env.OAUTH2_CLIENT_ID,
-      // clientSecret: process.env.OAUTH2_CLIENT_SECRET,
-      // refreshToken: process.env.OAUTH2_REFRESH_TOKEN,
-      // accessToken: await oAuth2Client.getAccessToken().token,
-      // expires: 1484314697598,
-    },
-    debug: true,
+  const ses = new AWS.SES({
+    region: "eu-central-1",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   });
-
-  let mailOptions = {};
+  let params = {};
 
   switch (type) {
     case "verify":
@@ -44,16 +22,27 @@ const sendMail = async (type, email, token = "", html) => {
       };
       break;
     case "reset":
-      mailOptions = {
-        from: process.env.EMAIL_FROM,
-        to: email,
-        subject: "Password Reset",
-        html: `
-        <h1>Reset your password</h1>
-        <p>Click the link below to reset your password</p>
-        <a href="${process.env.APP_URL}/auth/reset-password?token=${token}">Reset Password</a>
-      `,
+      params = {
+        Destination: {
+          ToAddresses: [email], // Gönderilecek e-posta adresi
+        },
+        Message: {
+          Body: {
+            Html: {
+              Data: `
+              <h1>Reset your password</h1>
+              <p>Click the link below to reset your password</p>
+              <a href="${process.env.APP_URL}/auth/reset-password?token=${token}">Reset Password</a>
+            `,
+            },
+          },
+          Subject: {
+            Data: "Password Reset ", // E-posta konusu
+          },
+        },
+        Source: "troublepartner@yandex.com", // Gönderen e-posta adresi
       };
+
       break;
     case "welcome":
       mailOptions = {
@@ -75,7 +64,6 @@ const sendMail = async (type, email, token = "", html) => {
         html: html,
       };
       break;
-
     case "contact":
       mailOptions = {
         from: process.env.EMAIL_FROM,
@@ -84,7 +72,6 @@ const sendMail = async (type, email, token = "", html) => {
         html: html,
       };
       break;
-
     case "payment":
       mailOptions = {
         from: process.env.EMAIL_FROM,
@@ -93,17 +80,12 @@ const sendMail = async (type, email, token = "", html) => {
         html: html,
       };
       break;
-
     default:
       break;
   }
 
-  await transporter.sendMail(mailOptions, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      return true;
-    }
+  ses.sendEmail(params, function (err, data) {
+    if (err) console.log(err, err.stack);
   });
 };
 
