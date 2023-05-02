@@ -1,6 +1,6 @@
 import Order from "@/models/orders";
-import Users from "@/models/users";
 import dbConnect from "@/utils/dbconnect";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     );
 
     await Users.findOneAndUpdate(
-      { _id: req.body.conversationId },
+      { _id: new ObjectId(req.body.user.id) },
       { memberType: "premium", premiumTime: Date.now() + 2592000000 },
       { new: true }
     );
