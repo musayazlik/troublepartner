@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../layout";
-import { IsAdminMiddleware } from "../middleware";
+import IsAdminMiddleware from "../middleware";
 import dbConnect from "@/utils/dbconnect";
 import Orders from "@/models/orders";
 

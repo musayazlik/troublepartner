@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./layout";
-import { IsAdminMiddleware } from "./middleware";
+import IsAdminMiddleware from "./middleware";
 
 import { getSession } from "next-auth/react";
 import { FiUsers } from "react-icons/fi";
