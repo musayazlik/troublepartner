@@ -3,8 +3,11 @@ import { BiMenu } from "react-icons/bi";
 import Image from "next/image";
 import Message from "./headerDropdown/message";
 import Notifications from "./headerDropdown/notifications";
+import { useSession } from "next-auth/react";
 
 const Header = ({ showSidebar, setShowSidebar }) => {
+  const { data: session } = useSession();
+
   return (
     <header className="w-full flex justify-between relative z-0 border-slate-300/60 bg-blue-600 px-4 text-slate-50 py-4 ">
       <div
@@ -19,7 +22,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
           <Notifications />
           <div className="avatar">
             <Image
-              src="/avatar.jpg"
+              src={session?.user?.image}
               alt="Avatar"
               className="rounded-full"
               width={32}
@@ -27,8 +30,10 @@ const Header = ({ showSidebar, setShowSidebar }) => {
             />
           </div>
           <div className="name ml-2">
-            <div className="text-sm font-medium">Musa Yazlık</div>
-            <div className="text-xs font-normal">Admin</div>
+            <div className="text-sm font-medium">
+              {session?.user?.name + " " + session?.user?.surname}
+            </div>
+            <div className="text-xs font-normal ">{session?.user?.role}</div>
           </div>
         </div>
       </div>

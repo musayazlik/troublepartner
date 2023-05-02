@@ -40,10 +40,10 @@ const sendMail = async (type, email, token = "", html) => {
       };
       break;
     case "contact":
-      mailOptions = {
-        from: process.env.EMAIL_FROM,
-        to: email,
-        subject: "Contact",
+      messageData = {
+        to: "troublepartner@yandex.com",
+        from: "Trouble Partner <troublepartner@yandex.com>",
+        subject: "Contact Form",
         html: html,
       };
       break;
@@ -61,7 +61,9 @@ const sendMail = async (type, email, token = "", html) => {
 
   sgMail
     .send(messageData)
-    .then(() => {})
+    .then(() => {
+      console.log("Email sent");
+    })
     .catch((error) => {
       console.error(error);
     });

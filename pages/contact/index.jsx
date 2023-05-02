@@ -13,8 +13,9 @@ const Contact = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const token = recaptchaRef.current.getValue();
+    const token = recaptchaRef?.current?.getValue();
     const name = event.target.name.value;
+    const subject = event.target.subject.value;
     const email = event.target.email.value;
     const message = event.target.message.value;
 
@@ -29,7 +30,7 @@ const Contact = () => {
       return;
     }
 
-    if (!name || !email || !message) {
+    if (!name || !email || !message || !subject) {
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -42,6 +43,7 @@ const Contact = () => {
     const data = {
       name,
       email,
+      subject,
       message,
       token,
     };
@@ -64,6 +66,7 @@ const Contact = () => {
 
         event.target.name.value = "";
         event.target.email.value = "";
+        event.target.subject.value = "";
         event.target.message.value = "";
         recaptchaRef.current.reset();
         setLoading(false);
@@ -122,6 +125,23 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
+                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+              </div>
+
+              <div className="p-2 w-full ">
+                <div className="relative">
+                  <label
+                    htmlFor="subject"
+                    className="leading-7 text-sm text-gray-600"
+                  >
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>

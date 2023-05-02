@@ -6,6 +6,7 @@ import { BiUser, BiBasket, BiLogOut } from "react-icons/bi";
 import { useAppContext } from "@/context";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import { MdDashboard } from "react-icons/md";
 
 const AvatarDropDown = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -52,7 +53,19 @@ const AvatarDropDown = () => {
                 </span>
               </h3>
             </div>
-            <li className="mt-2">
+            {session?.user?.role === "admin" && (
+              <li className="">
+                <Link
+                  href="/dashboard"
+                  className="flex gap-2 px-4 py-2 hover:bg-gray-300 duration-300 "
+                >
+                  <MdDashboard className="w-6 h-6 " />
+                  Dashboard
+                </Link>
+              </li>
+            )}
+
+            <li className="">
               <Link
                 href="/profile"
                 className="flex gap-2 px-4 py-2 hover:bg-gray-300 duration-300 "
