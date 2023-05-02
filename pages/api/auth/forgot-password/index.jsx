@@ -29,15 +29,9 @@ export default async function handler(req, res) {
       { new: true }
     );
 
-    const statusMail = await sendMail("reset", email, token);
+    await sendMail("reset", email, token);
 
-    if (statusMail.status !== 200) {
-      return res
-        .status(statusMail.status)
-        .json({ message: statusMail.message });
-    } else {
-      return res.status(200).json({ message: "Email sent successfully" });
-    }
+    return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

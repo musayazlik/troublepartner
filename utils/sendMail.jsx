@@ -61,17 +61,9 @@ const sendMail = async (type, email, token = "", html) => {
 
   sgMail
     .send(messageData)
-    .then(() => {
-      return {
-        status: 200,
-        message: "Email sent successfully",
-      };
-    })
+    .then(() => {})
     .catch((error) => {
-      return {
-        status: error.response.statusCode,
-        message: error.message,
-      };
+      console.error(error);
     });
 };
 
