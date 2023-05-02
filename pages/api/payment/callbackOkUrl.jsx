@@ -18,13 +18,11 @@ export default async function handler(req, res) {
       { new: true }
     );
 
-    const userData = await Users.findOneAndUpdate(
-      { _id: orderData.user.id },
-      { memberType: "premium", premiumTime: Date.now() + 2592000000 },
-      { new: true }
-    );
-
-    console.log("userData", userData);
+    // const userData = await Users.findOneAndUpdate(
+    //   { _id: orderData.user.id },
+    //   { memberType: "premium", premiumTime: Date.now() + 2592000000 },
+    //   { new: true }
+    // );
 
     res.writeHead(302, {
       Location: "/payment/success",
