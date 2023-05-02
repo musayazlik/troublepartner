@@ -69,6 +69,7 @@ export default async function handler(req, res) {
           orderPrice: 1,
           currency: "TRY",
           orderId,
+          conversationId,
           locale: "locale",
           buyerName: name,
           buyerSurName: surname,
