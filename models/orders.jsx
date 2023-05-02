@@ -5,69 +5,78 @@ const orderSchema = mongoose.Schema({
     id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
     },
     name: {
       type: String,
-      required: true,
+      default: "",
     },
     surname: {
       type: String,
-      required: true,
+      default: "",
     },
     email: {
       type: String,
-      required: true,
+      default: "",
     },
     phone: {
       type: String,
-      required: true,
+      default: "",
     },
     country: {
       type: String,
-      required: true,
+      default: "",
     },
     city: {
       type: String,
-      required: true,
+      default: "",
     },
     address: {
       type: String,
-      required: true,
+      default: "",
     },
   },
 
   orderId: {
     type: String,
-    required: true,
+    default: "",
+  },
+  valletOrderId: {
+    type: String,
+    default: "",
+  },
+
+  valletOrderNumber: {
+    type: String,
+    default: "",
   },
 
   amount: {
     type: Number,
-    required: true,
+    default: "",
   },
 
   paymentStatus: {
     type: String,
-    required: true,
     default: "pending",
   },
 
   paymentType: {
     type: String,
-    required: true,
     default: "vallet",
+  },
+
+  paymentTime: {
+    type: Date,
+    default: null,
   },
 
   createdAt: {
     type: Date,
-    required: true,
     default: Date.now,
   },
 
   updatedAt: {
     type: Date,
-    required: true,
     default: Date.now,
   },
 });

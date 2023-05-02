@@ -8,21 +8,24 @@ export default async function handler(req, res) {
   console.log(req);
 
   try {
-    if (
-      req.body.status === "success" ||
-      req.body.paymentStatus === "paymentOk"
-    ) {
-      // const orderData = await Order.findOneAndUpdate(
-      //   { orderId: req.body.orderId },
-      //   { paymentStatus: "paymentOk", paymentType: req.body.paymentType },
-      //   { new: true }
-      // );
+    if (req.body.status === "success") {
+      const orderData = await Order.findOneAndUpdate(
+        { orderId: req.body.orderId },
+        {
+          paymentStatus: "paymentOk",
+          paymentType: req.body.paymentType,
+          valletOrderId: req.body.valletOrderId,
+          valletOrderNumber: req.body.valletOrderNumber,
+          paymentTime: req.body.paymentTime,
+        },
+        { new: true }
+      );
 
-      // await User.findOneAndUpdate(
-      //   { _id: orderData.user.id },
-      //   { memberType: "premium", premiumTime: Date.now() + 2592000000 },
-      //   { new: true }
-      // );
+      await User.findOneAndUpdate(
+        { _id: orderData.user.id },
+        { memberType: "premium", premiumTime: Date.now() + 2592000000 },
+        { new: true }
+      );
 
       res.writeHead(302, {
         Location: "/payment/success",
