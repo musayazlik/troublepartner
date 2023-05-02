@@ -2,7 +2,7 @@ import { getSession } from "next-auth/react";
 import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
 
-export default async function IsAdminMiddleware(req, res) {
+const IsAdminMiddleware = async (req, res) => {
   const session = await getSession({ req, res });
   if (!session || session.user.role !== "admin") {
     return false;
@@ -15,4 +15,6 @@ export default async function IsAdminMiddleware(req, res) {
   }
 
   return true;
-}
+};
+
+export default IsAdminMiddleware;
