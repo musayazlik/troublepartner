@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./layout";
-import { isAdminMiddleware } from "./middleware";
+import { IsAdminMiddleware } from "./middleware";
 
 import { getSession } from "next-auth/react";
 import { FiUsers } from "react-icons/fi";
@@ -66,7 +66,7 @@ const Dashboard = ({
 export default Dashboard;
 
 export async function getServerSideProps(context) {
-  const isLogAdmin = await isAdminMiddleware(context.req, context.res);
+  const isLogAdmin = await IsAdminMiddleware(context.req, context.res);
   if (!isLogAdmin) {
     return {
       redirect: {

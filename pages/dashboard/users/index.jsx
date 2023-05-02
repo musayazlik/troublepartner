@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../layout";
-import { isAdminMiddleware } from "../middleware";
+import { IsAdminMiddleware } from "../middleware";
 import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
 
@@ -69,7 +69,7 @@ const UsersPage = ({ users }) => {
 export default UsersPage;
 
 export async function getServerSideProps(context) {
-  const isLogAdmin = await isAdminMiddleware(context.req, context.res);
+  const isLogAdmin = await IsAdminMiddleware(context.req, context.res);
 
   if (!isLogAdmin) {
     return {
