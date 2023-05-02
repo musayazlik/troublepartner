@@ -1,7 +1,7 @@
 import { body, validationResult } from "express-validator";
 import sanitizeHtml from "sanitize-html";
 import sendMail from "@/utils/sendMail";
-import dbConnect from "@/utils/dbConnect";
+import dbConnect from "@/utils/dbconnect";
 import Contact from "@/models/Contact";
 
 export default async function handler(req, res) {
