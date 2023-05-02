@@ -1,16 +1,10 @@
-const nodemailer = require("nodemailer");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(
+  "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"
+);
 
 const sendMail = async (type, email, token = "", html) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_TO,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  let mailOptions;
-
+  let messageData = {};
   switch (type) {
     case "verify":
       mailOptions = {
@@ -25,11 +19,14 @@ const sendMail = async (type, email, token = "", html) => {
       };
       break;
     case "reset":
-      mailOptions = {
-        from: "musayazlik97@gmail.com",
+      messageData = {
         to: email,
-        subject: "Subject of the email",
-        text: "Content of the email",
+        from: "Trouble Partner <troublepartner@yandex.com>",
+        subject: "Reset Password",
+        html: `
+        <h1>Reset Password</h1>
+        <p>Click the link below to reset your password</p>
+        <a href="${process.env.APP_URL}/auth/reset-password?token=${token}">Reset Password</a>`,
       };
 
       break;
@@ -64,14 +61,14 @@ const sendMail = async (type, email, token = "", html) => {
       break;
   }
 
-  // e-posta gönderme işlemi
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("E-posta gönderildi: " + info.response);
-    }
-  });
+  sgMail
+    .send(messageData)
+    .then(() => {
+      console.log("E-posta başarıyla gönderildi");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
 export default sendMail;
