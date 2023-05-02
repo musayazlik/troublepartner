@@ -40,7 +40,7 @@ const options = {
               image: user.image,
               role: user.role,
               memberType: user.memberType,
-              premiumTime: null,
+              premiumTime: "",
               securityStatus: user.securityStatus,
             };
           }
@@ -63,7 +63,7 @@ const options = {
           image: profile.picture,
           role: "user",
           memberType: "free",
-          premiumTime: null,
+          premiumTime: "",
           securityStatus: false,
         };
       },

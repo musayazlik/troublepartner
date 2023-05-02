@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
   },
   premiumTime: {
     type: Date,
-    default: null,
+    default: "",
   },
   jobTitle: {
     type: String,
