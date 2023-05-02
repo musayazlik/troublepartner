@@ -26,10 +26,10 @@ export default async function handler(req, res) {
     //   { new: true }
     // );
 
-    res.writeHead(302, {
-      Location: "/payment/success",
-    });
-    res.end();
+    // res.writeHead(302, {
+    //   Location: "/payment/success",
+    // });
+    // res.end();
   } catch (error) {
     res.status(400).json({ message: error.message, status: "error" });
   }
