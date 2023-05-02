@@ -7,7 +7,7 @@ const Message = () => {
 
   return (
     <>
-      <div className="message relative mr-4">
+      <div className="message relative mr-4 z-50">
         <div
           className="relative cursor-pointer"
           onClick={() => setShowMessage(!showMessage)}
@@ -20,7 +20,7 @@ const Message = () => {
         </div>
 
         <div
-          className={`absolute  border-2 duration-300 border-blue-800 rounded-lg bg-slate-50 w-[280px] max-h-60 overflow-auto h-min-[200px] shadow-lg shadow-blue-800/20 z-20 ${
+          className={`absolute  border-2 duration-300 border-blue-800 rounded-lg bg-slate-50 w-[280px] max-h-60 overflow-auto h-min-[200px] shadow-lg shadow-blue-800/20 z-50 ${
             showMessage === true
               ? "right-0 top-8 opacity-100 visible"
               : "right-0 top-16 opacity-0 invisible"
@@ -33,75 +33,29 @@ const Message = () => {
             </div>
 
             <div className="card-body px-4 py-4">
+              {}
               <div className="message flex gap-2 mb-2 border-b-2 last:border-none pb-2">
-                <div className="avatar flex-shrink-0 pt-2">
-                  <Image
-                    src="/avatar.jpg"
-                    alt="Avatar"
-                    className="rounded-full w-8 h-8"
-                    width={32}
-                    height={32}
-                  />
-                </div>
                 <div className="message-content w-auto">
-                  <div className="name text-md font-bold">Musa Yazlık</div>
-                  <div className="text-sm font-medium leading-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quisquam, voluptatum.
+                  <div className="name text-md font-bold mb-2">
+                    <span className="font-extrabold text-md ">Gönderen:</span>{" "}
+                    Musa Yazlık
                   </div>
-                </div>
-              </div>
-              <div className="message flex gap-2 mb-2 border-b-2 last:border-none pb-2">
-                <div className="avatar flex-shrink-0 pt-2">
-                  <Image
-                    src="/avatar.jpg"
-                    alt="Avatar"
-                    className="rounded-full w-8 h-8"
-                    width={32}
-                    height={32}
-                  />
-                </div>
-                <div className="message-content w-auto">
-                  <div className="name text-md font-bold">Musa Yazlık</div>
-                  <div className="text-sm font-medium leading-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quisquam, voluptatum.
+                  <div className="name  leading-4 font-medium mb-2">
+                    <span className="font-extrabold text-md border-b border-slate-500">
+                      Konu:
+                    </span>
+                    <p className="text-sm font-medium leading-4 ">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
                   </div>
-                </div>
-              </div>
-              <div className="message flex gap-2 mb-2 border-b-2 last:border-none pb-2">
-                <div className="avatar flex-shrink-0 pt-2">
-                  <Image
-                    src="/avatar.jpg"
-                    alt="Avatar"
-                    className="rounded-full w-8 h-8"
-                    width={32}
-                    height={32}
-                  />
-                </div>
-                <div className="message-content w-auto">
-                  <div className="name text-md font-bold">Musa Yazlık</div>
-                  <div className="text-sm font-medium leading-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quisquam, voluptatum.
-                  </div>
-                </div>
-              </div>
-              <div className="message flex gap-2 mb-2 border-b-2 last:border-none pb-2">
-                <div className="avatar flex-shrink-0 pt-2">
-                  <Image
-                    src="/avatar.jpg"
-                    alt="Avatar"
-                    className="rounded-full w-8 h-8"
-                    width={32}
-                    height={32}
-                  />
-                </div>
-                <div className="message-content w-auto">
-                  <div className="name text-md font-bold">Musa Yazlık</div>
-                  <div className="text-sm font-medium leading-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quisquam, voluptatum.
+                  <div className="">
+                    <span className="font-extrabold text-md border-b border-slate-500 ">
+                      Mesaj:{" "}
+                    </span>
+                    <p className="text-sm font-medium leading-4">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quisquam, voluptatum.
+                    </p>
                   </div>
                 </div>
               </div>

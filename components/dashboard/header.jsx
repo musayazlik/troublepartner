@@ -9,7 +9,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
   const { data: session } = useSession();
 
   return (
-    <header className="w-full flex justify-between relative z-0 border-slate-300/60 bg-blue-600 px-4 text-slate-50 py-4 ">
+    <header className="w-full flex justify-between relative  border-slate-300/60 bg-blue-600 px-4 text-slate-50 py-4 ">
       <div
         className="menuIcon md:opacity-0 md:invisible "
         onClick={() => setShowSidebar(!showSidebar)}

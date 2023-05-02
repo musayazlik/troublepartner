@@ -9,6 +9,7 @@ import {
   BiMessageSquareDots,
 } from "react-icons/bi";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
@@ -124,6 +125,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           <div className="px-4">
             <button
               type="button"
+              onClick={() => signOut()}
               className="w-full py-2.5 px-2 bg-neutral-50 text-neutral-700 duration-300 rounded-md border border-neutral-500/20 hover:bg-red-500 hover:text-white text-start flex gap-3 items-center mt-auto font-bold"
             >
               <BiLogOut className="text-2xl" />
