@@ -18,17 +18,19 @@ export default async function handler(req, res) {
       { new: true }
     );
 
-    const userData = await Users.findOneAndUpdate(
-      { _id: orderData.user.id },
-      { memberType: "premium", premiumTime: Date.now() + 2592000000 },
-      { new: true }
-    );
+    res.status(200).json({ message: "success", orderData });
+
+    // const userData = await Users.findOneAndUpdate(
+    //   { _id: orderData.user.id },
+    //   { memberType: "premium", premiumTime: Date.now() + 2592000000 },
+    //   { new: true }
+    // );
 
     res.writeHead(302, {
       Location: "/payment/success",
     });
     res.end();
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: error.message, status: "error" });
   }
 }
