@@ -1,5 +1,5 @@
 import Order from "@/models/orders";
-import User from "@/models/users";
+import Users from "@/models/users";
 import dbConnect from "@/utils/dbconnect";
 
 export default async function handler(req, res) {
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       { new: true }
     );
 
-    await User.findOneAndUpdate(
+    await Users.findOneAndUpdate(
       { _id: orderData.user.id },
       { memberType: "premium", premiumTime: Date.now() + 2592000000 },
       { new: true }
