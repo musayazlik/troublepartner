@@ -15,11 +15,7 @@ export default async function handler(req, res) {
 
   try {
     const token = uuid;
-
-    console.log(token);
-
     const isEmail = User.findOne({ email: email });
-
     if (!isEmail) {
       return res.status(404).json({ message: "Email not found" });
     }
@@ -33,9 +29,15 @@ export default async function handler(req, res) {
       { new: true }
     );
 
-    await sendMail("reset", email, token);
+    const statusMail = await sendMail("reset", email, token);
 
-    return res.status(200).json({ message: "Email sent successfully" });
+    if (statusMail.status !== 200) {
+      return res
+        .status(statusMail.status)
+        .json({ message: statusMail.message });
+    } else {
+      return res.status(200).json({ message: "Email sent successfully" });
+    }
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

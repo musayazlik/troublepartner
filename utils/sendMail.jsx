@@ -1,7 +1,5 @@
 const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendMail = async (type, email, token = "", html) => {
   let messageData = {};
@@ -64,10 +62,16 @@ const sendMail = async (type, email, token = "", html) => {
   sgMail
     .send(messageData)
     .then(() => {
-      console.log("E-posta başarıyla gönderildi");
+      return {
+        status: 200,
+        message: "Email sent successfully",
+      };
     })
     .catch((error) => {
-      console.error(error);
+      return {
+        status: error.response.statusCode,
+        message: error.message,
+      };
     });
 };
 

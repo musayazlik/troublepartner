@@ -1,14 +1,11 @@
 import React from "react";
-import Image from "next/image";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
-
     axios({
       method: "POST",
       url: "/api/auth/forgot-password",
@@ -17,13 +14,23 @@ const ForgotPassword = () => {
       },
     })
       .then((res) => {
-        Swal.fire({
-          icon: "success",
-          title: "Email sent",
-          text: "Check your email to reset your password",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Email sent",
+            text: "Check your email to reset your password",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong. Try again in a few minutes.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
 
         e.target.email.value = "";
       })
