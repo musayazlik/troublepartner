@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     );
 
     await Users.findOneAndUpdate(
-      { _id: new ObjectId(req.body.user.id) },
+      { _id: new ObjectId(req.body.conversationId) },
       { memberType: "premium", premiumTime: Date.now() + 2592000000 },
       { new: true }
     );
