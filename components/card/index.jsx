@@ -2,7 +2,7 @@ import React from "react";
 import { BiTimeFive, BiComment, BiRightArrow, BiUser } from "react-icons/bi";
 import Image from "next/image";
 import Link from "next/link";
-// import MemberType from "@components/memberType";
+import MemberType from "@components/memberType";
 
 const Card = ({
   id,
@@ -15,7 +15,7 @@ const Card = ({
   time = "",
   comment = "",
   slug,
-  // memberType,
+  memberType,
 }) => {
   return (
     <>
@@ -40,7 +40,7 @@ const Card = ({
                 )}
 
                 <div className="absolute top-0">
-                  {/* <MemberType type={memberType} /> */}
+                  <MemberType type={memberType} />
                 </div>
               </div>
               <span className="w-full h-1 sm:w-1 sm:h-full bg-zinc-200/50"></span>

@@ -9,7 +9,7 @@ import Head from "next/head";
 import Link from "next/link";
 import CardDropdown from "@/components/cardDropdown";
 import { toast } from "react-toastify";
-// import MemberType from "@/components/memberType";
+import MemberType from "@/components/memberType";
 import { Adsense } from "@ctrl/react-adsense";
 
 const PostDetail = ({ post, comments }) => {
@@ -255,7 +255,7 @@ const PostDetail = ({ post, comments }) => {
                         {post.privacyStatus && (
                           <span className=" w-10 h-10 sm:w-14 sm:h-14  left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm"></span>
                         )}
-                        {/* <MemberType type={post.user.memberType} /> */}
+                        <MemberType type={post.user.memberType} />
                       </div>
                       <div className="userName">
                         <h2 className="text-sm sm:text-base md:mt-2 font-bold break-words text-center max-w-[120px] text-zinc-800">
@@ -410,7 +410,9 @@ const PostDetail = ({ post, comments }) => {
                               <span className="w-10 h-10 sm:w-12 sm:h-12  left-0 right-0 m-auto top-0 bottom-0 bg-zinc-200/50 absolute rounded-full backdrop-blur-sm "></span>
                             )}
 
-                          {/* <MemberType type={comment.user.memberType} /> */}
+                          <div className="absolute top-0">
+                            <MemberType type={comment.user.memberType} />
+                          </div>
                         </div>
                         <div className="userName ">
                           <h3 className="text-sm font-bold text-center text-ellipsis overflow-hidden  ">

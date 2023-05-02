@@ -89,7 +89,7 @@ export default function Home({ posts }) {
                     title={post.title}
                     text={post.text}
                     slug={post.slug}
-                    // memberType={post.user.memberType}
+                    memberType={post.user.memberType}
                     privacyStatus={post.privacyStatus}
                     time={formatDate(post.createdAt)}
                     comment={post.numComments}
