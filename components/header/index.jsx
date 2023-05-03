@@ -24,21 +24,35 @@ const Header = () => {
     <>
       {/* <div className="h-2 bg-blue-500"></div> */}
       <div className="headerTop bg-slate-200 hidden sm:block">
-        <div className="container mx-auto flex justify-between py-1 px-4">
+        <div className="container mx-auto flex items-center justify-between py-1 px-4">
           <div className="menuList ">
-            <ul className="flex gap-3 font-bold text-xs tracking-tight py-1 text-slate-700 ">
+            <ul className="flex gap-3 items-center font-bold text-xs tracking-tight py-1 text-slate-700 ">
               <li className="hover:text-rose-500 duration-200">
-                <Link href="/">Terms And Conditions</Link>
+                <Link href="/terms-and-conditions">Terms And Conditions</Link>
               </li>
               <li className="hover:text-rose-500 duration-200">
-                <Link href="/about">Sponsorship</Link>
+                <Link href="/contact">Sponsorship</Link>
               </li>
               <li className="hover:text-rose-500 duration-200">
-                <Link href="/about">Feedback</Link>
+                <Link href="/contact">Feedback</Link>
               </li>
-              <li className="hover:text-rose-500 duration-200">
-                <Link href="/about">F.A.Q.</Link>
-              </li>
+              <Link
+                href="https://buymeacoffee.com/musayazlik"
+                target="_blank"
+                className="bg-yellow-200 duration-200 px-2 py-1 rounded-md border-2 border-yellow-300 shadow shadow-yellow-400/50 flex gap-2 items-center text-yellow-600"
+              >
+                <Image
+                  src="/buymeacoffee.png"
+                  alt={"buymeacoffee"}
+                  width="16"
+                  height="16"
+                  className="border-2 border-yellow-200 "
+                />
+                <p>Buy Me a Coffee</p>
+              </Link>
+              {/* <li className="hover:text-rose-500 duration-200">
+                <Link href="/contac">F.A.Q.</Link>
+              </li> */}
             </ul>
           </div>
           <div className="socialMedia">
@@ -198,9 +212,9 @@ const Header = () => {
                   </Link>
 
                   <Link
-                    href={"/feedback"}
+                    href={"/contact"}
                     className={`mr-5 w-full md:w-auto  px-2  py-1.5 md:py-0  sm:hover:text-blue-500 duration-300 relative ${
-                      pathname === "/feedback"
+                      pathname === "/contact"
                         ? "text-white md:text-blue-500"
                         : " hover:text-blue-500"
                     } `}
@@ -210,7 +224,7 @@ const Header = () => {
                       className="inline-block mr-2 mb-0.5"
                     />
                     Feedback
-                    {pathname === "/feedback" && (
+                    {pathname === "/contact" && (
                       <span className="absolute w-full h-full items-center -z-10 md:h-1 bg-blue-500 top-0 md:top-auto  md:-bottom-1 left-0 right-0 mx-auto md:rounded-full rounded-sm transition-all duration-300  ">
                         <span className="absolute inline-block left-0 md:right-0 mx-auto h-full md:h-1.5 w-1 md:w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                       </span>
@@ -218,9 +232,9 @@ const Header = () => {
                   </Link>
 
                   <Link
-                    href={"/sponsorship"}
+                    href={"/contact"}
                     className={`mr-5 w-full md:w-auto  px-2  py-1.5 md:py-0  sm:hover:text-blue-500 duration-300 relative ${
-                      pathname === "/sponsorship"
+                      pathname === "/contact"
                         ? "text-white md:text-blue-500"
                         : " hover:text-blue-500"
                     } `}
@@ -236,7 +250,7 @@ const Header = () => {
                       </span>
                     )}
                   </Link>
-                  <Link
+                  {/* <Link
                     href={"/f.a.q."}
                     className={`mr-5 w-full md:w-auto  px-2  py-1.5 md:py-0  sm:hover:text-blue-500 duration-300 relative ${
                       pathname === "/f.a.q."
@@ -254,7 +268,7 @@ const Header = () => {
                         <span className="absolute inline-block left-0 md:right-0 mx-auto h-full md:h-1.5 w-1 md:w-1.5 bg-blue-500 rounded-full animate-ping transition-none duration-500 "></span>
                       </span>
                     )}
-                  </Link>
+                  </Link> */}
                 </div>
               </nav>
               {showMenu ? (

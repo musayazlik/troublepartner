@@ -202,10 +202,10 @@ const Contact = () => {
             </form>
             <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
               <Link
-                href={"mailto:info@troublepartner.com"}
+                href={"mailto:troublepartner@yandex.com"}
                 className="text-blue-500"
               >
-                info@troublepartner.com
+                troublepartner@yandex.com
               </Link>
               <p className="leading-normal my-5">Eskisehir/Turkey</p>
               <span className="inline-flex">

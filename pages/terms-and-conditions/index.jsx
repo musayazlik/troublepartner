@@ -140,10 +140,10 @@ const TermsAndConditions = () => {
           </Link>{" "}
           on our website or send an email to [
           <a
-            href="mailto:info@troublepartner.com"
+            href="mailto:troublepartner@yandex.com"
             className="text-blue-600 font-extrabold"
           >
-            info@troublepartner.com
+            troublepartner@yandex.com
           </a>
           ]. We will do our best to respond to your inquiry as soon as possible.
         </p>
