@@ -16,7 +16,7 @@ export default function Document() {
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900;1000&display=swap"
         rel="stylesheet"
       />
-      <body className="bg-zinc-50">
+      <body className="bg-zinc-50 overflow-x-hidden">
         <Main />
         <NextScript />
 

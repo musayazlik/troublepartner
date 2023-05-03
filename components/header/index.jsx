@@ -250,6 +250,21 @@ const Header = () => {
                       </span>
                     )}
                   </Link>
+
+                  <Link
+                    href="https://buymeacoffee.com/musayazlik"
+                    target="_blank"
+                    className="bg-yellow-200 duration-200 px-2 py-2 rounded-md border-2 border-yellow-300 shadow shadow-yellow-400/50 flex gap-2 items-center text-yellow-600 mt-4 sm:hidden"
+                  >
+                    <Image
+                      src="/buymeacoffee.png"
+                      alt={"buymeacoffee"}
+                      width="24"
+                      height="24"
+                      className="border-2 border-yellow-200 "
+                    />
+                    <p>Buy Me a Coffee</p>
+                  </Link>
                   {/* <Link
                     href={"/f.a.q."}
                     className={`mr-5 w-full md:w-auto  px-2  py-1.5 md:py-0  sm:hover:text-blue-500 duration-300 relative ${
@@ -288,20 +303,20 @@ const Header = () => {
                     {/* Desktop Auth Button */}
                     <Link
                       href="/auth/sign-in"
-                      className="  text-zinc-700 text-base hidden md:flex md-flex font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-zinc-600 hover:bg-zinc-200  "
+                      className="  text-zinc-700 text-base hidden lg:flex md-flex font-bold py-1.5 md:py-2 px-2 md:px-4 rounded-sm   duration-300 hover:text-zinc-600 hover:bg-zinc-200  "
                     >
                       <span className="">Sign In</span>
                     </Link>
                     <Link
                       href="/auth/sign-up"
-                      className="bg-zinc-300 text-base hidden md:flex md-flex text-zinc-700 font-bold py-1.5 md:py-2 px-2 md:px-4  border-zinc-900 duration-300 hover:text-zinc-50 hover:bg-rose-500 border-2  hover:shadow-lg rounded-sm hover:shadow-rose-600/50 hover:border-rose-700"
+                      className="bg-zinc-300 text-base hidden lg:flex md-flex text-zinc-700 font-bold py-1.5 md:py-2 px-2 md:px-4  border-zinc-900 duration-300 hover:text-zinc-50 hover:bg-rose-500 border-2  hover:shadow-lg rounded-sm hover:shadow-rose-600/50 hover:border-rose-700"
                     >
                       <span className="">Sign Up</span>
                     </Link>
                     {/* Mobile Auth Button*/}
                     <Link
                       href="/auth/sign-in"
-                      className=" w-9 h-9 md:hidden flex justify-center items-center  text-zinc-700 font-bold rounded-sm   duration-300  bg-zinc-200 hover:bg-zinc-400 hover:text-zinc-50 border-2 border-zinc-900  "
+                      className=" w-9 h-9 lg:hidden flex justify-center items-center  text-zinc-700 font-bold rounded-sm   duration-300  bg-zinc-200 hover:bg-zinc-400 hover:text-zinc-50 border-2 border-zinc-900  "
                     >
                       <HiOutlineUser className="text-xl  " />
                     </Link>
