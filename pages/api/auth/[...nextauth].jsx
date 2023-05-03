@@ -11,7 +11,6 @@ const options = {
   adapter: MongoDBAdapter(clientPromise),
   session: {
     strategy: "jwt",
-    maxAge: 3000,
   },
   providers: [
     CredentialsProvider({
@@ -46,7 +45,7 @@ const options = {
           }
         }
 
-        return null;
+        // return null;
       },
     }),
 
@@ -71,36 +70,40 @@ const options = {
   ],
 
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session }) {
       const data = await User.findOne({ email: session.user.email });
-      if (user) {
-        session.user = {
-          id: user.id,
-          email: user.email,
-          name: data.name,
-          surname: data.surname,
-          image: user.image,
-          role: data.role,
-          memberType: data.memberType,
-          premiumTime: data.premiumTime,
-        };
-      }
 
-      if (token) {
-        session.user = {
-          id: token.sub,
-          email: token.email,
-          image: token.picture,
-          name: data.name,
-          surname: data.surname,
-          role: data.role,
-          memberType: data.memberType,
-          premiumTime: data.premiumTime,
-        };
-      }
+      session.user = {
+        id: data._id,
+        email: data.email,
+        name: data.name,
+        surname: data.surname,
+        image: data.image,
+        role: data.role,
+        memberType: data.memberType,
+        premiumTime: data.premiumTime,
+      };
 
       return session;
     },
+    async jwt({ token, account, user }) {
+      if (account?.accessToken) {
+        token.accessToken = account.accessToken;
+      }
+
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+        token.memberType = user.memberType;
+      }
+
+      return token;
+    },
+  },
+  pages: {
+    signIn: "/auth/sign-in",
+    error: "/",
+    signOut: "/",
   },
 };
 

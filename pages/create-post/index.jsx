@@ -80,8 +80,6 @@ const CreatePost = () => {
     setNumberOfChars({ ...numberOfChars, text: text.length });
   };
 
-  console.log(session.user.memberType);
-
   return (
     <Layout>
       <div className=" py-20">

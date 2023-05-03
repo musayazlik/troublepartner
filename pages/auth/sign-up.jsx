@@ -44,7 +44,11 @@ const SignUp = () => {
         push("/auth/sign-in");
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       });
   };
   return (

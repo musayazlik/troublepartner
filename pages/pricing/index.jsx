@@ -1,28 +1,20 @@
 import React from "react";
 import Layout from "../layout";
-import PaymentModel from "@/components/paymentModel";
-import { getSession } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import {
-  Button,
-  Modal,
-  Label,
-  TextInput,
-  Checkbox,
-  onClick,
-  onClose,
-} from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 
 import { MdPayment } from "react-icons/md";
 import axios from "axios";
-const sha1 = require("sha1");
+import Swal from "sweetalert2";
 
 const Pricing = () => {
   const [status, setStatus] = React.useState("monthly");
   const { data: session } = useSession();
   const { push } = useRouter();
   const [show, setShow] = React.useState(false);
+  const [amount, setAmount] = React.useState(4.99);
+  const [coupon, setCoupon] = React.useState(null);
 
   const handlePayment = (e) => {
     e.preventDefault();
@@ -34,6 +26,8 @@ const Pricing = () => {
       city: e.currentTarget.city.value,
       country: e.currentTarget.country.value,
       user: session?.user,
+      coupon: coupon,
+      amount,
     };
 
     axios({
@@ -46,11 +40,43 @@ const Pricing = () => {
           window.location.href =
             res.data.data.payment_page_url_international_card;
         } else {
-          console.log(res.data.data.errorMessage);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
         }
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      });
+  };
+
+  const couponCheck = (e) => {
+    e.preventDefault();
+
+    axios({
+      method: "get",
+      url: `/api/coupons/couponCheck?id=${coupon}&status=${status}`,
+    })
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Coupon valid!",
+          text: "You can use this coupon.",
+        });
+        setAmount(res.data.data);
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Coupon is not valid!",
+        });
       });
   };
 
@@ -70,6 +96,7 @@ const Pricing = () => {
               <button
                 onClick={() => {
                   setStatus("monthly");
+                  setAmount(4.99);
                 }}
                 className={`py-1 rounded px-4  border-2 border-zinc-400 duration-300 ${
                   status === "monthly"
@@ -82,6 +109,7 @@ const Pricing = () => {
               <button
                 onClick={() => {
                   setStatus("annually");
+                  setAmount(49.99);
                 }}
                 className={`py-1 rounded px-4 border-2 border-zinc-400 duration-300  ${
                   status === "annually"
@@ -312,6 +340,37 @@ const Pricing = () => {
                   {status === "monthly" ? "/mo" : "/yr"}
                 </span>
               </p>
+
+              <div className="mb-2 flex flex-col gap-2 ">
+                <label
+                  htmlFor="coupon"
+                  className="text-sm font-bold text-gray-500"
+                >
+                  {" "}
+                  Coupon Code
+                </label>
+
+                <div className="flex gap-2">
+                  <TextInput
+                    id="coupon"
+                    type="text"
+                    name="coupon"
+                    onChange={(e) => {
+                      setCoupon(e.target.value);
+                    }}
+                  />
+
+                  <Button
+                    onClick={(e) => {
+                      couponCheck(e);
+                    }}
+                    className="bg-yellow-600 hover:bg-yellow-400 duration-200 text-sm "
+                  >
+                    Apply
+                  </Button>
+                </div>
+              </div>
+
               <form
                 className="flex flex-col gap-4"
                 onSubmit={(e) => {
@@ -394,6 +453,18 @@ const Pricing = () => {
                       placeholder="1234 Main St"
                       required={true}
                     />
+                  </div>
+                </div>
+
+                <div className="TotalPrice">
+                  <div className="flex justify-between">
+                    <p className="text-lg font-bold text-gray-500">
+                      Total Price
+                    </p>
+                    <p className="text-lg font-bold text-gray-500">
+                      {" "}
+                      ${amount}
+                    </p>
                   </div>
                 </div>
                 <div className="w-full ">

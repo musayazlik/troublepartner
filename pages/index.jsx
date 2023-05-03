@@ -7,8 +7,6 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useState } from "react";
 import formatDate from "@/helpers/formatDate";
-
-import { Adsense } from "@ctrl/react-adsense";
 import { BsCaretDownFill } from "react-icons/bs";
 import Image from "next/image";
 
@@ -16,7 +14,7 @@ import { GoogleAdsenseContainer } from "@/components/googleAdsense";
 
 export default function Home({ posts }) {
   const { status } = useSession();
-  const { loading } = useAppContext();
+  // const { loading } = useAppContext();
   const [postsData, setPostsData] = useState([...posts.data]);
   const { push } = useRouter();
   const createPostPageHandle = () => {
@@ -121,7 +119,7 @@ export default function Home({ posts }) {
           </div>
         </div>
       </Layout>
-      {loading && (
+      {/* {loading && (
         <div className="fixed top-0 left-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div
             className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-blue-600  border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
@@ -132,7 +130,7 @@ export default function Home({ posts }) {
             </span>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }

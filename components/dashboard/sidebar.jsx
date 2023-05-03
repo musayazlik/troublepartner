@@ -7,6 +7,7 @@ import {
   BiGroup,
   BiLogOut,
   BiMessageSquareDots,
+  BiBookmarkAltMinus,
 } from "react-icons/bi";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
@@ -99,6 +100,28 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     <span className="text-base font-bold mt-0.5">Orders</span>
                   </Link>
                 </li>
+
+                <li
+                  className={`nav-item w-full py-2.5  px-2 bg-neutral-50 text-neutral-700  duration-300 rounded-md border border-neutral-500/20
+            ${
+              router.pathname === "/dashboard/coupons" ||
+              router.pathname === "/dashboard/coupons/create"
+                ? "active"
+                : " nav_item_hover"
+            }
+            `}
+                >
+                  <Link
+                    href="/dashboard/coupons"
+                    className="nav-link flex items-center gap-2"
+                  >
+                    <div className="icon">
+                      <BiBookmarkAltMinus className="text-2xl" />
+                    </div>
+                    <span className="text-base font-bold mt-0.5">Coupons</span>
+                  </Link>
+                </li>
+
                 <li
                   className={`nav-item w-full py-2.5 px-2 bg-neutral-50 text-neutral-700 duration-300 rounded-md border border-neutral-500/20 
               

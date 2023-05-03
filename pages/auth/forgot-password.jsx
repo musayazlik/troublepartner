@@ -35,7 +35,11 @@ const ForgotPassword = () => {
         e.target.email.value = "";
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       });
   };
 

@@ -8,11 +8,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   const { method } = req;
-
-  console.log(req.body);
-
   await dbConnect();
-
   switch (method) {
     case "GET":
       try {
@@ -46,11 +42,13 @@ export default async function handler(req, res) {
         const city = req.body.city;
         const address = req.body.address;
 
+        const price = req.body.amount;
+
         const stringHash =
           orderId +
-          "TRY" +
-          1 +
-          1 +
+          "USD" +
+          price +
+          price +
           "DIJITAL_URUN" +
           callbackOkUrl +
           callbackFailUrl;
@@ -65,9 +63,9 @@ export default async function handler(req, res) {
           productName: "Trouble Partner Premium",
           productData: "Trouble Partner Premium",
           productType: "DIJITAL_URUN",
-          productsTotalPrice: 1,
-          orderPrice: 1,
-          currency: "TRY",
+          productsTotalPrice: price,
+          orderPrice: price,
+          currency: "USD",
           orderId,
           conversationId,
           locale: "locale",
@@ -103,8 +101,8 @@ export default async function handler(req, res) {
             city,
             address,
           },
-          amount: 1,
-          currency: "TRY",
+          amount: price,
+          currency: "USD",
           paymentStatus: "pending",
           paymentType: "vallet",
         });

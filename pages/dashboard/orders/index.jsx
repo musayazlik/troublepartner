@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../layout";
-import IsAdminMiddleware from "../middleware";
 import dbConnect from "@/utils/dbconnect";
 import Orders from "@/models/orders";
 
@@ -96,17 +95,6 @@ const OrdersPage = ({ orders }) => {
 export default OrdersPage;
 
 export async function getServerSideProps(context) {
-  const isLogAdmin = await IsAdminMiddleware(context.req, context.res);
-
-  if (!isLogAdmin) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
   await dbConnect();
 
   const orders = await Orders.find({});

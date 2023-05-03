@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../layout";
-import IsAdminMiddleware from "../middleware";
 import dbConnect from "@/utils/dbconnect";
 import Contact from "@/models/contact";
 
@@ -68,17 +67,6 @@ const MessagesPage = ({ messages }) => {
 export default MessagesPage;
 
 export async function getServerSideProps(context) {
-  const isLogAdmin = await IsAdminMiddleware(context.req, context.res);
-
-  if (!isLogAdmin) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
   await dbConnect();
 
   const messages = await Contact.find({});

@@ -61,9 +61,7 @@ const sendMail = async (type, email, token = "", html) => {
 
   sgMail
     .send(messageData)
-    .then(() => {
-      console.log("Email sent");
-    })
+    .then(() => {})
     .catch((error) => {
       console.error(error);
     });

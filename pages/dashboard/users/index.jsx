@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../layout";
-import IsAdminMiddleware from "../middleware";
 import dbConnect from "@/utils/dbconnect";
 import Users from "@/models/users";
 
@@ -69,17 +68,6 @@ const UsersPage = ({ users }) => {
 export default UsersPage;
 
 export async function getServerSideProps(context) {
-  const isLogAdmin = await IsAdminMiddleware(context.req, context.res);
-
-  if (!isLogAdmin) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
   await dbConnect();
 
   const users = await Users.find({});

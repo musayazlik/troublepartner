@@ -1,8 +1,5 @@
 import React from "react";
 import Layout from "./layout";
-import IsAdminMiddleware from "./middleware";
-
-import { getSession } from "next-auth/react";
 import { FiUsers } from "react-icons/fi";
 import { BsPostcard } from "react-icons/bs";
 import { BiBasket } from "react-icons/bi";
@@ -66,56 +63,44 @@ const Dashboard = ({
 export default Dashboard;
 
 export async function getServerSideProps(context) {
-  const isLogAdmin = await IsAdminMiddleware(context.req, context.res);
-  if (!isLogAdmin) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
+  await dbConnect();
+
+  const usersCount = await Users.countDocuments({});
+  const postsCount = await Posts.countDocuments({});
+  const ordersCount = await Orders.countDocuments({});
+
+  let orderMoneyCount = await Orders.aggregate([
+    {
+      $match: {
+        $or: [
+          { paymentStatus: { $exists: false } },
+          { paymentStatus: "paymentOk" },
+        ],
       },
-    };
-  } else {
-    await dbConnect();
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: "$amount" },
+      },
+    },
+  ]);
 
-    const usersCount = await Users.countDocuments({});
-    const postsCount = await Posts.countDocuments({});
-    const ordersCount = await Orders.countDocuments({});
-
-    let orderMoneyCount = await Orders.aggregate([
+  if (orderMoneyCount.length === 0) {
+    orderMoneyCount = [
       {
-        $match: {
-          $or: [
-            { paymentStatus: { $exists: false } },
-            { paymentStatus: "paymentOk" },
-          ],
-        },
+        _id: null,
+        total: 0,
       },
-      {
-        $group: {
-          _id: null,
-          total: { $sum: "$amount" },
-        },
-      },
-    ]);
-
-    if (orderMoneyCount.length === 0) {
-      orderMoneyCount = [
-        {
-          _id: null,
-          total: 0,
-        },
-      ];
-    }
-
-    console.log(orderMoneyCount);
-
-    return {
-      props: {
-        usersCount,
-        postsCount,
-        ordersCount,
-        orderMoneyCount: orderMoneyCount[0]?.total,
-      },
-    };
+    ];
   }
+
+  return {
+    props: {
+      usersCount,
+      postsCount,
+      ordersCount,
+      orderMoneyCount: orderMoneyCount[0]?.total,
+    },
+  };
 }
