@@ -147,7 +147,7 @@ const Pricing = () => {
                       <path d="M20 6L9 17l-5-5"></path>
                     </svg>
                   </span>
-                  Sharing content and comment with 200 character limit.
+                  Sharing content and comment with 260 character limit.
                 </p>
 
                 <p className="flex items-center text-zinc-600 mb-2">

@@ -54,12 +54,11 @@ export default function Home({ posts }) {
                 <p className="text-zinc-800 text-center font-extrabold text-lg lg:text-2xl relative inline-flex justify-center">
                   Your problem is our problem.
                 </p>
-                <p className="text-center leading-5 px-4 text-zinc-800/80 mt-4 font-medium text-sm md:text-base max-w-xl">
-                  Share your problem, either as yourself or anonymously. People
-                  will connect with you and find solutions. they&apos;ll find
-                  it. That&apos;s how simple it is. That&apos;s how beautiful it
-                  is. That&apos;s how it is. as easy as that. That&apos;s how
-                  safe it is.
+                <p className="text-center leading-5 px-4 text-zinc-800 mt-4 font-medium text-base md:text-lg max-w-xl">
+                  Share your problem as yourself or anonymously. People will
+                  connect with you and offer solutions. It's that easy... The
+                  world's first and only social media platform for trouble
+                  partners.
                 </p>
                 <button
                   onClick={createPostPageHandle()}

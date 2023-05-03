@@ -18,7 +18,7 @@ const CreatePost = () => {
   const { data: session } = useSession();
   const [maxLength, setMaxLength] = React.useState({
     title: 43,
-    text: session.user.memberType === "premium" ? 1000 : 400,
+    text: session.user.memberType === "premium" ? 1000 : 260,
   });
   const router = useRouter();
 
@@ -33,8 +33,8 @@ const CreatePost = () => {
       return;
     }
 
-    if (text.length > 400 && session.user.memberType !== "premium") {
-      Swal.fire("Error!", "Your post must be at most 400 characters.", "error");
+    if (text.length > 260 && session.user.memberType !== "premium") {
+      Swal.fire("Error!", "Your post must be at most 260 characters.", "error");
       return;
     }
 
@@ -106,7 +106,7 @@ const CreatePost = () => {
                   produce solutions for you. Take advantage of our members who
                   produce solutions.
                 </p>
-                <p className="text-center text-sm font-medium mt-4 bg-yellow-400 rounded-md px-4 py-2 text-yellow-700">
+                <p className="text-center text-sm font-medium mt-4 bg-yellow-260 rounded-md px-4 py-2 text-yellow-700">
                   <span className="font-extrabold">Warning:</span> It is a
                   community of people who want to help each other. We are here
                   to help you. We are here to help each other.
@@ -126,7 +126,7 @@ const CreatePost = () => {
                     id="title"
                     maxLength={maxLength.title}
                     placeholder="Trouble with my car..."
-                    className="mb-6 border-2 placeholder:text-zinc-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-zinc-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-zinc-600 focus:shadow-lg focus:shadow-blue-600/80"
+                    className="mb-6 border-2 placeholder:text-zinc-260/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-zinc-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-zinc-600 focus:shadow-lg focus:shadow-blue-600/80"
                   />
                 </div>
 
@@ -144,7 +144,7 @@ const CreatePost = () => {
                       maxLength: maxLength.text,
                     })}
                     placeholder="I have a problem with my car. I can't start it. I don't know what to do. I need help."
-                    className="mb-6 border-2 placeholder:text-zinc-400/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-zinc-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-zinc-600 focus:shadow-lg focus:shadow-blue-600/80"
+                    className="mb-6 border-2 placeholder:text-zinc-260/60 outline-double shadow-lg shadow-blue-700/40 outline-blue-600 outline-offset-4 border-zinc-600 p-2 rounded-md duration-300 hover:shadow-lg hover:shadow-blue-600/50 outline-2 font-bold focus:outline-blue-600 focus:outline-offset-8 focus:border-zinc-600 focus:shadow-lg focus:shadow-blue-600/80"
                     onChange={(e) => {
                       numberOfCharacters(e.target.value);
                     }}
@@ -156,7 +156,7 @@ const CreatePost = () => {
                           {maxLength.text - numberOfChars.text} characters left.
                         </p>
                         <Tooltip content="Share content with unlimited characters with a premium membership.">
-                          <BsInfoCircleFill className="inline-block text-lg text-yellow-400" />
+                          <BsInfoCircleFill className="inline-block text-lg text-yellow-260" />
                         </Tooltip>
                       </>
                     )}
@@ -183,10 +183,10 @@ const CreatePost = () => {
                       }  `}
                     />
                     <p
-                      className={`font-bold text-lg text-gray-400 ${
+                      className={`font-bold text-lg text-gray-260 ${
                         session.user.memberType === "premium"
                           ? "text-gray-500"
-                          : "cursor-not-allowed text-gray-400"
+                          : "cursor-not-allowed text-gray-260"
                       }`}
                     >
                       I want to hide my identity.
@@ -194,7 +194,7 @@ const CreatePost = () => {
 
                     {session.user.memberType === "premium" ? null : (
                       <Tooltip content="Sharing confidential content is exclusive to premium members.">
-                        <BsInfoCircleFill className="inline-block text-lg text-yellow-400" />
+                        <BsInfoCircleFill className="inline-block text-lg text-yellow-260" />
                       </Tooltip>
                     )}
                   </div>
