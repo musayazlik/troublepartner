@@ -68,7 +68,7 @@ const options = {
       },
     }),
   ],
-
+  secret: process.env.AUTH_SECRET,
   callbacks: {
     async session({ session }) {
       const data = await User.findOne({ email: session.user.email });
@@ -100,6 +100,7 @@ const options = {
       return token;
     },
   },
+  secret: process.env.SECRET,
   pages: {
     signIn: "/auth/sign-in",
     error: "/",
