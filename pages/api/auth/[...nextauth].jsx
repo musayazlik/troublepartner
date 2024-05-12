@@ -100,7 +100,6 @@ const options = {
       return token;
     },
   },
-  secret: process.env.SECRET,
   pages: {
     signIn: "/auth/sign-in",
     error: "/",
