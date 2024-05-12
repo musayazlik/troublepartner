@@ -68,7 +68,7 @@ const options = {
       },
     }),
   ],
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   callbacks: {
     async session({ session }) {
       const data = await User.findOne({ email: session.user.email });
